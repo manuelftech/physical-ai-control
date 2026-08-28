@@ -17,10 +17,20 @@ docker build . -t ros2-robotics
 
 # Run the local ros2-robotics docker container
 docker run -it \
-  --network ros2-robotics-network \
+  --network robotics-network \
   -v "$(pwd)/src:/ros2_ws/src" \
   -e DB_HOST=postgres-ros2-robotics \
   -e DB_NAME=robotics-internal-db \
   -e DB_USER=postgres \
   -e DB_PASSWORD=123456 \
   ros2-robotics:latest
+
+# Inside the running container setp up the ROS2 skeleton
+cd src
+
+# Create the skeleton package for the quadruped inspector node (go2_auditor):
+ros2 pkg create --build-type ament_python unitre-go2 --dependencies rclpy std_msgs sensor_msgs
+
+# Create the skeleton package for the humanoid handler node (g1_handler):
+ros2 pkg create --build-type ament_python unitree-g1-hands --dependencies rclpy std_msgs
+
