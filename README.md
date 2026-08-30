@@ -13,7 +13,7 @@ docker run -d \
   postgres:15-alpine
 
 # Set up the local Docker image
-docker build . -t ros2-robotics
+docker build . -t physical-ai-control
 
 # Run the local ros2-robotics docker container
 docker run -it \
