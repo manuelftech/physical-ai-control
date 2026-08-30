@@ -20,23 +20,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Establish the runtime workspace directories inside the Ubuntu file layout
-WORKDIR /ros2_ws/src
+WORKDIR /ros2
 
 # ==============================================================================
 # DEPENDENCIES STAGE: Python packages isolation
 # ==============================================================================
-COPY . /
+COPY . /ros2
 
 # Install dependencies directly using pip (OpenCV headless saves CPU/RAM)
-RUN pip3 install -e /third_party/unitree_sdk2_python
-RUN pip3 install --no-cache-dir -r /requirements.txt
+RUN pip3 install -e /ros2/third_party/unitree_sdk2_python
+RUN pip3 install --no-cache-dir -r /ros2/requirements.txt
 
 # ==============================================================================
 # DEVELOPMENT STAGE: Setup local workspace configuration
 # ==============================================================================
 FROM base AS development
 
-WORKDIR /ros2_ws
+WORKDIR /
 
 # Auto-source the ROS2 environment variables inside the terminal profile
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc

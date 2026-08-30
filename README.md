@@ -17,13 +17,13 @@ docker build . -t ros2-robotics
 
 # Run the local ros2-robotics docker container
 docker run -it \
-  --network robotics-network \
+  --network host \
   -v "$(pwd)/src:/ros2_ws/src" \
-  -e DB_HOST=postgres-ros2-robotics \
+  -e DB_HOST=localhost \
   -e DB_NAME=robotics-internal-db \
   -e DB_USER=postgres \
   -e DB_PASSWORD=123456 \
-  ros2-robotics:latest
+  physical-ai-control:latest
 
 # Inside the running container setp up the ROS2 skeleton
 cd src
