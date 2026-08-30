@@ -34,3 +34,6 @@ ros2 pkg create --build-type ament_python unitre-go2 --dependencies rclpy std_ms
 # Create the skeleton package for the humanoid handler node (g1_handler):
 ros2 pkg create --build-type ament_python unitree-g1-hands --dependencies rclpy std_msgs
 
+# Command to initialize Mujoco with robot
+
+mjpython /Users/my_user/unitree_mujoco/simulate_python/unitree_mujoco.py
