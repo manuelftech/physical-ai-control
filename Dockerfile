@@ -28,7 +28,7 @@ WORKDIR /ros2_ws/src
 COPY . /
 
 # Install dependencies directly using pip (OpenCV headless saves CPU/RAM)
-RUN pip3 install -e third_party/unitree_sdk2_python
+RUN pip3 install -e /third_party/unitree_sdk2_python
 RUN pip3 install --no-cache-dir -r /requirements.txt
 
 # ==============================================================================
