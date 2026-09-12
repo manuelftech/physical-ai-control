@@ -24,6 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'movement_test = unitree_g1_hands.test_fast_movement:main',
         ],
     },
 )
