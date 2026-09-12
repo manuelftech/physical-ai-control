@@ -38,11 +38,12 @@ FROM base AS development
 
 WORKDIR /
 
+# Build into c++ every robotics Python script
+RUN . /opt/ros/humble/setup.bash && cd ros2/ && colcon build
+
 # Auto-source the ROS2 environment variables inside the terminal profile
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
-
-# Build into c++ every robotics Python script
-RUN cd ros2 && colcon build
+RUN echo "source /ros2/install/setup.bash" >> ~/.bashrc
 
 # Default execution entrypoint sets up the runtime context shell
 CMD ["/bin/bash"]
