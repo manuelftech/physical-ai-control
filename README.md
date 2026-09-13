@@ -19,25 +19,14 @@ docker build . -t physical-ai-control
 
 # Run the local ros2-robotics docker container
 docker run -it \
-  --network host \
-  -v "$(pwd)/src:/ros2_ws/src" \
-  -e DB_HOST=localhost \
+  -p 8080:8080 \
+  --network robotics-network \
+  -v "$(pwd)/src:/ros2/src" \
+  -e DB_HOST=postgres-db \
   -e DB_NAME=robotics-internal-db \
   -e DB_USER=postgres \
   -e DB_PASSWORD=123456 \
   physical-ai-control:latest
-
-# Inside the running container setp up the ROS2 skeleton
-cd src
-
-# Create the skeleton package for the quadruped inspector node (go2_auditor):
-ros2 pkg create --build-type ament_python unitre-go2 --dependencies rclpy std_msgs sensor_msgs
-
-# Create the skeleton package for the humanoid handler node (g1_handler):
-ros2 pkg create --build-type ament_python unitree-g1-hands --dependencies rclpy std_msgs
-
-## Build the scripts
-python -m colcon build
 
 ## Execution
 

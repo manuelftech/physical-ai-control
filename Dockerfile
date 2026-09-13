@@ -39,7 +39,7 @@ FROM base AS development
 WORKDIR /
 
 # Build into c++ every robotics Python script
-RUN . /opt/ros/humble/setup.bash && cd ros2/ && colcon build
+RUN bash -c ". /opt/ros/humble/setup.bash && cd ros2/ && colcon build --packages-ignore unitree_mujoco"
 
 # Auto-source the ROS2 environment variables inside the terminal profile
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc

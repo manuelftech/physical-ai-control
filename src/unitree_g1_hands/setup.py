@@ -8,7 +8,7 @@ class QuickTestNode(Node):
     def __init__(self):
         super().__init__('quick_test_node')
         # Load your Unitree G1 model file
-        self.model = mujoco.MjModel.from_xml_path('path/to/g1.xml')
+        self.model = mujoco.MjModel.from_xml_path('/ros2/third_party/unitree_mujoco/unitree_robots/g1/scene.xml')
         self.data = mujoco.MjData(self.model)
         self.get_logger().info('G1 Test Movement Active! Watch your browser!')
 
@@ -39,3 +39,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+

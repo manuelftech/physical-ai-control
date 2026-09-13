@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'unitre-go2'
+package_name = 'unitree_go2'
 
 setup(
     name=package_name,
