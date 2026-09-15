@@ -21,6 +21,7 @@ def main(args=None):
     scene = ViserMujocoScene(server, node.model, num_envs=1)
     
     while rclpy.ok():
+        # This is the movement of the bot
         if node.data.time < 0.4:
             node.data.ctrl[:] = 3.0  
         else:
@@ -36,5 +37,3 @@ def main(args=None):
 
     node.destroy_node()
     rclpy.shutdown()
-
-

@@ -1,4 +1,6 @@
 from setuptools import find_packages, setup
+import os
+from glob import glob
 
 package_name = 'unitree_go2'
 
@@ -13,17 +15,14 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='root',
-    maintainer_email='root@todo.todo',
-    description='TODO: Package description',
-    license='TODO: License declaration',
-    extras_require={
-        'test': [
-            'pytest',
-        ],
-    },
+    maintainer='user',
+    maintainer_email='user@todo.todo',
+    description='Unitree G1 Hands simulation package',
+    license='Apache License 2.0',
+    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'test_movement = unitree_go2.test_movement:main',
         ],
     },
 )
