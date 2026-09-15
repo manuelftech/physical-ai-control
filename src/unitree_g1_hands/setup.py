@@ -1,42 +1,28 @@
-import rclpy
-from rclpy.node import Node
-import mujoco
-import mujoco.viewer
-import time
+from setuptools import find_packages, setup
+import os
+from glob import glob
 
-class QuickTestNode(Node):
-    def __init__(self):
-        super().__init__('quick_test_node')
-        # Load your Unitree G1 model file
-        self.model = mujoco.MjModel.from_xml_path('/ros2/third_party/unitree_mujoco/unitree_robots/g1/scene.xml')
-        self.data = mujoco.MjData(self.model)
-        self.get_logger().info('G1 Test Movement Active! Watch your browser!')
+package_name = 'unitree_g1_hands'
 
-def main(args=None):
-    rclpy.init(args=args)
-    node = QuickTestNode()
-    
-    # Opens the browser-linkable passive viewer window
-    with mujoco.viewer.launch_passive(node.model, node.data) as viewer:
-        while rclpy.ok() and viewer.is_running():
-            
-            # --- THE VISIBLE MOVEMENT JOLT ---
-            # If the simulation has been running for less than 0.4 seconds,
-            # slam a massive force command into the robot's arms/shoulders.
-            if node.data.time < 0.4:
-                node.data.ctrl[:] = 3.0  # Force actuators outward aggressively
-            else:
-                node.data.ctrl[:] = 0.0  # Relax motors and let it freefall
-            
-            # Step the physical engine forward and refresh browser UI
-            mujoco.mj_step(node.model, node.data)
-            viewer.sync()
-            
-            time.sleep(node.model.opt.timestep)
-
-    node.destroy_node()
-    rclpy.shutdown()
-
-if __name__ == '__main__':
-    main()
-
+setup(
+    name=package_name,
+    version='0.0.0',
+    packages=find_packages(exclude=['test']),
+    data_files=[
+        ('share/ament_index/resource_index/packages',
+            ['resource/' + package_name]),
+        ('share/' + package_name, ['package.xml']),
+    ],
+    install_requires=['setuptools'],
+    zip_safe=True,
+    maintainer='user',
+    maintainer_email='user@todo.todo',
+    description='Unitree G1 Hands simulation package',
+    license='Apache License 2.0',
+    tests_require=['pytest'],
+    entry_points={
+        'console_scripts': [
+            'test_movement = unitree_g1_hands.test_movement:main',
+        ],
+    },
+)
