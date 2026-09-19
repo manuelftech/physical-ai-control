@@ -1,5 +1,14 @@
+# Building steps locally:
 
-## Build up
+python -m venv .venv
+
+# Activating the environment
+
+source .venv/bin/activate
+
+mjpython third_party/unitree_mujoco/simulate_python/unitree_mujoco.py
+
+## Building steps using Docker:
 
 # set up the Docker network shared by all containers
 docker network create robotics-network

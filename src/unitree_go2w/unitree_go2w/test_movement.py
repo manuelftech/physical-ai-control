@@ -8,7 +8,7 @@ from mjviser import ViserMujocoScene
 class QuickTestNode(Node):
     def __init__(self):
         super().__init__('quick_test_node')
-        self.model = mujoco.MjModel.from_xml_path('/ros2/third_party/unitree_mujoco/unitree_robots/go2/scene.xml')
+        self.model = mujoco.MjModel.from_xml_path('/ros2/third_party/unitree_mujoco/unitree_robots/go2w/scene.xml')
         self.data = mujoco.MjData(self.model)
         self.get_logger().info('G1 Test Movement Active! Open http://localhost:8080 in your browser!')
 

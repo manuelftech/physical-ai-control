@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 import os
 from glob import glob
 
-package_name = 'unitree_go2'
+package_name = 'unitree_go2w'
 
 setup(
     name=package_name,
@@ -22,7 +22,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'test_movement = unitree_go2.test_movement:main',
+            'test_movement = unitree_go2w.test_movement:main',
         ],
     },
 )
