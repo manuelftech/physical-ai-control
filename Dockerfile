@@ -45,5 +45,6 @@ RUN bash -c ". /opt/ros/humble/setup.bash && cd ros2/ && colcon build --packages
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 RUN echo "source /ros2/install/setup.bash" >> ~/.bashrc
 
-# Default execution entrypoint sets up the runtime context shell
+# Default execution entrypoint runs the simulation and controller together
+#CMD ["/bin/bash", "-c", "source /opt/ros/humble/setup.bash && source /ros2/install/setup.bash && cd /ros2/third_party/unitree_mujoco/simulate_python && python3 unitree_mujoco.py"]
 CMD ["/bin/bash"]

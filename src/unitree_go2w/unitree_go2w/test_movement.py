@@ -10,7 +10,7 @@ class QuickTestNode(Node):
         super().__init__('quick_test_node')
         self.model = mujoco.MjModel.from_xml_path('/ros2/third_party/unitree_mujoco/unitree_robots/go2w/scene.xml')
         self.data = mujoco.MjData(self.model)
-        self.get_logger().info('G1 Test Movement Active! Open http://localhost:8080 in your browser!')
+        self.get_logger().info('GO2W Test Movement Active! Open http://localhost:8080 in your browser!')
 
 def main(args=None):
     rclpy.init(args=args)

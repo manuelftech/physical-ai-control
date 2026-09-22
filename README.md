@@ -19,7 +19,7 @@ docker build . -t physical-ai-control
 # Run the local ros2-robotics docker container
 docker run -it \
   -p 8080:8080 \
-  --network robotics-network \
+  --network host \
   -v "$(pwd)/src:/ros2/src" \
   -e DB_HOST=postgres-db \
   -e DB_NAME=robotics-internal-db \
@@ -27,9 +27,9 @@ docker run -it \
   -e DB_PASSWORD=123456 \
   physical-ai-control:latest
 
-## Execution
+# ROS2 Execution inside the Docker Container
 
-# Command to initialize Mujoco with the robot
+ros2 run unitree_go2w test_movement
 
-mjpython /Users/$(whoami)/unitree_mujoco/simulate_python/unitree_mujoco.py
+# The clib_lookup.py file inside the unitree_sdk has been modified for Mac OS
 
