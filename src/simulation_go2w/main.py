@@ -17,7 +17,7 @@ WHEEL_ACTUATORS = [12, 13, 14, 15]
 
 # Controller Settings Renamed for Clarity
 STIFFNESS_SPRING_FORCE = 100.0
-DAMPING_SHOCK_ABSORBER = 5.0
+DAMPING_SHOCK_ABSORBER = 1.0
 WHEEL_BRAKE_FORCE = 50.0  # High damping value to completely seize wheel rotation
 
 ################# LEG: LEFT-UP #################
@@ -68,28 +68,12 @@ FRONT_RIGHT_WHEEL = 12
 FRONT_LEFT_WHEEL = 13
 REAR_RIGHT_WHEEL = 14
 REAR_LEFT_WHEEL = 15
-TURN_SPEED_REDUCTION = 0.3 # Slows down inside wheels to cause a turn
+TURN_SPEED_REDUCTION = 0.1 # Slows down inside wheels to cause a turn
 # Tracking variable to pass the button state safely down into the physics clock
 target_speed_left = 0.0
 target_speed_right = 0.0
-is_braking = False
 
 def physics_callback(model, data):
-    # # Constantly assign our button's target speed directly to all four wheels
-
-    if is_braking:
-        # Actively counter any external forces / rolling velocity by applying high inverse damping torque
-        data.ctrl[FRONT_RIGHT_WHEEL] = -WHEEL_BRAKE_FORCE * data.actuator_velocity[FRONT_RIGHT_WHEEL]
-        data.ctrl[REAR_RIGHT_WHEEL] = -WHEEL_BRAKE_FORCE * data.actuator_velocity[REAR_RIGHT_WHEEL]
-        data.ctrl[FRONT_LEFT_WHEEL] = -WHEEL_BRAKE_FORCE * data.actuator_velocity[FRONT_LEFT_WHEEL]
-        data.ctrl[REAR_LEFT_WHEEL] = -WHEEL_BRAKE_FORCE * data.actuator_velocity[REAR_LEFT_WHEEL]
-    else:
-        # Standard driving conditions
-        data.ctrl[FRONT_RIGHT_WHEEL] = target_speed_right
-        data.ctrl[REAR_RIGHT_WHEEL] = target_speed_right
-        data.ctrl[FRONT_LEFT_WHEEL] = target_speed_left
-        data.ctrl[REAR_LEFT_WHEEL] = target_speed_left
-
     ################# MOVEMENT #################
     # Apply independent side speeds to make steering possible
     data.ctrl[FRONT_RIGHT_WHEEL] = target_speed_right
@@ -116,38 +100,32 @@ def physics_callback(model, data):
     # Advance the simulator physics matrix by one tick frame
     mujoco.mj_step(model, data)
 
-# ==============================================================================
-# Attaching the Frontend Click Event Listener Function
-# ==============================================================================
 def handle_drive_forward(event):
-    global target_speed_left, target_speed_right, is_braking
-    is_braking = False
+    global target_speed_left, target_speed_right
     target_speed_left = FORWARD_SPEED
     target_speed_right = FORWARD_SPEED
-    print("Driving forward!")
+
+def handle_drive_backwards(event):
+    global target_speed_left, target_speed_right
+    target_speed_left = FORWARD_SPEED * -0.5
+    target_speed_right = FORWARD_SPEED * -0.5
 
 def handle_turn_right(event):
-    global target_speed_left, target_speed_right, is_braking
-    is_braking = False   
+    global target_speed_left, target_speed_right
     # Drop the speed of the right wheels while keeping left wheels moving forward
     target_speed_left = FORWARD_SPEED
     target_speed_right = FORWARD_SPEED * TURN_SPEED_REDUCTION
-    print("Turning right forward!")
 
 def handle_turn_left(event):
-    global target_speed_left, target_speed_right, is_braking
-    is_braking = False
+    global target_speed_left, target_speed_right
     # Drop the speed of the left wheels while keeping right wheels moving forward
     target_speed_left = FORWARD_SPEED * TURN_SPEED_REDUCTION
     target_speed_right = FORWARD_SPEED
-    print("Turning left forward!")
 
 def handle_stop_robot(event):
-    global target_speed_left, target_speed_right, is_braking
-    is_braking = True
+    global target_speed_left, target_speed_right
     target_speed_left = 0.0
     target_speed_right = 0.0
-    print("Stopping robot movement!")
 
 if __name__ == "__main__":
     # Run the Viser web interface via the step loop callback
@@ -155,8 +133,11 @@ if __name__ == "__main__":
 
     ###### ADD GUI Buttons ######
     forward_button = viewer._server.gui.add_button("Drive Forward")
-    # Direct Viser to run our function every single time the DOM element is clicked
     forward_button.on_click(handle_drive_forward)
+
+    forward_button = viewer._server.gui.add_button("Drive Backwards")
+    forward_button.on_click(handle_drive_backwards)
+
     # Spawn and hook up the Turn Left DOM button
     left_button = viewer._server.gui.add_button("Turn Left")
     left_button.on_click(handle_turn_left)
