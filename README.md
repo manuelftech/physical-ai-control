@@ -31,5 +31,7 @@ docker run -it \
 
 ros2 run unitree_go2w test_movement
 
-# The clib_lookup.py file inside the unitree_sdk has been modified for Mac OS
+# Yolo Version
+
+YOLO26n (Nano)
 

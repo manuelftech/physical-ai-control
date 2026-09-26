@@ -8,4 +8,5 @@ mujoco==3.6.0
 viser==1.1.0
 mjviser==0.0.14
 typing-extensions==4.16.0
+ultralytics===8.4.163
 pygame==2.6.1

@@ -1,4 +1,4 @@
-from movement_control import move_forward, move_backwards, move_left, move_right, stop_movement
+from movement_config import move_forward, move_backwards, move_left, move_right, stop_movement
 UP, LEFT, RIGHT, STOP, DOWN = "↑", "←", "→", "Stop", "↓"
 
 def add_gui_movement_buttons(viewer=None):

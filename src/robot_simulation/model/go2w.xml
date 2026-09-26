@@ -67,6 +67,8 @@
         mass="6.921"
         diaginertia="0.107027 0.0980771 0.0244531" />
       <freejoint />
+      <!-- CAMERA -->
+      <camera name="go2w_camera" pos="0.3 0 0.1" euler="0 -1.5 -1.57" fovy="90"/>
       <geom mesh="base_0" material="black" class="visual" />
       <geom mesh="base_1" material="black" class="visual" />
       <geom mesh="base_2" material="black" class="visual" />
