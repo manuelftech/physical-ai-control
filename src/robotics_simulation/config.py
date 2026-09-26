@@ -1,0 +1,9 @@
+ROBOT_SCENE = "model/scene.xml" # Robot scene
+SIMULATE_DT = 0.005  # Need to be larger than the runtime of viewer.sync()
+YOLO_MODEL = "yolo26n.pt"
+UP, LEFT, RIGHT, STOP, DOWN = "↑", "←", "→", "Stop", "↓"
+CAMERA_WIDTH, CAMERA_HEIGHT = 640, 480
+CAMERA_FOLDER = "camera_recording"
+XML_CAMERA_NAME = "go2w_camera"
+VISION_PREDICTION_FOLDER = "vision_predictions"
+SAVE_VISION_PREDICTION = False

@@ -1,5 +1,6 @@
 from movement_config import stabilize_robot
 from interface_config import add_gui_movement_buttons
+from vision_detection import identify_element
 from mjviser import Viewer
 from PIL import Image
 import time
@@ -18,14 +19,11 @@ dim_motor_sensor_ = 3 * num_motor_
 time.sleep(0.2)
 
 def record_camera():
-    XML_CAMERA_NAME = "go2w_camera"
-    CAMERA_FOLDER = "recording"
-    WIDTH, HEIGHT = 640, 480
-    renderer = mujoco.Renderer(mj_model, width=WIDTH, height=HEIGHT)
+    renderer = mujoco.Renderer(mj_model, width=config.CAMERA_WIDTH, height=config.CAMERA_HEIGHT)
 
-    if os.path.exists(CAMERA_FOLDER):
-        shutil.rmtree(CAMERA_FOLDER)
-    os.makedirs(CAMERA_FOLDER, exist_ok=True)
+    if os.path.exists(config.CAMERA_FOLDER):
+        shutil.rmtree(config.CAMERA_FOLDER)
+    os.makedirs(config.CAMERA_FOLDER, exist_ok=True)
 
     frame_count = 0
     while True:
@@ -34,10 +32,12 @@ def record_camera():
 
         with locker:
             # Synchronize model data state into the renderer instance
-            renderer.update_scene(mj_data, camera=XML_CAMERA_NAME)
+            renderer.update_scene(mj_data, camera=config.XML_CAMERA_NAME)
 
         # Draw and capture raw RGB array pixel buffers, Parse and immediately dump arrays straight into JPG formats
-        Image.fromarray(renderer.render()).save("{}/{:04d}.jpg".format(CAMERA_FOLDER, frame_count))
+        img_filename = "{}/{:04d}.jpg".format(config.CAMERA_FOLDER, frame_count)
+        Image.fromarray(renderer.render()).save(img_filename)
+        identify_element(img_filename=img_filename)
         frame_count += 1
 
 def initialize_robot():
