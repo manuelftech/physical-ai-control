@@ -2,20 +2,19 @@ from ultralytics import YOLO
 import config
 
 def identify_element(img_filename=None):
-    model = YOLO(config.YOLO_MODEL)
-    # classes=[24] restricts the output exclusively to backpacks
+    model = YOLO(config.COMPUTER_VISION_MODEL)
     results = model.predict(
-        source=img_filename, 
-        classes=[24], 
-        conf=0.25, 
-        save=config.SAVE_VISION_PREDICTION, 
+        source=img_filename,
+        classes=[24],
+        conf=0.22,
+        save=config.SAVE_VISION_PREDICTION,
         project=config.VISION_PREDICTION_FOLDER,
         name="predict",
         exist_ok=True
         )
     
     if len(results[0].boxes) == 0:
-        print(f"No detections. Filename: {img_filename}")
+        print(f"No element detected. Filename: {img_filename}")
         return
     
     for box in results[0].boxes:

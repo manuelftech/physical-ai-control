@@ -35,3 +35,11 @@ ros2 run unitree_go2w test_movement
 
 YOLO26n (Nano)
 
+@misc{downs2022scannedobjects,
+    url = {https://arxiv.org/abs/2204.11918},
+    author = {Downs, Laura and Francis, Anthony and Koenig, Nate and Kinman, Brandon and Hickman, Ryan and Reymann, Krista and McHugh, Thomas B. and Vanhoucke, Vincent},
+    keywords = {Robotics (cs.RO), Graphics (cs.GR), FOS: Computer and information sciences, FOS: Computer and information sciences},
+    title = {Google Scanned Objects: A High-Quality Dataset of 3D Scanned Household Items},
+    publisher = {arXiv},
+    year = {2022},
+}
