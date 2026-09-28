@@ -15,21 +15,367 @@
       markrgb="0.8 0.8 0.8" width="300" height="300"/>
     <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
 
-    <!-- Backpack (Blue) -->
-    <texture name="backpack_blue_tex" file="assets/../assets/models/clothes_backpack_blue/clothes_backpack_blue.png"/>
-    <mesh name="backpack_blue_mesh" file="../assets/models/clothes_backpack_blue/clothes_backpack_blue.obj"/>
-    <material name="backpack_blue_mat" texture="backpack_blue_tex"/>
+<!-- Clothes Backpack Blue -->
+    <texture name="clothes_backpack_blue_tex" file="assets/../assets/models/clothes_backpack_blue/clothes_backpack_blue.png"/>
+    <mesh name="clothes_backpack_blue_mesh" file="../assets/models/clothes_backpack_blue/clothes_backpack_blue.obj"/>
+    <material name="clothes_backpack_blue_mat" texture="clothes_backpack_blue_tex"/>
+
+<!-- Clothes Backpack Purple -->
+    <texture name="clothes_backpack_purple_tex" file="assets/../assets/models/clothes_backpack_purple/clothes_backpack_purple.png"/>
+    <mesh name="clothes_backpack_purple_mesh" file="../assets/models/clothes_backpack_purple/clothes_backpack_purple.obj"/>
+    <material name="clothes_backpack_purple_mat" texture="clothes_backpack_purple_tex"/>
+
+<!-- Clothes Globes Construction -->
+    <texture name="clothes_globes_construction_tex" file="assets/../assets/models/clothes_globes_construction/clothes_globes_construction.png"/>
+    <mesh name="clothes_globes_construction_mesh" file="../assets/models/clothes_globes_construction/clothes_globes_construction.obj"/>
+    <material name="clothes_globes_construction_mat" texture="clothes_globes_construction_tex"/>
+
+<!-- Clothes Hat Brown Dark -->
+    <texture name="clothes_hat_brown_dark_tex" file="assets/../assets/models/clothes_hat_brown_dark/clothes_hat_brown_dark.png"/>
+    <mesh name="clothes_hat_brown_dark_mesh" file="../assets/models/clothes_hat_brown_dark/clothes_hat_brown_dark.obj"/>
+    <material name="clothes_hat_brown_dark_mat" texture="clothes_hat_brown_dark_tex"/>
+
+<!-- Clothes Shoes Brown Light -->
+    <texture name="clothes_shoes_brown_light_tex" file="assets/../assets/models/clothes_shoes_brown_light/clothes_shoes_brown_light.png"/>
+    <mesh name="clothes_shoes_brown_light_mesh" file="../assets/models/clothes_shoes_brown_light/clothes_shoes_brown_light.obj"/>
+    <material name="clothes_shoes_brown_light_mat" texture="clothes_shoes_brown_light_tex"/>
+
+<!-- Clothes Shoes Brown Lighter -->
+    <texture name="clothes_shoes_brown_lighter_tex" file="assets/../assets/models/clothes_shoes_brown_lighter/clothes_shoes_brown_lighter.png"/>
+    <mesh name="clothes_shoes_brown_lighter_mesh" file="../assets/models/clothes_shoes_brown_lighter/clothes_shoes_brown_lighter.obj"/>
+    <material name="clothes_shoes_brown_lighter_mat" texture="clothes_shoes_brown_lighter_tex"/>
+
+<!-- Clothes Shoes Sports -->
+    <texture name="clothes_shoes_sports_tex" file="assets/../assets/models/clothes_shoes_sports/clothes_shoes_sports.png"/>
+    <mesh name="clothes_shoes_sports_mesh" file="../assets/models/clothes_shoes_sports/clothes_shoes_sports.obj"/>
+    <material name="clothes_shoes_sports_mat" texture="clothes_shoes_sports_tex"/>
+
+<!-- Clothes Shows Brown Darker -->
+    <texture name="clothes_shows_brown_darker_tex" file="assets/../assets/models/clothes_shows_brown_darker/clothes_shows_brown_darker.png"/>
+    <mesh name="clothes_shows_brown_darker_mesh" file="../assets/models/clothes_shows_brown_darker/clothes_shows_brown_darker.obj"/>
+    <material name="clothes_shows_brown_darker_mat" texture="clothes_shows_brown_darker_tex"/>
+
+<!-- Kitchen Food Chocolate Box -->
+    <texture name="kitchen_food_chocolate_box_tex" file="assets/../assets/models/kitchen_food_chocolate_box/kitchen_food_chocolate_box.png"/>
+    <mesh name="kitchen_food_chocolate_box_mesh" file="../assets/models/kitchen_food_chocolate_box/kitchen_food_chocolate_box.obj"/>
+    <material name="kitchen_food_chocolate_box_mat" texture="kitchen_food_chocolate_box_tex"/>
+
+<!-- Kitchen Food Nesquik -->
+    <texture name="kitchen_food_nesquik_tex" file="assets/../assets/models/kitchen_food_nesquik/kitchen_food_nesquik.png"/>
+    <mesh name="kitchen_food_nesquik_mesh" file="../assets/models/kitchen_food_nesquik/kitchen_food_nesquik.obj"/>
+    <material name="kitchen_food_nesquik_mat" texture="kitchen_food_nesquik_tex"/>
+
+<!-- Kitchen Food Vegetables -->
+    <texture name="kitchen_food_vegetables_tex" file="assets/../assets/models/kitchen_food_vegetables/kitchen_food_vegetables.png"/>
+    <mesh name="kitchen_food_vegetables_mesh" file="../assets/models/kitchen_food_vegetables/kitchen_food_vegetables.obj"/>
+    <material name="kitchen_food_vegetables_mat" texture="kitchen_food_vegetables_tex"/>
+
+<!-- Kitchen Mug Drink -->
+    <texture name="kitchen_mug_drink_tex" file="assets/../assets/models/kitchen_mug_drink/kitchen_mug_drink.png"/>
+    <mesh name="kitchen_mug_drink_mesh" file="../assets/models/kitchen_mug_drink/kitchen_mug_drink.obj"/>
+    <material name="kitchen_mug_drink_mat" texture="kitchen_mug_drink_tex"/>
+
+<!-- Kitchen Mug Red Symbols -->
+    <texture name="kitchen_mug_red_symbols_tex" file="assets/../assets/models/kitchen_mug_red_symbols/kitchen_mug_red_symbols.png"/>
+    <mesh name="kitchen_mug_red_symbols_mesh" file="../assets/models/kitchen_mug_red_symbols/kitchen_mug_red_symbols.obj"/>
+    <material name="kitchen_mug_red_symbols_mat" texture="kitchen_mug_red_symbols_tex"/>
+
+<!-- Kitchen Mugs Colorful -->
+    <texture name="kitchen_mugs_colorful_tex" file="assets/../assets/models/kitchen_mugs_colorful/kitchen_mugs_colorful.png"/>
+    <mesh name="kitchen_mugs_colorful_mesh" file="../assets/models/kitchen_mugs_colorful/kitchen_mugs_colorful.obj"/>
+    <material name="kitchen_mugs_colorful_mat" texture="kitchen_mugs_colorful_tex"/>
+
+<!-- Kitchen Plante White -->
+    <texture name="kitchen_plante_white_tex" file="assets/../assets/models/kitchen_plante_white/kitchen_plante_white.png"/>
+    <mesh name="kitchen_plante_white_mesh" file="../assets/models/kitchen_plante_white/kitchen_plante_white.obj"/>
+    <material name="kitchen_plante_white_mat" texture="kitchen_plante_white_tex"/>
+
+<!-- Kitchen Plate Bordered -->
+    <texture name="kitchen_plate_bordered_tex" file="assets/../assets/models/kitchen_plate_bordered/kitchen_plate_bordered.png"/>
+    <mesh name="kitchen_plate_bordered_mesh" file="../assets/models/kitchen_plate_bordered/kitchen_plate_bordered.obj"/>
+    <material name="kitchen_plate_bordered_mat" texture="kitchen_plate_bordered_tex"/>
+
+  
+<!-- Kitchen Plate With Symbol -->
+    <texture name="kitchen_plate_with_symbol_tex" file="assets/../assets/models/kitchen_plate_with_symbol/kitchen_plate_with_symbol.png"/>
+    <mesh name="kitchen_plate_with_symbol_mesh" file="../assets/models/kitchen_plate_with_symbol/kitchen_plate_with_symbol.obj"/>
+    <material name="kitchen_plate_with_symbol_mat" texture="kitchen_plate_with_symbol_tex"/>
+
+<!-- Tech Console Nintendo 3DS Straight -->
+    <texture name="tech_console_nintendo_3DS_straight_tex" file="assets/../assets/models/tech_console_nintendo_3DS_straight/tech_console_nintendo_3DS_straight.png"/>
+    <mesh name="tech_console_nintendo_3DS_straight_mesh" file="../assets/models/tech_console_nintendo_3DS_straight/tech_console_nintendo_3DS_straight.obj"/>
+    <material name="tech_console_nintendo_3DS_straight_mat" texture="tech_console_nintendo_3DS_straight_tex"/>
+
+<!-- Tech Console Nintendo 3DS Bent -->
+    <texture name="tech_console_nintendo_3DS_bent_tex" file="assets/../assets/models/tech_console_nintendo_3DS_bent/tech_console_nintendo_3DS_bent.png"/>
+    <mesh name="tech_console_nintendo_3DS_bent_mesh" file="../assets/models/tech_console_nintendo_3DS_bent/tech_console_nintendo_3DS_bent.obj"/>
+    <material name="tech_console_nintendo_3DS_bent_mat" texture="tech_console_nintendo_3DS_bent_tex"/>
+
+<!-- Tech Headset Black -->
+    <texture name="tech_headset_black_tex" file="assets/../assets/models/tech_headset_black/tech_headset_black.png"/>
+    <mesh name="tech_headset_black_mesh" file="../assets/models/tech_headset_black/tech_headset_black.obj"/>
+    <material name="tech_headset_black_mat" texture="tech_headset_black_tex"/>
+
+<!-- Tech Mouse Black Simple -->
+    <texture name="tech_mouse_black_simple_tex" file="assets/../assets/models/tech_mouse_black_simple/tech_mouse_black_simple.png"/>
+    <mesh name="tech_mouse_black_simple_mesh" file="../assets/models/tech_mouse_black_simple/tech_mouse_black_simple.obj"/>
+    <material name="tech_mouse_black_simple_mat" texture="tech_mouse_black_simple_tex"/>
+
+<!-- Tech Mouse White Simple -->
+    <texture name="tech_mouse_white_simple_tex" file="assets/../assets/models/tech_mouse_white_simple/tech_mouse_white_simple.png"/>
+    <mesh name="tech_mouse_white_simple_mesh" file="../assets/models/tech_mouse_white_simple/tech_mouse_white_simple.obj"/>
+    <material name="tech_mouse_white_simple_mat" texture="tech_mouse_white_simple_tex"/>
+
+<!-- Tool Box Cartridge Printer -->
+    <texture name="tool_box_cartridge_printer_tex" file="assets/../assets/models/tool_box_cartridge_printer/tool_box_cartridge_printer.png"/>
+    <mesh name="tool_box_cartridge_printer_mesh" file="../assets/models/tool_box_cartridge_printer/tool_box_cartridge_printer.obj"/>
+    <material name="tool_box_cartridge_printer_mat" texture="tool_box_cartridge_printer_tex"/>
+
+<!-- Tool Box Cartridge Printer Canon -->
+    <texture name="tool_box_cartridge_printer_canon_tex" file="assets/../assets/models/tool_box_cartridge_printer_canon/tool_box_cartridge_printer_canon.png"/>
+    <mesh name="tool_box_cartridge_printer_canon_mesh" file="../assets/models/tool_box_cartridge_printer_canon/tool_box_cartridge_printer_canon.obj"/>
+    <material name="tool_box_cartridge_printer_canon_mat" texture="tool_box_cartridge_printer_canon_tex"/>
+
+<!-- Tool Box Motherboard -->
+    <texture name="tool_box_motherboard_tex" file="assets/../assets/models/tool_box_motherboard/tool_box_motherboard.png"/>
+    <mesh name="tool_box_motherboard_mesh" file="../assets/models/tool_box_motherboard/tool_box_motherboard.obj"/>
+    <material name="tool_box_motherboard_mat" texture="tool_box_motherboard_tex"/>
+
+<!-- Tool Box Printer -->
+    <texture name="tool_box_printer_tex" file="assets/../assets/models/tool_box_printer/tool_box_printer.png"/>
+    <mesh name="tool_box_printer_mesh" file="../assets/models/tool_box_printer/tool_box_printer.obj"/>
+    <material name="tool_box_printer_mat" texture="tool_box_printer_tex"/>
+
+<!-- Tool Box Router -->
+    <texture name="tool_box_router_tex" file="assets/../assets/models/tool_box_router/tool_box_router.png"/>
+    <mesh name="tool_box_router_mesh" file="../assets/models/tool_box_router/tool_box_router.obj"/>
+    <material name="tool_box_router_mat" texture="tool_box_router_tex"/>
+
+<!-- Tool Box Standard Brown -->
+    <texture name="tool_box_standard_brown_tex" file="assets/../assets/models/tool_box_standard_brown/tool_box_standard_brown.png"/>
+    <mesh name="tool_box_standard_brown_mesh" file="../assets/models/tool_box_standard_brown/tool_box_standard_brown.obj"/>
+    <material name="tool_box_standard_brown_mat" texture="tool_box_standard_brown_tex"/>
+
+<!-- Tool Liquid Folic Acid -->
+    <texture name="tool_liquid_folic_acid_tex" file="assets/../assets/models/tool_liquid_folic_acid/tool_liquid_folic_acid.png"/>
+    <mesh name="tool_liquid_folic_acid_mesh" file="../assets/models/tool_liquid_folic_acid/tool_liquid_folic_acid.obj"/>
+    <material name="tool_liquid_folic_acid_mat" texture="tool_liquid_folic_acid_tex"/>
+
+<!-- Tool Liquid Glue White and Blue -->
+    <texture name="tool_liquid_glue_whihe_and_blue_tex" file="assets/../assets/models/tool_liquid_glue_whihe_and_blue/tool_liquid_glue_whihe_and_blue.png"/>
+    <mesh name="tool_liquid_glue_whihe_and_blue_mesh" file="../assets/models/tool_liquid_glue_whihe_and_blue/tool_liquid_glue_whihe_and_blue.obj"/>
+    <material name="tool_liquid_glue_whihe_and_blue_mat" texture="tool_liquid_glue_whihe_and_blue_tex"/>
+
+<!-- Tool Liquid Jarrodophilus -->
+    <texture name="tool_liquid_jarrodophilus_tex" file="assets/../assets/models/tool_liquid_jarrodophilus/tool_liquid_jarrodophilus.png"/>
+    <mesh name="tool_liquid_jarrodophilus_mesh" file="../assets/models/tool_liquid_jarrodophilus/tool_liquid_jarrodophilus.obj"/>
+    <material name="tool_liquid_jarrodophilus_mat" texture="tool_liquid_jarrodophilus_tex"/>
+
+<!-- Tool Scissors -->
+    <texture name="tool_scissors_tex" file="assets/../assets/models/tool_scissors/tool_scissors.png"/>
+    <mesh name="tool_scissors_mesh" file="../assets/models/tool_scissors/tool_scissors.obj"/>
+    <material name="tool_scissors_mat" texture="tool_scissors_tex"/>
 
   </asset>
 
   <worldbody>
-    <geom name="floor" type="plane" size="0 0 1" material="groundplane"/>
-    <!-- Backpack (Blue) -->
-    <body name="blue_backpack" pos="5 0 0.5">
+    
+    <!-- Clothes Backpack Blue -->
+    <body name="clothes_backpack_blue" pos="5 0.0 0.5">
       <freejoint name="backpack_joint"/>
-      <geom type="mesh" mesh="backpack_blue_mesh" material="backpack_blue_mat"/>
+      <geom type="mesh" mesh="clothes_backpack_blue_mesh" material="clothes_backpack_blue_mat"/>
     </body>
 
+<!-- Clothes Backpack Purple -->
+    <body name="clothes_backpack_purple" pos="5 0.4 0.5">
+      <freejoint name="backpack_purple_joint"/>
+      <geom type="mesh" mesh="clothes_backpack_purple_mesh" material="clothes_backpack_purple_mat"/>
+    </body>
+
+<!-- Clothes Globes Construction -->
+    <body name="clothes_globes_construction" pos="5 1.2 0.5">
+      <freejoint name="globes_construction_joint"/>
+      <geom type="mesh" mesh="clothes_globes_construction_mesh" material="clothes_globes_construction_mat"/>
+    </body>
+
+<!-- Clothes Hat Brown Dark -->
+    <body name="clothes_hat_brown_dark" pos="5 1.6 0.5">
+      <freejoint name="hat_brown_dark_joint"/>
+      <geom type="mesh" mesh="clothes_hat_brown_dark_mesh" material="clothes_hat_brown_dark_mat"/>
+    </body>
+
+<!-- Clothes Shoes Brown Light -->
+    <body name="clothes_shoes_brown_light" pos="5 2.8 0.5">
+      <freejoint name="shoes_brown_light_joint"/>
+      <geom type="mesh" mesh="clothes_shoes_brown_light_mesh" material="clothes_shoes_brown_light_mat"/>
+    </body>
+
+<!-- Clothes Shoes Brown Lighter -->
+    <body name="clothes_shoes_brown_lighter" pos="5 3.2 0.5">
+      <freejoint name="shoes_brown_lighter_joint"/>
+      <geom type="mesh" mesh="clothes_shoes_brown_lighter_mesh" material="clothes_shoes_brown_lighter_mat"/>
+    </body>
+
+<!-- Clothes Shoes Sports -->
+    <body name="clothes_shoes_sports" pos="5 3.6 0.5">
+      <freejoint name="shoes_sports_joint"/>
+      <geom type="mesh" mesh="clothes_shoes_sports_mesh" material="clothes_shoes_sports_mat"/>
+    </body>
+
+<!-- Clothes Shows Brown Darker -->
+    <body name="clothes_shows_brown_darker" pos="5 4.8 0.5">
+      <freejoint name="shows_brown_darker_joint"/>
+      <geom type="mesh" mesh="clothes_shows_brown_darker_mesh" material="clothes_shows_brown_darker_mat"/>
+    </body>
+
+<!-- Kitchen Food Chocolate Box -->
+    <body name="kitchen_food_chocolate_box" pos="5 5.6 0.5">
+      <freejoint name="food_chocolate_box_joint"/>
+      <geom type="mesh" mesh="kitchen_food_chocolate_box_mesh" material="kitchen_food_chocolate_box_mat"/>
+    </body>
+
+<!-- Kitchen Food Nesquik -->
+    <body name="kitchen_food_nesquik" pos="5 6.0 0.5">
+      <freejoint name="food_nesquik_joint"/>
+      <geom type="mesh" mesh="kitchen_food_nesquik_mesh" material="kitchen_food_nesquik_mat"/>
+    </body>
+
+<!-- Kitchen Food Vegetables -->
+    <body name="kitchen_food_vegetables" pos="5 6.4 0.5">
+      <freejoint name="food_vegetables_joint"/>
+      <geom type="mesh" mesh="kitchen_food_vegetables_mesh" material="kitchen_food_vegetables_mat"/>
+    </body>
+
+<!-- Kitchen Mug Drink -->
+    <body name="kitchen_mug_drink" pos="5 6.8 0.5">
+      <freejoint name="mug_drink_joint"/>
+      <geom type="mesh" mesh="kitchen_mug_drink_mesh" material="kitchen_mug_drink_mat"/>
+    </body>
+
+<!-- Kitchen Mug Red Symbols -->
+    <body name="kitchen_mug_red_symbols" pos="5 7.2 0.5">
+      <freejoint name="mug_red_symbols_joint"/>
+      <geom type="mesh" mesh="kitchen_mug_red_symbols_mesh" material="kitchen_mug_red_symbols_mat"/>
+    </body>
+
+<!-- Kitchen Mugs Colorful -->
+    <body name="kitchen_mugs_colorful" pos="5 7.6 0.5">
+      <freejoint name="mugs_colorful_joint"/>
+      <geom type="mesh" mesh="kitchen_mugs_colorful_mesh" material="kitchen_mugs_colorful_mat"/>
+    </body>
+
+<!-- Kitchen Plante White -->
+    <body name="kitchen_plante_white" pos="5 8.0 0.5">
+      <freejoint name="plante_white_joint"/>
+      <geom type="mesh" mesh="kitchen_plante_white_mesh" material="kitchen_plante_white_mat"/>
+    </body>
+
+<!-- Kitchen Plate Bordered -->
+    <body name="kitchen_plate_bordered" pos="5 8.4 0.5">
+      <freejoint name="plate_bordered_joint"/>
+      <geom type="mesh" mesh="kitchen_plate_bordered_mesh" material="kitchen_plate_bordered_mat"/>
+    </body>
+
+<!-- Kitchen Plate With Symbol -->
+    <body name="kitchen_plate_with_symbol" pos="5 9.2 0.5">
+      <freejoint name="plate_with_symbol_joint"/>
+      <geom type="mesh" mesh="kitchen_plate_with_symbol_mesh" material="kitchen_plate_with_symbol_mat"/>
+    </body>
+
+<!-- Tech Console Nintendo 3DS Straight -->
+    <body name="tech_console_nintendo_3DS_straight" pos="5 9.6 0.5">
+      <freejoint name="console_nintendo_3DS_straight_joint"/>
+      <geom type="mesh" mesh="tech_console_nintendo_3DS_straight_mesh" material="tech_console_nintendo_3DS_straight_mat"/>
+    </body>
+
+<!-- Tech Console Nintendo 3DS Bent -->
+    <body name="tech_console_nintendo_3DS_bent" pos="5 10.0 0.5">
+      <freejoint name="console_nintendo_3DS_bent_joint"/>
+      <geom type="mesh" mesh="tech_console_nintendo_3DS_bent_mesh" material="tech_console_nintendo_3DS_bent_mat"/>
+    </body>
+
+<!-- Tech Headset Black -->
+    <body name="tech_headset_black" pos="5 10.4 0.5">
+      <freejoint name="headset_black_joint"/>
+      <geom type="mesh" mesh="tech_headset_black_mesh" material="tech_headset_black_mat"/>
+    </body>
+
+<!-- Tech Mouse Black Simple -->
+    <body name="tech_mouse_black_simple" pos="5 11.2 0.5">
+      <freejoint name="mouse_black_simple_joint"/>
+      <geom type="mesh" mesh="tech_mouse_black_simple_mesh" material="tech_mouse_black_simple_mat"/>
+    </body>
+
+<!-- Tech Mouse White Simple -->
+    <body name="tech_mouse_white_simple" pos="5 11.6 0.5">
+      <freejoint name="mouse_white_simple_joint"/>
+      <geom type="mesh" mesh="tech_mouse_white_simple_mesh" material="tech_mouse_white_simple_mat"/>
+    </body>
+
+<!-- Tool Box Cartridge Printer -->
+    <body name="tool_box_cartridge_printer" pos="5 12.4 0.5">
+      <freejoint name="box_cartridge_printer_joint"/>
+      <geom type="mesh" mesh="tool_box_cartridge_printer_mesh" material="tool_box_cartridge_printer_mat"/>
+    </body>
+
+<!-- Tool Box Cartridge Printer Canon -->
+    <body name="tool_box_cartridge_printer_canon" pos="5 12.8 0.5">
+      <freejoint name="box_cartridge_printer_canon_joint"/>
+      <geom type="mesh" mesh="tool_box_cartridge_printer_canon_mesh" material="tool_box_cartridge_printer_canon_mat"/>
+    </body>
+
+<!-- Tool Box Motherboard -->
+    <body name="tool_box_motherboard" pos="5 13.2 0.5">
+      <freejoint name="box_motherboard_joint"/>
+      <geom type="mesh" mesh="tool_box_motherboard_mesh" material="tool_box_motherboard_mat"/>
+    </body>
+
+<!-- Tool Box Printer -->
+    <body name="tool_box_printer" pos="5 13.6 0.5">
+      <freejoint name="box_printer_joint"/>
+      <geom type="mesh" mesh="tool_box_printer_mesh" material="tool_box_printer_mat"/>
+    </body>
+
+<!-- Tool Box Router -->
+    <body name="tool_box_router" pos="5 14.0 0.5">
+      <freejoint name="box_router_joint"/>
+      <geom type="mesh" mesh="tool_box_router_mesh" material="tool_box_router_mat"/>
+    </body>
+
+<!-- Tool Box Standard Brown -->
+    <body name="tool_box_standard_brown" pos="5 14.4 0.5">
+      <freejoint name="box_standard_brown_joint"/>
+      <geom type="mesh" mesh="tool_box_standard_brown_mesh" material="tool_box_standard_brown_mat"/>
+    </body>
+
+<!-- Tool Liquid Folic Acid -->
+    <body name="tool_liquid_folic_acid" pos="5 14.8 0.5">
+      <freejoint name="liquid_folic_acid_joint"/>
+      <geom type="mesh" mesh="tool_liquid_folic_acid_mesh" material="tool_liquid_folic_acid_mat"/>
+    </body>
+
+<!-- Tool Liquid Glue White and Blue -->
+    <body name="tool_liquid_glue_whihe_and_blue" pos="5 15.2 0.5">
+      <freejoint name="liquid_glue_whihe_and_blue_joint"/>
+      <geom type="mesh" mesh="tool_liquid_glue_whihe_and_blue_mesh" material="tool_liquid_glue_whihe_and_blue_mat"/>
+    </body>
+
+<!-- Tool Liquid Jarrodophilus -->
+    <body name="tool_liquid_jarrodophilus" pos="5 15.6 0.5">
+      <freejoint name="liquid_jarrodophilus_joint"/>
+      <geom type="mesh" mesh="tool_liquid_jarrodophilus_mesh" material="tool_liquid_jarrodophilus_mat"/>
+    </body>
+
+<!-- Tool Scissors -->
+    <body name="tool_scissors" pos="5 16.0 0.5">
+      <freejoint name="scissors_joint"/>
+      <geom type="mesh" mesh="tool_scissors_mesh" material="tool_scissors_mat"/>
+    </body>
+
+    <!-- Floor -->
+    <geom name="floor" type="plane" size="0 0 1" material="groundplane"/>
+
+    <!-- Floor Staircase -->
     <geom pos="1.2 0 0.04" type="box"  size="0.1 2 0.04" quat="1.0 0 0 0"/>
     <geom pos="1.6 0 0.04" type="box"  size="0.1 2 0.04" quat="1.0 0 0 0"/>
 
