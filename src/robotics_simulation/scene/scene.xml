@@ -3,6 +3,7 @@
 
   <statistic center="0 0 0.1" extent="0.8"/>
 
+
   <visual>
     <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
     <rgba haze="0.15 0.25 0.35 1"/>
@@ -95,7 +96,6 @@
     <mesh name="kitchen_plate_bordered_mesh" file="../assets/models/kitchen_plate_bordered/kitchen_plate_bordered.obj"/>
     <material name="kitchen_plate_bordered_mat" texture="kitchen_plate_bordered_tex"/>
 
-  
 <!-- Kitchen Plate With Symbol -->
     <texture name="kitchen_plate_with_symbol_tex" file="assets/../assets/models/kitchen_plate_with_symbol/kitchen_plate_with_symbol.png"/>
     <mesh name="kitchen_plate_with_symbol_mesh" file="../assets/models/kitchen_plate_with_symbol/kitchen_plate_with_symbol.obj"/>
@@ -179,197 +179,196 @@
   </asset>
 
   <worldbody>
-    
     <!-- Clothes Backpack Blue -->
     <body name="clothes_backpack_blue" pos="5 0.0 0.5">
       <freejoint name="backpack_joint"/>
-      <geom type="mesh" mesh="clothes_backpack_blue_mesh" material="clothes_backpack_blue_mat"/>
+      <geom type="mesh" mesh="clothes_backpack_blue_mesh" material="clothes_backpack_blue_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Clothes Backpack Purple -->
     <body name="clothes_backpack_purple" pos="5 0.4 0.5">
       <freejoint name="backpack_purple_joint"/>
-      <geom type="mesh" mesh="clothes_backpack_purple_mesh" material="clothes_backpack_purple_mat"/>
+      <geom type="mesh" mesh="clothes_backpack_purple_mesh" material="clothes_backpack_purple_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Clothes Globes Construction -->
     <body name="clothes_globes_construction" pos="5 1.2 0.5">
       <freejoint name="globes_construction_joint"/>
-      <geom type="mesh" mesh="clothes_globes_construction_mesh" material="clothes_globes_construction_mat"/>
+      <geom type="mesh" mesh="clothes_globes_construction_mesh" material="clothes_globes_construction_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Clothes Hat Brown Dark -->
     <body name="clothes_hat_brown_dark" pos="5 1.6 0.5">
       <freejoint name="hat_brown_dark_joint"/>
-      <geom type="mesh" mesh="clothes_hat_brown_dark_mesh" material="clothes_hat_brown_dark_mat"/>
+      <geom type="mesh" mesh="clothes_hat_brown_dark_mesh" material="clothes_hat_brown_dark_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Clothes Shoes Brown Light -->
     <body name="clothes_shoes_brown_light" pos="5 2.8 0.5">
       <freejoint name="shoes_brown_light_joint"/>
-      <geom type="mesh" mesh="clothes_shoes_brown_light_mesh" material="clothes_shoes_brown_light_mat"/>
+      <geom type="mesh" mesh="clothes_shoes_brown_light_mesh" material="clothes_shoes_brown_light_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Clothes Shoes Brown Lighter -->
     <body name="clothes_shoes_brown_lighter" pos="5 3.2 0.5">
       <freejoint name="shoes_brown_lighter_joint"/>
-      <geom type="mesh" mesh="clothes_shoes_brown_lighter_mesh" material="clothes_shoes_brown_lighter_mat"/>
+      <geom type="mesh" mesh="clothes_shoes_brown_lighter_mesh" material="clothes_shoes_brown_lighter_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Clothes Shoes Sports -->
     <body name="clothes_shoes_sports" pos="5 3.6 0.5">
       <freejoint name="shoes_sports_joint"/>
-      <geom type="mesh" mesh="clothes_shoes_sports_mesh" material="clothes_shoes_sports_mat"/>
+      <geom type="mesh" mesh="clothes_shoes_sports_mesh" material="clothes_shoes_sports_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Clothes Shows Brown Darker -->
     <body name="clothes_shows_brown_darker" pos="5 4.8 0.5">
       <freejoint name="shows_brown_darker_joint"/>
-      <geom type="mesh" mesh="clothes_shows_brown_darker_mesh" material="clothes_shows_brown_darker_mat"/>
+      <geom type="mesh" mesh="clothes_shows_brown_darker_mesh" material="clothes_shows_brown_darker_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Kitchen Food Chocolate Box -->
     <body name="kitchen_food_chocolate_box" pos="5 5.6 0.5">
       <freejoint name="food_chocolate_box_joint"/>
-      <geom type="mesh" mesh="kitchen_food_chocolate_box_mesh" material="kitchen_food_chocolate_box_mat"/>
+      <geom type="mesh" mesh="kitchen_food_chocolate_box_mesh" material="kitchen_food_chocolate_box_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Kitchen Food Nesquik -->
     <body name="kitchen_food_nesquik" pos="5 6.0 0.5">
       <freejoint name="food_nesquik_joint"/>
-      <geom type="mesh" mesh="kitchen_food_nesquik_mesh" material="kitchen_food_nesquik_mat"/>
+      <geom type="mesh" mesh="kitchen_food_nesquik_mesh" material="kitchen_food_nesquik_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Kitchen Food Vegetables -->
     <body name="kitchen_food_vegetables" pos="5 6.4 0.5">
       <freejoint name="food_vegetables_joint"/>
-      <geom type="mesh" mesh="kitchen_food_vegetables_mesh" material="kitchen_food_vegetables_mat"/>
+      <geom type="mesh" mesh="kitchen_food_vegetables_mesh" material="kitchen_food_vegetables_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Kitchen Mug Drink -->
     <body name="kitchen_mug_drink" pos="5 6.8 0.5">
       <freejoint name="mug_drink_joint"/>
-      <geom type="mesh" mesh="kitchen_mug_drink_mesh" material="kitchen_mug_drink_mat"/>
+      <geom type="mesh" mesh="kitchen_mug_drink_mesh" material="kitchen_mug_drink_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Kitchen Mug Red Symbols -->
     <body name="kitchen_mug_red_symbols" pos="5 7.2 0.5">
       <freejoint name="mug_red_symbols_joint"/>
-      <geom type="mesh" mesh="kitchen_mug_red_symbols_mesh" material="kitchen_mug_red_symbols_mat"/>
+      <geom type="mesh" mesh="kitchen_mug_red_symbols_mesh" material="kitchen_mug_red_symbols_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Kitchen Mugs Colorful -->
     <body name="kitchen_mugs_colorful" pos="5 7.6 0.5">
       <freejoint name="mugs_colorful_joint"/>
-      <geom type="mesh" mesh="kitchen_mugs_colorful_mesh" material="kitchen_mugs_colorful_mat"/>
+      <geom type="mesh" mesh="kitchen_mugs_colorful_mesh" material="kitchen_mugs_colorful_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Kitchen Plante White -->
     <body name="kitchen_plante_white" pos="5 8.0 0.5">
       <freejoint name="plante_white_joint"/>
-      <geom type="mesh" mesh="kitchen_plante_white_mesh" material="kitchen_plante_white_mat"/>
+      <geom type="mesh" mesh="kitchen_plante_white_mesh" material="kitchen_plante_white_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Kitchen Plate Bordered -->
     <body name="kitchen_plate_bordered" pos="5 8.4 0.5">
       <freejoint name="plate_bordered_joint"/>
-      <geom type="mesh" mesh="kitchen_plate_bordered_mesh" material="kitchen_plate_bordered_mat"/>
+      <geom type="mesh" mesh="kitchen_plate_bordered_mesh" material="kitchen_plate_bordered_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Kitchen Plate With Symbol -->
     <body name="kitchen_plate_with_symbol" pos="5 9.2 0.5">
       <freejoint name="plate_with_symbol_joint"/>
-      <geom type="mesh" mesh="kitchen_plate_with_symbol_mesh" material="kitchen_plate_with_symbol_mat"/>
+      <geom type="mesh" mesh="kitchen_plate_with_symbol_mesh" material="kitchen_plate_with_symbol_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Tech Console Nintendo 3DS Straight -->
     <body name="tech_console_nintendo_3DS_straight" pos="5 9.6 0.5">
       <freejoint name="console_nintendo_3DS_straight_joint"/>
-      <geom type="mesh" mesh="tech_console_nintendo_3DS_straight_mesh" material="tech_console_nintendo_3DS_straight_mat"/>
+      <geom type="mesh" mesh="tech_console_nintendo_3DS_straight_mesh" material="tech_console_nintendo_3DS_straight_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Tech Console Nintendo 3DS Bent -->
     <body name="tech_console_nintendo_3DS_bent" pos="5 10.0 0.5">
       <freejoint name="console_nintendo_3DS_bent_joint"/>
-      <geom type="mesh" mesh="tech_console_nintendo_3DS_bent_mesh" material="tech_console_nintendo_3DS_bent_mat"/>
+      <geom type="mesh" mesh="tech_console_nintendo_3DS_bent_mesh" material="tech_console_nintendo_3DS_bent_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Tech Headset Black -->
     <body name="tech_headset_black" pos="5 10.4 0.5">
       <freejoint name="headset_black_joint"/>
-      <geom type="mesh" mesh="tech_headset_black_mesh" material="tech_headset_black_mat"/>
+      <geom type="mesh" mesh="tech_headset_black_mesh" material="tech_headset_black_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Tech Mouse Black Simple -->
     <body name="tech_mouse_black_simple" pos="5 11.2 0.5">
       <freejoint name="mouse_black_simple_joint"/>
-      <geom type="mesh" mesh="tech_mouse_black_simple_mesh" material="tech_mouse_black_simple_mat"/>
+      <geom type="mesh" mesh="tech_mouse_black_simple_mesh" material="tech_mouse_black_simple_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Tech Mouse White Simple -->
     <body name="tech_mouse_white_simple" pos="5 11.6 0.5">
       <freejoint name="mouse_white_simple_joint"/>
-      <geom type="mesh" mesh="tech_mouse_white_simple_mesh" material="tech_mouse_white_simple_mat"/>
+      <geom type="mesh" mesh="tech_mouse_white_simple_mesh" material="tech_mouse_white_simple_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Tool Box Cartridge Printer -->
     <body name="tool_box_cartridge_printer" pos="5 12.4 0.5">
       <freejoint name="box_cartridge_printer_joint"/>
-      <geom type="mesh" mesh="tool_box_cartridge_printer_mesh" material="tool_box_cartridge_printer_mat"/>
+      <geom type="mesh" mesh="tool_box_cartridge_printer_mesh" material="tool_box_cartridge_printer_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Tool Box Cartridge Printer Canon -->
     <body name="tool_box_cartridge_printer_canon" pos="5 12.8 0.5">
       <freejoint name="box_cartridge_printer_canon_joint"/>
-      <geom type="mesh" mesh="tool_box_cartridge_printer_canon_mesh" material="tool_box_cartridge_printer_canon_mat"/>
+      <geom type="mesh" mesh="tool_box_cartridge_printer_canon_mesh" material="tool_box_cartridge_printer_canon_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Tool Box Motherboard -->
     <body name="tool_box_motherboard" pos="5 13.2 0.5">
       <freejoint name="box_motherboard_joint"/>
-      <geom type="mesh" mesh="tool_box_motherboard_mesh" material="tool_box_motherboard_mat"/>
+      <geom type="mesh" mesh="tool_box_motherboard_mesh" material="tool_box_motherboard_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Tool Box Printer -->
     <body name="tool_box_printer" pos="5 13.6 0.5">
       <freejoint name="box_printer_joint"/>
-      <geom type="mesh" mesh="tool_box_printer_mesh" material="tool_box_printer_mat"/>
+      <geom type="mesh" mesh="tool_box_printer_mesh" material="tool_box_printer_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Tool Box Router -->
     <body name="tool_box_router" pos="5 14.0 0.5">
       <freejoint name="box_router_joint"/>
-      <geom type="mesh" mesh="tool_box_router_mesh" material="tool_box_router_mat"/>
+      <geom type="mesh" mesh="tool_box_router_mesh" material="tool_box_router_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Tool Box Standard Brown -->
     <body name="tool_box_standard_brown" pos="5 14.4 0.5">
       <freejoint name="box_standard_brown_joint"/>
-      <geom type="mesh" mesh="tool_box_standard_brown_mesh" material="tool_box_standard_brown_mat"/>
+      <geom type="mesh" mesh="tool_box_standard_brown_mesh" material="tool_box_standard_brown_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Tool Liquid Folic Acid -->
     <body name="tool_liquid_folic_acid" pos="5 14.8 0.5">
       <freejoint name="liquid_folic_acid_joint"/>
-      <geom type="mesh" mesh="tool_liquid_folic_acid_mesh" material="tool_liquid_folic_acid_mat"/>
+      <geom type="mesh" mesh="tool_liquid_folic_acid_mesh" material="tool_liquid_folic_acid_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Tool Liquid Glue White and Blue -->
     <body name="tool_liquid_glue_whihe_and_blue" pos="5 15.2 0.5">
       <freejoint name="liquid_glue_whihe_and_blue_joint"/>
-      <geom type="mesh" mesh="tool_liquid_glue_whihe_and_blue_mesh" material="tool_liquid_glue_whihe_and_blue_mat"/>
+      <geom type="mesh" mesh="tool_liquid_glue_whihe_and_blue_mesh" material="tool_liquid_glue_whihe_and_blue_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Tool Liquid Jarrodophilus -->
     <body name="tool_liquid_jarrodophilus" pos="5 15.6 0.5">
       <freejoint name="liquid_jarrodophilus_joint"/>
-      <geom type="mesh" mesh="tool_liquid_jarrodophilus_mesh" material="tool_liquid_jarrodophilus_mat"/>
+      <geom type="mesh" mesh="tool_liquid_jarrodophilus_mesh" material="tool_liquid_jarrodophilus_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
 <!-- Tool Scissors -->
     <body name="tool_scissors" pos="5 16.0 0.5">
       <freejoint name="scissors_joint"/>
-      <geom type="mesh" mesh="tool_scissors_mesh" material="tool_scissors_mat"/>
+      <geom type="mesh" mesh="tool_scissors_mesh" material="tool_scissors_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
     </body>
 
     <!-- Floor -->

@@ -1,5 +1,5 @@
 ROBOT_SCENE = "scene/scene.xml" # Robot scene
-SIMULATE_DT = 0.005  # Need to be larger than the runtime of viewer.sync()
+SIMULATE_DT = 0.005
 COMPUTER_VISION_MODEL = "computer_vision_model/yolo26n.pt"
 UP, LEFT, RIGHT, STOP, DOWN = "↑", "←", "→", "Stop", "↓"
 CAMERA_WIDTH, CAMERA_HEIGHT = 640, 480
