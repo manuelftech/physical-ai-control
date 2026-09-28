@@ -2,7 +2,7 @@
 install/
 log/
 build/
-src/robot_simulation/recording/
+src/robotics_simulation/camera_recording
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

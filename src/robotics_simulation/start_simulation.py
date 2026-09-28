@@ -46,9 +46,10 @@ def initialize_robot():
     # Add buttons to the Viser GUI
     viewer = add_gui_movement_buttons(viewer=viewer)
 
-    # Record video from the Robot Camera
-    stream_thread = threading.Thread(target=record_camera, daemon=True)
-    stream_thread.start()
+    if config.CAMERA_ACTIVATED:
+        # Record video from the Robot Camera
+        stream_thread = threading.Thread(target=record_camera, daemon=True)
+        stream_thread.start()
 
     viewer.run()
 

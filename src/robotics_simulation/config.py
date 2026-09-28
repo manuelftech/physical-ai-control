@@ -7,3 +7,4 @@ CAMERA_FOLDER = "camera_recording"
 XML_CAMERA_NAME = "go2w_camera"
 VISION_PREDICTION_FOLDER = "vision_predictions"
 SAVE_VISION_PREDICTION = False
+CAMERA_ACTIVATED = True
