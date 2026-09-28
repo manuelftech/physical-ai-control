@@ -178,43 +178,37 @@
 
 
 <!-- ####### TEST ###### -->
-<!-- Pure Matte Charcoal Shadow Absorbing Material -->
-<texture name="dark_metallic_tex" type="2d" builtin="gradient" rgb1="0.01 0.01 0.01" rgb2="0.005 0.005 0.005" width="512" height="512"/>
-<material name="dark_industrial_mat" texture="dark_metallic_tex" shininess="0.1" specular="0.1" roughness="0.9" reflectance="0.01"/>
+<!-- ########## TEST ########## -->
 
 <!-- ####### TEST ###### -->
-
   </asset>
-
   <worldbody>
     <!-- ####### TEST ###### -->
-<!-- ########## PITCH-BLACK WIDE CRAWLSPACE ########## -->
+<!-- ########## CLOSED DARK INDUSTRIAL WAREHOUSE HALLWAY ########## -->
 
-<!-- FORCE ABSOLUTE WORLD DARKNESS: Reconfigure global ambient lighting variables -->
-<!-- These parameters completely choke out the simulator's white air glare, plunging it into near total darkness -->
-<light directional="true" diffuse="0.01 0.01 0.02" specular="0.0 0.0 0.0" pos="0 0 10" dir="0 0 -1" castshadow="false"/>
-
-<!-- Left Wall (Widened out drastically to the left) -->
-<body name="hallway_left_wall" pos="1.0 10 0.3">
-    <geom name="left_wall_geom" type="box" size="0.02 15 0.3" material="dark_industrial_mat" condim="4" friction="0.8 0.01 0.001"/>
+<!-- Left Wall (Ultra-Dark Shadow Brown/Charcoal) -->
+<body name="hallway_left_wall" pos="3.5 10 1.05">
+    <geom name="left_wall_geom" type="box" size="0.02 15 1.05" rgba="0.04 0.04 0.05 1" condim="4" friction="0.8 0.01 0.001"/>
 </body>
 
-<!-- Right Wall (Widened out drastically to the right) -->
-<body name="hallway_right_wall" pos="9.0 10 0.3">
-    <geom name="right_wall_geom" type="box" size="0.02 15 0.3" material="dark_industrial_mat" condim="4" friction="0.8 0.01 0.001"/>
+<!-- Right Wall (Ultra-Dark Shadow Brown/Charcoal) -->
+<body name="hallway_right_wall" pos="6.5 10 1.05">
+    <geom name="right_wall_geom" type="box" size="0.02 15 1.05" rgba="0.04 0.04 0.05 1" condim="4" friction="0.8 0.01 0.001"/>
 </body>
 
-<!-- Ceiling (Expanded wide to match the walls, kept at your perfect 0.6m height) -->
-<body name="hallway_ceiling" pos="5 10 0.6">
-    <geom name="ceiling_geom" type="box" size="4.0 15 0.02" material="dark_industrial_mat"/>
+<!-- Ceiling (UNTOUCHED - Perfect Opaque Warehouse Brown) -->
+<body name="hallway_ceiling" pos="5 10 2.1">
+    <geom name="ceiling_geom" type="box" size="1.5 15 0.02" rgba="0.12 0.07 0.04 1"/>
 </body>
 
-<!-- ########## PITCH-BLACK WIDE CRAWLSPACE ########## -->
+<!-- Back Closing Wall (Ultra-Dark to seamlessly seal the background void) -->
+<body name="hallway_back_wall" pos="5 25 1.05">
+    <geom name="back_wall_geom" type="box" size="1.5 0.02 1.05" rgba="0.04 0.04 0.05 1"/>
+</body>
 
-
+<!-- ########## CLOSED DARK INDUSTRIAL WAREHOUSE HALLWAY ########## -->
 
     <!-- ####### TEST ###### -->
-
 
     <!-- Clothes Backpack Blue -->
     <body name="clothes_backpack_blue" pos="5 0.0 0.5">
