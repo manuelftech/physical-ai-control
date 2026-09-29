@@ -28,7 +28,7 @@ def record_camera():
     frame_count = 0
     while True:
         # Configure amount of images captured per second
-        time.sleep(0.5)
+        time.sleep(0.3)
 
         with locker:
             # Synchronize model data state into the renderer instance
