@@ -15,54 +15,41 @@ The core operational setup captures the Unitree Go2W traversing the simulated ea
 ---
 
 ## Architecture Flow & Data Topology
+```mermaid
+graph TD
+    %% Estilos Globales
+    classDef mjc fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    classDef aws fill:#fff3e0,stroke:#e65100,stroke-width:2px;
+    classDef ros fill:#f3e5f5,stroke:#4a148c,stroke-width:2px;
 
-+------------------ MuJoCo Physics Core ------------------+
-|                                                         |
-|  +--------------------+       +----------------------+  |
-|  |   Unitree Go2W     |       |   Visual Obstacles   |  |
-|  | (Manual GUI Control   |    | (Custom-Textured Rock) |  |
-|  |   Python Movement) |       +----------------------+  |
-|  +---------+----------+                                 |
-|            | (High-Freq Frame Matrices)                 |
-+------------|--------------------------------------------+
-|
-v [ROS2 Camera Subscriber Topic]
-+------------|--------------------------------------------+
-|            v                                            |
-|  +--------------------+                                 |
-|  |  ROS2 Perception   |                                 |
-|  +---------+----------+                                 |
-|            |                                            |
-|            +--------------> [Ultralytics YOLO Network]  |
-|            |                (Object Mask Bounding)      |
-|            |                                            |
-|            +--------------> [Depth-Anything-V2-Small]   |
-|                             (Relative Depth Heatmap)    |
-|            v                                            |
-|  +---------------------------------------------------+  |
-|  |      Matrix Fusion & Spatial Distance Resolver     |  |
-|  +-------------------------+-------------------------+  |
-|                            |                            |
-+----------------------------|----------------------------+
-|
-+-------------------+-------------------+
-| (Autonomous JSON Telemetry Payload)   | (Raw JPEG Media Payload)
-v                                       v
-+------------------------+              +------------------------+
-|      AWS IoT Core      |              |       Amazon S3        |
-+-----------+------------+              +-----------+------------+
-|                                       |
-| [SQL Rules Execution]                 | [Bucket Object Created Event]
-v                                       v
-+------------------------+              +------------------------+
-|       Amazon SNS       |              |    AWS Lambda Node     |
-+-----------+------------+              +-----------+------------+
-|                                       |
-v (Email Alerts Dispatched)             v [URL Object Inspection]
-"Immediate Field Hazard"             +------------------------+
-|    AI Auditing Agent   |
-| (Confidence Integrity) |
-+------------------------+
+    subgraph MJC ["MuJoCo Physics Core"]
+        A[Unitree Go2W <br> Manual GUI / Python] -->|High-Freq Frame Matrices| B[Visual Obstacles <br> Custom-Textured Rock]
+    end
+    class MJC,A,B mjc;
+
+    subgraph ROS ["ROS2 Perception (Subscriber Topic)"]
+        C{Matrix Fusion & Spatial Distance Resolver}
+        D[Ultralytics YOLO Network <br> Object Mask Bounding] --> C
+        E[Depth-Anything-V2-Small <br> Relative Depth Heatmap] --> C
+    end
+    class ROS,C,D,E ros;
+
+    A -->|Frame Stream| D
+    A -->|Frame Stream| E
+
+    %% Salidas de ROS hacia AWS
+    C -->|Autonomous JSON Telemetry| F[AWS IoT Core]
+    C -->|Raw JPEG Media Payload| G[Amazon S3]
+    
+    subgraph AWS ["Cloud Infrastructure"]
+        F -->|SQL Rules Execution| H[Amazon SNS]
+        H -->|Email Alerts| I[Immediate Field Hazard]
+        
+        G -->|Bucket Object Created Event| J[AWS Lambda Node]
+        J -->|URL Object Inspection| K[AI Auditing Agent <br> Confidence Integrity]
+    end
+    class AWS,F,G,H,I,J,K aws;
+```
 
 ---
 
