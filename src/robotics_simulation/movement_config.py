@@ -1,51 +1,45 @@
 import mujoco
 
-# Actuator IDs mapping specifically to the four rolling hub motors
+# Actuator IDs
 WHEEL_ACTUATORS = [12, 13, 14, 15]
 
-# Controller Settings Renamed for Clarity
+# Control Settings
 STIFFNESS_SPRING_FORCE = 100.0
 DAMPING_SHOCK_ABSORBER = 1.0
-WHEEL_BRAKE_FORCE = 50.0  # High damping value to completely seize wheel rotation
-
+WHEEL_BRAKE_FORCE = 50.0
 UNION_BODY_LEGS_SIDEWAYS_TARGET = 0.0
 UNION_BODY_LEGS_FORWARD_TARGET = 0.67
 KNEES_TARGET = -1.3
 
-################# LEG: LEFT-UP #################
-# Front-Left Leg Actuator Numerical Positions
+# LEG: LEFT-UP
 UNION_BODY_LEG_SIDEWAYS_LEFT_UP = 3
 UNION_BODY_LEG_FORWARD_LEFT_UP = 4
 KNEE_LEFT_UP = 5
 
-################# LEG: RIGHT-UP #################
-# Front-Right Leg Actuator Numerical Positions
+# LEG: RIGHT-UP
 UNION_BODY_LEG_SIDEWAYS_RIGHT_UP = 0
 UNION_BODY_LEG_FORWARD_RIGHT_UP = 1
 KNEE_RIGHT_UP = 2
 
-################# LEG: RIGHT-DOWN #################
-# Rear-Right Leg Actuator Numerical Positions
+# LEG: RIGHT-DOWN
 UNION_BODY_LEG_SIDEWAYS_RIGHT_DOWN = 6
 UNION_BODY_LEG_FORWARD_RIGHT_DOWN = 7
 KNEE_RIGHT_DOWN = 8
 
-################# LEG: LEFT-DOWN #################
-# Rear-Left Leg Actuator Numerical Positions
+# LEG: LEFT-DOWN
 UNION_BODY_LEG_SIDEWAYS_LEFT_DOWN = 9
 UNION_BODY_LEG_FORWARD_LEFT_DOWN = 10
 KNEE_LEFT_DOWN = 11
 
-################# GUI BUTTON: MOVE-FORWARD #################
-FORWARD_SPEED = 2.5 # Adjust this value (rad/s velocity command) to alter speed
+# GUI BUTTON: MOVE-FORWARD
+FORWARD_SPEED = 2.5
 
-################# GUI BUTTON: MOVE-LEFT #################
+# GUI BUTTON: MOVE-LEFT
 FRONT_RIGHT_WHEEL = 12
 FRONT_LEFT_WHEEL = 13
 REAR_RIGHT_WHEEL = 14
 REAR_LEFT_WHEEL = 15
-TURNING_STRENTH = 0.01 # Slows down inside wheels to cause a turn
-# Tracking variable to pass the button state safely down into the physics clock
+TURNING_STRENTH = 0.01
 target_speed_left = 0.0
 target_speed_right = 0.0
 

@@ -24,11 +24,6 @@
       markrgb="0.8 0.8 0.8" width="300" height="300"/>
     <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
 
-<!-- Floor (Wood Type 1) -->
-<!-- 1. Define your 2D texture map -->
-<texture name="floor_wood_type_1" type="2d" file="floor_wood/floor_wood_type_1.png"/>
-<material name="wood_floor_type_1_mat" texture="floor_wood_type_1" texrepeat="5 5" texuniform="true"/>
-
 <!-- Clothes Backpack Blue -->
     <texture name="clothes_backpack_blue_tex" file="clothes_backpack_blue/clothes_backpack_blue.png"/>
     <mesh name="clothes_backpack_blue_mesh" file="../assets/models/clothes_backpack_blue/clothes_backpack_blue.obj"/>
@@ -189,93 +184,37 @@
     <mesh name="tool_scissors_mesh" file="../assets/models/tool_scissors/tool_scissors.obj"/>
     <material name="tool_scissors_mat" texture="tool_scissors_tex"/>
 
-<!-- ####### TEST ###### -->
-
-<!-- Defines a realistic, vibrant sky blue gradient (Light Sky Blue to Clean Blue) -->
-        <texture name="skyblue_box" type="skybox" builtin="gradient" rgb1="0.53 0.81 0.98" rgb2="0.20 0.60 0.86" width="800" height="800"/>
-        
-        <!-- Bright white material for the floor and objects to combat dark shadowing -->
-        <texture name="pure_white" type="2d" builtin="flat" rgb1="1 1 1" rgb2="1 1 1" width="100" height="100"/>
-        <material name="bright_white_mat" texture="pure_white" specular="0.1" shininess="0.1"/>
-<!-- ####### TEST ###### -->
+<!-- Rock Brown Light Assets -->
+    <texture name="rock_brown_light_tex" type="2d" file="rock_brown_light/rock_brown_light_Albedo.png"/>
+    <material name="rock_brown_light_mat" texture="rock_brown_light_tex" roughness="0.8"/>
+    <mesh name="rock_brown_light_mesh" file="../assets/models/rock_brown_light/Beach-Rock.obj" refpos="0 0 0"/>
 
   </asset>
   <worldbody>
-    <!-- Hallway -->
-        <!-- Ensure you have at least one explicit directional light casting down into your hallway -->
-        <light directional="true" diffuse="0.8 0.8 0.8" specular="0.2 0.2 0.2" pos="0 0 10" dir="0 0 -1"/>
-        <!-- Left Wall (Ultra-Dark Shadow Brown/Charcoal) - Shifted Right -->
-        <body name="hallway_left_wall" pos="4.5 10 1.05">
-            <geom name="left_wall_geom" type="box" size="0.02 15 1.05" rgba="0.04 0.04 0.05 1" condim="4" friction="0.8 0.01 0.001"/>
-        </body>
-        <!-- Right Wall (Ultra-Dark Shadow Brown/Charcoal) - Shifted Right -->
-        <body name="hallway_right_wall" pos="7.5 10 1.05">
-            <geom name="right_wall_geom" type="box" size="0.02 15 1.05" rgba="0.04 0.04 0.05 1" condim="4" friction="0.8 0.01 0.001"/>
-        </body>
-        <!-- Ceiling (UNTOUCHED - Perfect Opaque Warehouse Brown) - Shifted Right -->
-        <body name="hallway_ceiling" pos="6.0 10 2.1">
-            <geom name="ceiling_geom" type="box" size="1.5 15 0.02" rgba="0.12 0.07 0.04 1"/>
-        </body>
-        <!-- Back Closing Wall (Ultra-Dark to seamlessly seal the background void) - Shifted Right -->
-        <body name="hallway_back_wall" pos="6.0 25 1.05">
-            <geom name="back_wall_geom" type="box" size="1.5 0.02 1.05" rgba="0.04 0.04 0.05 1"/>
-        </body>
-        <geom name="floor_base" type="plane" pos="0 0 0" size="0 0 1" material="wood_floor_type_1_mat"/>
+    <!-- Floor -->
+    <geom name="floor_base" type="plane" pos="0 0 0" size="0 0 1"/>
 
-<!-- ############################## Wall-Fastened Stacked Boxes Row Start -->
-       <!-- Fixed Wall-Hugging Casual Line -->
-    <!-- Segment 1 -->
-    <body name="box_wall_inner_1" pos="5.2 2.0 0.35" euler="5 0 8">
-      <geom type="mesh" mesh="tool_box_standard_brown_mesh" material="tool_box_standard_brown_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
+    <!-- Rock Brown Light -->
+    <body name="rock_brown_light" pos="-4 0 0.2" quat="0.7071 0.7071 0 0">
+      <!-- 1. VISUAL MESH: Only used for rendering. No phantom collision walls. -->
+      <geom type="mesh" 
+            mesh="rock_brown_light_mesh" 
+            material="rock_brown_light_mat" 
+            contype="0" 
+            conaffinity="0" 
+            group="1"/>
+      <!-- 2. COLLISION GEOM: A smooth, completely invisible physical cylinder. -->
+      <geom type="cylinder" 
+            size="0.4 0.5" 
+            pos="0 0 0.0" 
+            rgba="0 0 0 0" 
+            contype="1" 
+            conaffinity="1" 
+            friction="1.5 0.05 0.001" 
+            solref="0.001 1" 
+            solimp="0.999 0.999 0.001"/>
     </body>
 
-    <!-- Segment 2 -->
-    <body name="box_wall_inner_2" pos="5.2 2.42 0.35" euler="180 0 -5">
-      <geom type="mesh" mesh="tool_box_standard_brown_mesh" material="tool_box_standard_brown_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
-    </body>
-
-    <!-- Segment 3 -->
-    <body name="box_wall_inner_3" pos="5.2 2.84 0.35" euler="0 90 0">
-      <geom type="mesh" mesh="tool_box_standard_brown_mesh" material="tool_box_standard_brown_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
-    </body>
-
-    <!-- Segment 4 -->
-    <body name="box_wall_inner_4" pos="5.2 3.26 0.35" euler="-4 2 12">
-      <geom type="mesh" mesh="tool_box_standard_brown_mesh" material="tool_box_standard_brown_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
-    </body>
-
-    <!-- Segment 5 -->
-    <body name="box_wall_inner_5" pos="5.2 3.68 0.35" euler="0 0 -10">
-      <geom type="mesh" mesh="tool_box_standard_brown_mesh" material="tool_box_standard_brown_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
-    </body>
-
-    <!-- Segment 6 -->
-    <body name="box_wall_inner_6" pos="5.2 4.10 0.35" euler="0 0 85">
-      <geom type="mesh" mesh="tool_box_standard_brown_mesh" material="tool_box_standard_brown_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
-    </body>
-
-    <!-- Segment 7 -->
-    <body name="box_wall_inner_7" pos="5.2 4.52 0.35" euler="180 0 6">
-      <geom type="mesh" mesh="tool_box_standard_brown_mesh" material="tool_box_standard_brown_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
-    </body>
-
-    <!-- Segment 8 -->
-    <body name="box_wall_inner_8" pos="5.2 4.94 0.35" euler="0 0 -3">
-      <geom type="mesh" mesh="tool_box_standard_brown_mesh" material="tool_box_standard_brown_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
-    </body>
-
-    <!-- Segment 9 -->
-    <body name="box_wall_inner_9" pos="5.2 5.36 0.35" euler="5 -3 15">
-      <geom type="mesh" mesh="tool_box_standard_brown_mesh" material="tool_box_standard_brown_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
-    </body>
-
-    <!-- Segment 10 -->
-    <body name="box_wall_inner_10" pos="5.2 5.78 0.35" euler="0 0 90">
-      <geom type="mesh" mesh="tool_box_standard_brown_mesh" material="tool_box_standard_brown_mat" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
-    </body>
-
-
-    <!-- Wall-Fastened Stacked Boxes Row End -->
 
   </worldbody>
 </mujoco>

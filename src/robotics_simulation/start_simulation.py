@@ -43,6 +43,14 @@ def record_camera():
 def initialize_robot():
     viewer = Viewer(mj_model, mj_data, step_fn=stabilize_robot)
 
+    viewer._server.scene.configure_environment_map(
+        hdri="night",                # Switches background texture to night sky
+        background=True,             # Ensures the sky map is visible
+        background_blurriness=0.0,   # Keep it as sharp as possible
+        background_intensity=0.6,    # Lowers the sky brightness so it feels dark
+        environment_intensity=2.5
+    )
+
     # Add buttons to the Viser GUI
     viewer = add_gui_movement_buttons(viewer=viewer)
 

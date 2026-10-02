@@ -5,7 +5,7 @@ def add_gui_movement_buttons(viewer=None):
     # Add forward button
     forward_button = viewer._server.gui.add_button(config.UP)
     forward_button.on_click(move_forward)
-    
+
     # Add left button
     left_button = viewer._server.gui.add_button(config.LEFT)
     left_button.on_click(move_left)
