@@ -185,12 +185,12 @@
     <material name="tool_scissors_mat" texture="tool_scissors_tex"/>
 
 <!-- Rock Brown Light Assets -->
-    <texture name="rock_brown_light_tex" type="2d" file="rock_brown_light/rock_brown_light_Albedo.png"/>
+    <texture name="rock_brown_light_tex" type="2d" file="rock_brown_light/rock_brown_light.png"/>
     <material name="rock_brown_light_mat" texture="rock_brown_light_tex" roughness="0.8"/>
-    <mesh name="rock_brown_light_mesh" file="../assets/models/rock_brown_light/Beach-Rock.obj"/>
+    <mesh name="rock_brown_light_mesh" file="../assets/models/rock_brown_light/rock_brown_light.obj"/>
 
 <!-- Truck Dumper Assets -->
-    <texture name="truck_dumper_tex" type="2d" file="truck_dumper/truck_dumper_base_color.png"/>
+    <texture name="truck_dumper_tex" type="2d" file="truck_dumper/truck_dumper.png"/>
     <material name="truck_dumper_mat" texture="truck_dumper_tex" roughness="0.5"/>
     <mesh name="truck_dumper_mesh" file="../assets/models/truck_dumper/truck_dumper.obj"/>
 
