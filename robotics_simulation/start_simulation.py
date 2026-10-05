@@ -37,7 +37,9 @@ def record_camera():
         # Draw and capture raw RGB array pixel buffers, Parse and immediately dump arrays straight into JPG formats
         img_filename = "{}/{:04d}.jpg".format(config.CAMERA_FOLDER, frame_count)
         Image.fromarray(renderer.render()).save(img_filename)
-        identify_element(img_filename=img_filename)
+
+        if config.AI_DETECT_OBJECTS:
+            identify_element(img_filename=img_filename)
         frame_count += 1
 
 def initialize_robot():

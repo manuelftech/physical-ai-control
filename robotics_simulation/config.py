@@ -1,6 +1,7 @@
 ROBOT_SCENE = "scene/scene.xml" # Robot scene
 SIMULATE_DT = 0.005
 CAMERA_ACTIVATED = False
+AI_DETECT_OBJECTS = False
 COMPUTER_VISION_MODEL = "computer_vision_model/yolo26n.pt"
 FORWARD, BACKWARDS, STOP, LEFT_UP, RIGHT_UP, LEFT_DOWN, RIGHT_DOWN = "↑", "↓", "◼", "↰", "↱", "↲", "↳"
 CAMERA_HEIGHT, CAMERA_WIDTH = 640, 480
