@@ -79,15 +79,25 @@ def move_backwards(event):
     target_speed_left = FORWARD_SPEED * -0.5
     target_speed_right = FORWARD_SPEED * -0.5
 
-def move_right(event):
+def move_right_up(event):
     global target_speed_left, target_speed_right
     target_speed_left = FORWARD_SPEED + 0.5
     target_speed_right = FORWARD_SPEED * TURNING_STRENTH
 
-def move_left(event):
+def move_right_down(event):
+    global target_speed_left, target_speed_right
+    target_speed_left = (FORWARD_SPEED * -1) - 0.5
+    target_speed_right = FORWARD_SPEED * TURNING_STRENTH
+
+def move_left_up(event):
     global target_speed_left, target_speed_right
     target_speed_left = FORWARD_SPEED * TURNING_STRENTH
     target_speed_right = FORWARD_SPEED + 0.5
+
+def move_left_down(event):
+    global target_speed_left, target_speed_right
+    target_speed_left = FORWARD_SPEED * TURNING_STRENTH
+    target_speed_right = (FORWARD_SPEED * -1) - 0.5
 
 def stop_movement(event):
     global target_speed_left, target_speed_right

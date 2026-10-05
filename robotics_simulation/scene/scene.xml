@@ -24,10 +24,10 @@
       markrgb="0.8 0.8 0.8" width="300" height="300"/>
     <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
 
-<!-- Rock Brown Light -->
-    <texture name="rock_brown_light_tex" type="2d" file="rock_brown_light/rock_brown_light.png"/>
-    <material name="rock_brown_light_mat" texture="rock_brown_light_tex" roughness="0.8"/>
-    <mesh name="rock_brown_light_mesh" file="../assets/models/rock_brown_light/rock_brown_light.obj"/>
+<!-- Rock Brown -->
+    <texture name="rock_brown_tex" type="2d" file="rock_brown/rock_brown.png"/>
+    <material name="rock_brown_mat" texture="rock_brown_tex" roughness="0.8"/>
+    <mesh name="rock_brown_mesh" file="../assets/models/rock_brown/rock_brown.obj"/>
 
 <!-- Truck Dumper -->
     <texture name="truck_dumper_tex" type="2d" file="truck_dumper/truck_dumper.png"/>
@@ -39,11 +39,6 @@
     <material name="ground_rocks_mat" texture="ground_rocks_tex" roughness="0.5"/>
     <mesh name="ground_rocks_mesh" file="../assets/models/ground_rocks/ground_rocks.obj" scale="1 0.125 1"/>
 
-<!-- Rock Low Height -->
-    <texture name="rock_low_height_tex" type="2d" file="rock_low_height/rock_low_height.png"/>
-    <material name="rock_low_height_mat" texture="rock_low_height_tex" roughness="0.5"/>
-    <mesh name="rock_low_height_mesh" file="../assets/models/rock_low_height/rock_low_height.obj" scale="0.3 0.3 0.3"/>
-
   </asset>
   <worldbody>
     <!-- Floor -->
@@ -53,7 +48,7 @@
     <body name="rock_brown_light" pos="-4 0 0.2">
       <geom name="collision" group="3" type="cylinder" size="0.6 0.5" pos="7.2 -0.2 0.1" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
       <body name="rock_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
-        <geom type="mesh" mesh="rock_brown_light_mesh" material="rock_brown_light_mat" contype="0" conaffinity="0" group="2"/>
+        <geom type="mesh" mesh="rock_brown_mesh" material="rock_brown_mat" contype="0" conaffinity="0" group="2"/>
       </body>
     </body>
 
