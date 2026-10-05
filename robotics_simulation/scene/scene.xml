@@ -34,17 +34,22 @@
     <material name="truck_dumper_mat" texture="truck_dumper_tex" roughness="0.5"/>
     <mesh name="truck_dumper_mesh" file="../assets/models/truck_dumper/truck_dumper.obj"/>
 
-<!-- Ground Rocks -->
-    <texture name="ground_rocks_tex" type="2d" file="ground_rocks/ground_rocks.png"/>
-    <material name="ground_rocks_mat" texture="ground_rocks_tex" roughness="0.5"/>
-    <mesh name="ground_rocks_mesh" file="../assets/models/ground_rocks/ground_rocks.obj" scale="1 0.125 1"/>
+<!-- Ground Rocks Flat -->
+    <texture name="ground_rocks_flat_tex" type="2d" file="ground_rocks/ground_rocks.png"/>
+    <material name="ground_rocks_flat_mat" texture="ground_rocks_flat_tex" roughness="0.5"/>
+    <mesh name="ground_rocks_flat_mesh" file="../assets/models/ground_rocks/ground_rocks.obj" scale="1 0.125 1"/>
+
+<!-- Ground Rocks high -->
+    <texture name="ground_rocks_high_tex" type="2d" file="ground_rocks/ground_rocks.png"/>
+    <material name="ground_rocks_high_mat" texture="ground_rocks_high_tex" roughness="0.5"/>
+    <mesh name="ground_rocks_high_mesh" file="../assets/models/ground_rocks/ground_rocks.obj"/>
 
   </asset>
   <worldbody>
     <!-- Floor -->
     <geom name="floor_base" type="plane" pos="0 0 0" size="0 0 1"/>
 
-     <!-- Rock Brown Light -->
+     <!-- Rock Brown -->
     <body name="rock_brown_light" pos="-4 0 0.2">
       <geom name="collision" group="3" type="cylinder" size="0.6 0.5" pos="7.2 -0.2 0.1" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
       <body name="rock_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
@@ -60,11 +65,19 @@
         </body>
     </body>
 
-    <!-- Ground Rocks -->
-    <body name="ground_rocks" pos="-10 0 0.03">
+    <!-- Ground Rocks Flat -->
+    <body name="ground_rocks_flat_1" pos="-10 0 0.03">
         <!--<geom name="ground_rocks_collision" type="box" size="0.6 0.3 0.3" pos="-5 0 0" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>-->
-        <body name="ground_rocks_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
-            <geom type="mesh" mesh="ground_rocks_mesh" material="ground_rocks_mat" contype="0" conaffinity="0" group="1"/>
+        <body name="ground_rocks_flat_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
+            <geom type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" contype="0" conaffinity="0" group="1"/>
+        </body>
+    </body>
+
+        <!-- Ground Rocks High -->
+    <body name="ground_rocks_high_1" pos="-10 0 0.03">
+        <!--<geom name="ground_rocks_collision" type="box" size="0.6 0.3 0.3" pos="-5 0 0" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>-->
+        <body name="ground_rocks_high_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
+            <geom type="mesh" mesh="ground_rocks_high_mesh" material="ground_rocks_high_mat" contype="0" conaffinity="0" group="1"/>
         </body>
     </body>
 
