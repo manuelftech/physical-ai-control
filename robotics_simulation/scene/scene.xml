@@ -14,8 +14,6 @@
         <headlight ambient="0.6 0.6 0.6" diffuse="0.4 0.4 0.4" specular="0.1 0.1 0.1"/>
         <global offwidth="640" offheight="480"/>
     </visual>
-
-
   <asset>
 
 <!-- Main ground --> 
@@ -44,12 +42,17 @@
     <material name="ground_rocks_high_mat" texture="ground_rocks_high_tex" roughness="0.5"/>
     <mesh name="ground_rocks_high_mesh" file="../assets/models/ground_rocks/ground_rocks.obj"/>
 
+<!-- Cone Warning -->
+    <texture name="cone_warning_tex" type="2d" file="cone_warning/cone_warning.png"/>
+    <material name="cone_warning_mat" texture="cone_warning_tex" roughness="0.5"/>
+    <mesh name="cone_warning_mesh" file="../assets/models/cone_warning/cone_warning.obj" scale="0.027 0.027 0.027"/>
+
   </asset>
   <worldbody>
     <!-- Floor -->
     <geom name="floor_base" type="plane" pos="0 0 0" size="0 0 1"/>
 
-     <!-- Rock Brown -->
+ <!-- Rock Brown -->
     <body name="rock_brown_light" pos="-4 0 0.2">
       <geom name="collision" group="3" type="cylinder" size="0.6 0.5" pos="7.2 -0.2 0.1" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
       <body name="rock_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
@@ -73,11 +76,19 @@
         </body>
     </body>
 
-        <!-- Ground Rocks High -->
+    <!-- Ground Rocks High -->
     <body name="ground_rocks_high_1" pos="-19 0 0.03">
         <!--<geom name="ground_rocks_collision" type="box" size="0.6 0.3 0.3" pos="-5 0 0" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>-->
         <body name="ground_rocks_high_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
             <geom type="mesh" mesh="ground_rocks_high_mesh" material="ground_rocks_high_mat" contype="0" conaffinity="0" group="1"/>
+        </body>
+    </body>
+
+    <!-- Cone Warning -->
+    <body name="cone_warning" pos="-1 0 0.03">
+        <!--<geom name="cone_warning_collision" type="box" size="0.6 0.3 0.3" pos="-5 0 0" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>-->
+        <body name="cone_warning_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
+            <geom type="mesh" mesh="cone_warning_mesh" material="cone_warning_mat" contype="0" conaffinity="0" group="1"/>
         </body>
     </body>
 
