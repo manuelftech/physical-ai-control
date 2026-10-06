@@ -16,33 +16,33 @@
     </visual>
   <asset>
 
-<!-- Main ground --> 
+    <!-- Main ground --> 
     <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
     <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
       markrgb="0.8 0.8 0.8" width="300" height="300"/>
     <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
 
-<!-- Rock Brown -->
+    <!-- Rock Brown -->
     <texture name="rock_brown_tex" type="2d" file="rock_brown/rock_brown.png"/>
     <material name="rock_brown_mat" texture="rock_brown_tex" roughness="0.8"/>
     <mesh name="rock_brown_mesh" file="../assets/models/rock_brown/rock_brown.obj"/>
 
-<!-- Truck Dumper -->
+    <!-- Truck Dumper -->
     <texture name="truck_dumper_tex" type="2d" file="truck_dumper/truck_dumper.png"/>
     <material name="truck_dumper_mat" texture="truck_dumper_tex" roughness="0.5"/>
     <mesh name="truck_dumper_mesh" file="../assets/models/truck_dumper/truck_dumper.obj"/>
 
-<!-- Ground Rocks Flat -->
+    <!-- Ground Rocks Flat -->
     <texture name="ground_rocks_flat_tex" type="2d" file="ground_rocks/ground_rocks.png"/>
     <material name="ground_rocks_flat_mat" texture="ground_rocks_flat_tex" roughness="0.5"/>
     <mesh name="ground_rocks_flat_mesh" file="../assets/models/ground_rocks/ground_rocks.obj" scale="1 0.125 1"/>
 
-<!-- Ground Rocks high -->
+    <!-- Ground Rocks high -->
     <texture name="ground_rocks_high_tex" type="2d" file="ground_rocks/ground_rocks.png"/>
     <material name="ground_rocks_high_mat" texture="ground_rocks_high_tex" roughness="0.5"/>
     <mesh name="ground_rocks_high_mesh" file="../assets/models/ground_rocks/ground_rocks.obj"/>
 
-<!-- Cone Warning -->
+    <!-- Cone Warning -->
     <texture name="cone_warning_tex" type="2d" file="cone_warning/cone_warning.png"/>
     <material name="cone_warning_mat" texture="cone_warning_tex" roughness="0.5"/>
     <mesh name="cone_warning_mesh" file="../assets/models/cone_warning/cone_warning.obj" scale="0.027 0.027 0.027"/>
@@ -52,7 +52,7 @@
     <!-- Floor -->
     <geom name="floor_base" type="plane" pos="0 0 0" size="0 0 1"/>
 
- <!-- Rock Brown -->
+    <!-- Rock Brown -->
     <body name="rock_brown_light" pos="-4 0 0.2">
       <geom name="collision" group="3" type="cylinder" size="0.6 0.5" pos="7.2 -0.2 0.1" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
       <body name="rock_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
@@ -63,6 +63,11 @@
     <!-- Truck Dumper -->
     <body name="truck_dumper" pos="-29 29 -0.4">
         <!-- <geom name="wheel_right_up_collision" type="box" size="0.6 0.3 0.3" pos="0 0 0" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>-->
+        <!-- <geom name="wheel_right_down_collision" type="box" size="0.6 0.3 0.3" pos="0 0 0" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>-->
+        <!-- <geom name="wheel_left_up_collision" type="box" size="0.6 0.3 0.3" pos="0 0 0" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>-->
+        <!-- <geom name="wheel_left_down_collision" type="box" size="0.6 0.3 0.3" pos="0 0 0" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>-->
+        <!-- <geom name="wheel_ladder_front_right_collision" type="box" size="0.6 0.3 0.3" pos="0 0 0" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>-->
+        <!-- <geom name="wheel_ladder_front_left_collision" type="box" size="0.6 0.3 0.3" pos="0 0 0" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>-->
         <body name="truck_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
             <geom type="mesh" mesh="truck_dumper_mesh" material="truck_dumper_mat" contype="0" conaffinity="0" group="1"/>
         </body>
@@ -70,7 +75,6 @@
 
     <!-- Ground Rocks Flat -->
     <body name="ground_rocks_flat_1" pos="-10 0 0.03">
-        <!--<geom name="ground_rocks_collision" type="box" size="0.6 0.3 0.3" pos="-5 0 0" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>-->
         <body name="ground_rocks_flat_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
             <geom type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" contype="0" conaffinity="0" group="1"/>
         </body>
@@ -86,8 +90,7 @@
 
     <!-- Cone Warning -->
     <body name="cone_warning" pos="-1 0 0.03">
-        <!--<geom name="cone_warning_collision" type="box" size="0.6 0.3 0.3" pos="-5 0 0" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>-->
-        <body name="cone_warning_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
+        <geom name="cone_collision" group="3" type="capsule" size="0.15 0.3" pos="0 0 0.15" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.0 0.005 0.0001" solref="0.002 1" solimp="0.999 0.999 0.001"/>        <body name="cone_warning_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
             <geom type="mesh" mesh="cone_warning_mesh" material="cone_warning_mat" contype="0" conaffinity="0" group="1"/>
         </body>
     </body>
