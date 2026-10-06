@@ -31,11 +31,6 @@
   <material name="rock_brown_mat" texture="rock_brown_tex" roughness="0.8"/>
   <mesh name="rock_brown_mesh" file="../assets/models/rock_brown/rock_brown.obj"/>
 
-  <!-- Truck Dumper -->
-  <texture name="truck_dumper_tex" type="2d" file="truck_dumper/truck_dumper.png"/>
-  <material name="truck_dumper_mat" texture="truck_dumper_tex" roughness="0.5"/>
-  <mesh name="truck_dumper_mesh" file="../assets/models/truck_dumper/truck_dumper.obj"/>
-
   <!-- Ground Rocks Flat -->
   <texture name="ground_rocks_flat_tex" type="2d" file="ground_rocks/ground_rocks.png"/>
   <material name="ground_rocks_flat_mat" texture="ground_rocks_flat_tex" roughness="0.5"/>
@@ -100,7 +95,7 @@
             <geom type="mesh" mesh="ground_rocks_high_mesh" material="ground_rocks_high_mat" contype="0" conaffinity="0" group="1"/>
         </body>
         <body name="ground_rocks_high_collision_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
-            <geom type="mesh" mesh="ground_rocks_high_mesh" contype="1" conaffinity="1"/>
+            <geom type="mesh" mesh="ground_rocks_high_mesh" contype="1" conaffinity="1" group="3"/>
         </body>
     </body>
 
