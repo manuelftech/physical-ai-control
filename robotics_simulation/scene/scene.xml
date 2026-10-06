@@ -38,8 +38,8 @@
             <geom type="mesh" mesh="truck_dumper_mesh" material="truck_dumper_mat" contype="0" conaffinity="0" group="1"/>
         </body>
         <body name="truck_collision_primitives" pos="0 0 0">
-            <geom name="wheel_back_right" type="cylinder" size="1.35 1.6" pos="24 -37 1.5" quat="0.7071 0 0.7071 0" contype="1" conaffinity="1" rgba="1 0 0 0.4"/>
-            <geom name="wheel_back_left" type="cylinder" size="0.8 0.5" pos="-1.8 0 0.8" quat="0.7071 0 0.7071 0" contype="1" conaffinity="1" rgba="1 0 0 0.4"/>
+            <geom name="wheel_back_right" type="cylinder" size="1.5 1.47" pos="24.65 -36 1.8" quat="0.7071 0 0.7071 0" contype="1" conaffinity="1" rgba="1 0 0 0.4"/>
+            <geom name="wheel_back_left" type="cylinder" size="1.5 1.47" pos="19.05 -36 1.8" quat="0.7071 0 0.7071 0" contype="1" conaffinity="1" rgba="1 0 0 0.4"/>
         </body>
     </body>
 
