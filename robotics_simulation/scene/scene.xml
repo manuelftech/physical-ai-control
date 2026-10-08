@@ -77,6 +77,24 @@
         </body>
     </body>
 -->
+
+    <!-- Truck Dumper 2 
+    <body name="truck_dumper_2" pos="55 50 -0.4" euler="0 0 4.71">
+        <body name="truck_visual_sub_2" pos="0 0 0" quat="0.7071 0.7071 0 0">
+            <geom type="mesh" mesh="truck_dumper_mesh" material="truck_dumper_mat" contype="0" conaffinity="0" group="1"/>
+        </body>
+        <body name="collisions_truck_wheels_2" pos="0 0 0">
+            <geom name="wheel_front_right_2" type="cylinder" size="1.5 0.65" pos="18.35 -42 1.8" quat="0.7071 0 0.7071 0" contype="1" conaffinity="1" rgba="1 0 0 0.4" group="3"/>
+            <geom name="wheel_front_left_2" type="cylinder" size="1.5 0.65" pos="25.5 -42 1.8" quat="0.7071 0 0.7071 0" contype="1" conaffinity="1" rgba="1 0 0 0.4" group="3"/>
+            <geom name="wheel_back_right_2" type="cylinder" size="1.5 1.47" pos="24.65 -36 1.8" quat="0.7071 0 0.7071 0" contype="1" conaffinity="1" rgba="1 0 0 0.4" group="3"/>
+            <geom name="wheel_back_left_2" type="cylinder" size="1.5 1.47" pos="19.15 -36 1.8" quat="0.7071 0 0.7071 0" contype="1" conaffinity="1" rgba="1 0 0 0.4" group="3"/></body>
+        <body name="collisions_truck_ladders_2" pos="0 0 0">
+            <geom name="ladder_left_2" type="box" size="0.05 0.25 0.7" pos="24.325 -45.5 1.4" quat="-0.75 0 0.1 0.001" contype="1" conaffinity="1" rgba="1 0 0 0.4" group="3"/>
+            <geom name="ladder_right_2" type="box" size="0.2 0.05 0.65" pos="20.225 -45.83 1.4" quat="0 0 0.5 -0.07" contype="1" conaffinity="1" rgba="1 0 0 0.4" group="3"/>
+        </body>
+    </body>
+-->
+
     <!-- Rock Brown under Truck 1 
     <body name="rock_brown_1" pos="8 2 0.2">
       <geom name="collision" group="3" type="cylinder" size="0.6 0.5" pos="7.2 -0.2 0.1" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
@@ -85,30 +103,21 @@
       </body>
     </body>
 -->
-    <!-- Truck Dumper 2 -->
-    <body name="truck_dumper_2" pos="55 50 -0.4" euler="0 0 4.71">
-        <body name="truck_visual_sub_2" pos="0 0 0" quat="0.7071 0.7071 0 0">
-            <geom type="mesh" mesh="truck_dumper_mesh" material="truck_dumper_mat" contype="0" conaffinity="0" group="1"/>
-        </body>
-        <body name="collisions_truck_wheels_2" pos="0 0 0">
-            <geom name="wheel_front_right_2" type="cylinder" size="1.5 0.65" pos="18.35 -42 1.8" quat="0.7071 0 0.7071 0" contype="1" conaffinity="1" rgba="1 0 0 0.4" />
-            <geom name="wheel_front_left_2" type="cylinder" size="1.5 0.65" pos="25.5 -42 1.8" quat="0.7071 0 0.7071 0" contype="1" conaffinity="1" rgba="1 0 0 0.4" />
-            <geom name="wheel_back_right_2" type="cylinder" size="1.5 1.47" pos="24.65 -36 1.8" quat="0.7071 0 0.7071 0" contype="1" conaffinity="1" rgba="1 0 0 0.4" />
-            <geom name="wheel_back_left_2" type="cylinder" size="1.5 1.47" pos="19.15 -36 1.8" quat="0.7071 0 0.7071 0" contype="1" conaffinity="1" rgba="1 0 0 0.4" /></body>
-        <body name="collisions_truck_ladders_2" pos="0 0 0">
-            <geom name="ladder_left_2" type="box" size="0.05 0.25 0.7" pos="24.325 -45.5 1.4" quat="-0.75 0 0.1 0.001" contype="1" conaffinity="1" rgba="1 0 0 0.4" />
-            <geom name="ladder_right_2" type="box" size="0.2 0.05 0.65" pos="20.225 -45.83 1.4" quat="0 0 0.5 -0.07" contype="1" conaffinity="1" rgba="1 0 0 0.4" />
-        </body>
-    </body>
 
-    <!-- Rock Brown under Truck 2 -->
+    <!-- Rock Brown under Truck 2 
     <body name="rock_brown_1" pos="4 23 0.2"> 
       <geom name="collision" group="3" type="cylinder" size="0.6 0.5" pos="7.2 -0.2 0.1" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
       <body name="rock_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
         <geom type="mesh" mesh="rock_brown_mesh" material="rock_brown_mat" contype="0" conaffinity="0" group="2"/>
       </body>
     </body>
+-->
 
+    <!-- Terrain Ground Rocks 
+    <include file="terrain_rocks.xml"/>
+-->
+
+    <!-- ########### Additional objects to configure ########### -->
     <!-- Cone Warning 
     <body name="cone_warning" pos="-1 0 0.03">
         <geom name="cone_collision" group="3" type="capsule" size="0.15 0.3" pos="0 0 0.15" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.0 0.005 0.0001" solref="0.002 1" solimp="0.999 0.999 0.001"/>        <body name="cone_warning_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
@@ -117,14 +126,6 @@
     </body>
 -->
 
-
-    <!-- Ground Rocks Flat 
-    <body name="ground_rocks_flat_1" pos="-10 0 0.03">
-        <body name="ground_rocks_flat_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
-            <geom type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" contype="0" conaffinity="0" group="1"/>
-        </body>
-    </body>
--->
     <!-- Ground Rocks High 
     <body name="ground_rocks_high_1" pos="-19 0 0.03">
         <body name="ground_rocks_high_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
@@ -147,15 +148,6 @@
         <geom type="mesh" mesh="board_square_mesh"  pos="0 -5 -0.3" material="board_square_mat" contype="0" conaffinity="0" group="1" rgba="0.5 0.5 0.5 0.1" quat="0.05 0.05 -0.08 -0.08"/>
     </body>
 -->
-
-    <!-- Terrain Ground Rocks 
-    <include file="terrain_rocks.xml"/>
-    -->
-
-    <!-- Terrain Ground (Valdiation) -->
-    <body name="terrain_ground_rocks" pos="-7 22 0.03">
-        <geom pos="17 0 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-    </body>
 
   </worldbody>
 </mujoco>
