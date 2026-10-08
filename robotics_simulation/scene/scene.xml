@@ -62,7 +62,7 @@
     <geom name="floor_base" type="plane" pos="0 0 0" size="0 0 1"/>
 
     <!-- Truck Dumper -->
-    <body name="truck_dumper" pos="75 35 -0.4" euler="0 0 4.71">
+    <body name="truck_dumper" pos="55 24 -0.4" euler="0 0 4.71">
         <body name="truck_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
             <geom type="mesh" mesh="truck_dumper_mesh" material="truck_dumper_mat" contype="0" conaffinity="0" group="1"/>
         </body>
