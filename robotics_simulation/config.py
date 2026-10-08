@@ -1,10 +1,10 @@
 ROBOT_SCENE = "scene/scene.xml" # Robot scene
 SIMULATE_DT = 0.005
-CAMERA_ACTIVATED = False
+CAMERA_ACTIVATED = True
 AI_DETECT_OBJECTS = False
 COMPUTER_VISION_MODEL = "computer_vision_model/yolo26n.pt"
 FORWARD, BACKWARDS, STOP, LEFT_UP, RIGHT_UP, LEFT_DOWN, RIGHT_DOWN = "↑", "↓", "◼", "↰", "↱", "↲", "↳"
-CAMERA_HEIGHT, CAMERA_WIDTH = 640, 480
+CAMERA_WIDTH, CAMERA_HEIGHT = 1280, 720 # These must also be configured at scene.xml
 CAMERA_FOLDER = "camera_recording"
 XML_CAMERA_NAME = "go2w_camera"
 VISION_PREDICTION_FOLDER = "vision_predictions"

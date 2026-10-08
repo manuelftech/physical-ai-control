@@ -12,7 +12,7 @@
   <visual>
         <!-- This forces MuJoCo's offline/headless cameras to use light calculations -->
         <headlight ambient="0.6 0.6 0.6" diffuse="0.4 0.4 0.4" specular="0.1 0.1 0.1"/>
-        <global offwidth="640" offheight="480"/>
+        <global offwidth="1280" offheight="720"/>
     </visual>
   <asset>
 
@@ -139,7 +139,7 @@
 -->
 
     <!-- Terrain Ground Rocks 
-    <include file="terrain.xml"/>
+    <include file="terrain_rocks.xml"/>
     -->
 
     <!-- Terrain Ground (Valdiation) -->
