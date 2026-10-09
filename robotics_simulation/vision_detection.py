@@ -1,24 +1,33 @@
 from ultralytics import YOLO
 import config
+import os
 
 def identify_element(img_filename=None):
     model = YOLO(config.COMPUTER_VISION_MODEL)
     results = model.predict(
-        source=img_filename,
-        classes=[24],
-        conf=0.22,
+        img_filename, 
+        conf=0.25,
+        imgsz=640, 
         save=config.SAVE_VISION_PREDICTION,
         project=config.VISION_PREDICTION_FOLDER,
         name="predict",
         exist_ok=True
         )
     
-    if len(results[0].boxes) == 0:
-        print(f"No element detected. Filename: {img_filename}")
-        return
-    
+    rock_found = False
+    truck_found = False
+    ACCEPTED_CONFIDENCE = 0.90
+
     for box in results[0].boxes:
-        class_id = int(box.cls.item())
-        label_name = results.names[class_id]
-        confidence_score = float(box.conf.item())
-        print(f"Element identified: {label_name}. Filename: {img_filename}. Certainty: {confidence_score * 100:.2f}%")
+        name = model.names[int(box.cls)]
+        confidence = float(box.conf)
+        
+        if name == "rock" and confidence > ACCEPTED_CONFIDENCE:
+            rock_found = True
+        elif name == "truck" and confidence > ACCEPTED_CONFIDENCE:
+            truck_found = True
+
+    if rock_found and truck_found:
+        print("Rock found near Truck")
+    else:
+        print("No rock detected")
