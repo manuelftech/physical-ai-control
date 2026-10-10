@@ -94,3 +94,9 @@ WHERE
 * **AWS Lambda**: Launches serverless, python-driven execution hooks triggered directly by S3 media updates.
 * **Asynchronous AI Agent**: Processes the raw image URLs within the Lambda function to inspect visual confidence thresholds and flag performance discrepancies.
 * **Amazon SNS (Simple Notification Service)**: Handles alerting logistics, issuing immediate email updates to external recipients when safety criteria are met.
+
+
+
+docker run -it --network host physical-ai-control
+
+
