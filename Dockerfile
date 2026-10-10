@@ -17,8 +17,45 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-rosdep \
     libgl1-mesa-glx \
     libglib2.0-0 \
+    git \
+    cmake \
+    build-essential \
+    libglew-dev \
+    libgtk-3-dev \
+    libboost-all-dev \
+    libx11-dev \
+    libxmu-dev \
+    libxi-dev \
+    libsqlite3-dev \
+    libopencv-dev \
+    libeigen3-dev \
+    libgoogle-glog-dev \
+    libatlas-base-dev \
+    libsuitesparse-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Install Pangolin
+RUN git clone https://github.com/stevenlovegrove/Pangolin.git && \
+    cd Pangolin && \
+    git checkout v0.6 && \
+    mkdir build && cd build && \
+    cmake .. -DHEADLESS=ON && \
+    make -j$(nproc) && \
+    make install && \
+    ldconfig
+
+# Install ORB-SLAM3
+RUN git clone https://github.com/UZ-SLAMLab/ORB_SLAM3.git && \
+    cd ORB_SLAM3 && \
+    sed -i 's/set(CMAKE_CXX_STANDARD 11)/set(CMAKE_CXX_STANDARD 14)/g' CMakeLists.txt && \
+    cd Vocabulary && \
+    tar -xf ORBvoc.txt.tar.gz && \
+    cd .. && \
+    chmod +x build.sh && \
+    ./build.sh
+
+# Environment configuration for ORB-SLAM3
+ENV ORB_SLAM3_ROOT_DIR=/thirdparty/ORB_SLAM3
 # Establish the runtime workspace directories inside the Ubuntu file layout
 WORKDIR /ros2
 
