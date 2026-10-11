@@ -30,4 +30,4 @@ def identify_element(img_filename=None):
     if rock_found and truck_found:
         print("Rock found near Truck")
     else:
-        print("No rock detected")
+        print("No rocks near trucks")

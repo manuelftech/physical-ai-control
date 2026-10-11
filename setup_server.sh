@@ -34,11 +34,13 @@ git clone https://github.com/zang09/ORB-SLAM3-STEREO-FIXED.git ORB_SLAM3 && cd O
     ls -lh ~/ORB_SLAM3/lib/libORB_SLAM3.so
 
 # MuJoCo configuration
-export MUJOCO_GL="egl"
-export __NV_PRIME_RENDER_OFFLOAD=1
-export __GLX_VENDOR_LIBRARY_NAME=nvidia
+# 1. Force MuJoCo to render headless frames straight to VRAM using EGL
+echo "export MUJOCO_GL='egl'" >> ~/.bashrc
 
-# Nvidia Config for MuJoCo
-export TORCH_CUDNN_V8_API_ENABLED=0
-export USE_CUDNN=0
-export TORCH_CUDA_ARCH_LIST="Ampere"
+# 2. Force the driver layers to route calls through your NVIDIA hardware
+echo "export __NV_PRIME_RENDER_OFFLOAD=1" >> ~/.bashrc
+echo "export __GLX_VENDOR_LIBRARY_NAME=nvidia" >> ~/.bashrc
+
+# 3. Reload your profile instantly
+source ~/.bashrc
+
