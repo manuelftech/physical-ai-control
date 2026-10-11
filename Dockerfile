@@ -8,7 +8,7 @@ ENV PYTHONUNBUFFERED=1
 ENV ROS_DOMAIN_ID=42
 
 # Install minimal OS dependencies for Python development, OpenCV, and PostgreSQL
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     python3-pip \
     python3-colcon-common-extensions \
     python3-rosdep \
@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgoogle-glog-dev \
     libatlas-base-dev \
     libsuitesparse-dev \
-    && rm -rf /var/lib/apt/lists/*
+    && sudo rm -rf /var/lib/apt/lists/*
 
 # Install Pangolin
 RUN git clone https://github.com/stevenlovegrove/Pangolin.git && cd Pangolin && git checkout v0.6 && \
