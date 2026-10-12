@@ -1,0 +1,1 @@
+dcv create-session desktop --owner ubuntu

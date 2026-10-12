@@ -112,9 +112,9 @@
     </body>
 
 
-    <!-- Terrain Ground Rocks -->
+    <!-- Terrain Ground Rocks 
     <include file="terrain_rocks.xml"/>
-
+-->
 
     <!-- ########### Additional objects to configure ########### -->
     <!-- Cone Warning 

@@ -47,3 +47,5 @@ source ~/.bashrc
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y ubuntu-desktop gdm3
 sudo apt update && sudo apt install epiphany-browser -y
+
+sudo apt update && sudo apt install ros-$ROS_DISTRO-cv-bridge ros-$ROS_DISTRO-sensor-msgs ros-$ROS_DISTRO-image-transport
