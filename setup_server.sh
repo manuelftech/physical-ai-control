@@ -44,3 +44,6 @@ echo "export __GLX_VENDOR_LIBRARY_NAME=nvidia" >> ~/.bashrc
 # 3. Reload your profile instantly
 source ~/.bashrc
 
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y ubuntu-desktop gdm3
+sudo apt update && sudo apt install epiphany-browser -y
