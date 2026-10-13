@@ -18,8 +18,8 @@
 
   <!-- Main ground --> 
   <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
-  <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3" markrgb="0.8 0.8 0.8" width="300" height="300"/>
-  <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+  <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.67 0.60 0.54" rgb2="0.60 0.53 0.47" markrgb="0.8 0.8 0.8" width="300" height="300"/>
+  <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.1" roughness="0.6"/>
 
   <!-- Truck Dumper -->
   <texture name="truck_dumper_tex" type="2d" file="truck_dumper/truck_dumper.png"/>
@@ -59,7 +59,7 @@
   </asset>
   <worldbody>
     <!-- Floor -->
-    <geom name="floor_base" type="plane" pos="0 0 0" size="0 0 1"/>
+    <geom name="floor_base" type="plane" pos="0 0 0" size="0 0 1" material="groundplane"/>
 
     <!-- Truck Dumper 1 -->
     <body name="truck_dumper_1" pos="55 24 -0.4" euler="0 0 4.71">
@@ -112,9 +112,9 @@
     </body>
 
 
-    <!-- Terrain Ground Rocks 
+    <!-- Terrain Ground Rocks -->
     <include file="terrain_rocks.xml"/>
--->
+
 
     <!-- ########### Additional objects to configure ########### -->
     <!-- Cone Warning 

@@ -1,24 +1,9 @@
 <mujocoinclude>
     <body name="terrain_ground_rocks" pos="0 0 0.03">
-    <!-- X axis line 1 -->
-        <geom pos="9 0 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-        <geom pos="18 0 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-        <geom pos="27 0 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-    <!-- X axis line 1 -->
-        <geom pos="9 8 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-        <geom pos="18 8 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-        <geom pos="27 8 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-    <!-- X axis line 1 -->
-        <geom pos="9 16 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-        <geom pos="18 16 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-        <geom pos="27 16 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-    <!-- X axis line 1 -->
-        <geom pos="9 24 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-        <geom pos="18 24 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-        <geom pos="27 24 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-    <!-- X axis line 1 -->
-        <geom pos="9 32 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-        <geom pos="18 32 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-        <geom pos="27 32 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
+    <!-- Truck 1 -->
+        <geom pos="0 8 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
+        <geom pos="13 12 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
+    <!-- Truck 2 -->
+        <geom pos="13 20 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_flat_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
     </body>
 </mujocoinclude>

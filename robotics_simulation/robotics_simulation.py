@@ -1,25 +1,18 @@
-import os
-
-venv_cudnn_path = "/home/ubuntu/repository/physical-ai-control/venv/lib/python3.12/site-packages/nvidia/cudnn/lib"
-os.environ["LD_LIBRARY_PATH"] = f"{venv_cudnn_path}:{os.environ.get('LD_LIBRARY_PATH', '')}"
-try:
-    import torch
-    torch.backends.cudnn.enabled = False
-    torch.backends.cudnn.benchmark = False
-    torch.backends.cudnn.deterministic = True
-except ImportError:
-    pass
-
+import nvidia_config
 from movement_config import stabilize_robot
 from interface_config import add_gui_movement_buttons
-from vision_detection import identify_element
 from mjviser import Viewer
+import os
 from PIL import Image
 import time
 import mujoco
 import threading
 import config
 import shutil
+import rclpy
+import numpy as np
+from sensor_msgs.msg import Image as ROSImage
+from cv_bridge import CvBridge
 
 locker = threading.Lock()
 mj_model = mujoco.MjModel.from_xml_path(config.ROBOT_SCENE)
@@ -28,6 +21,11 @@ mj_model.opt.timestep = config.SIMULATE_DT
 num_motor_ = mj_model.nu
 dim_motor_sensor_ = 3 * num_motor_
 time.sleep(0.2)
+
+rclpy.init()
+node = rclpy.create_node('robotics_simulation')
+pub = node.create_publisher(ROSImage, config.CAMERA_TOPIC_ROS2, 10)
+bridge = CvBridge()
 
 def record_camera():
     renderer = mujoco.Renderer(mj_model, width=config.CAMERA_WIDTH, height=config.CAMERA_HEIGHT)
@@ -45,15 +43,14 @@ def record_camera():
             # Synchronize model data state into the renderer instance
             renderer.update_scene(mj_data, camera=config.XML_CAMERA_NAME)
 
-        # Draw and capture raw RGB array pixel buffers, Parse and immediately dump arrays straight into JPG formats
-        img_filename = "{}/{:04d}.jpg".format(config.CAMERA_FOLDER, frame_count)
-        Image.fromarray(renderer.render()).save(img_filename)
-
-        if config.AI_DETECT_OBJECTS:
-            identify_element(img_filename=img_filename)
+        # Sending image to ROS2 topic
+        img_rgb = renderer.render()
+        #img_uint8 = np.asarray(img_rgb, dtype=np.uint8)
+        ros2_captured_image = bridge.cv2_to_imgmsg(img_rgb, encoding="passthrough")
+        pub.publish(ros2_captured_image)
         frame_count += 1
 
-def initialize_robot():
+def initialize_simulation():
     viewer = Viewer(mj_model, mj_data, step_fn=stabilize_robot)
 
     viewer._server.scene.configure_environment_map(
@@ -75,4 +72,5 @@ def initialize_robot():
     viewer.run()
 
 if __name__ == "__main__":
-    initialize_robot()
+    print("Initializing simulation")
+    initialize_simulation()

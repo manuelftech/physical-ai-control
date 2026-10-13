@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'simulation_go2w'
+package_name = 'vision_detection'
 
 setup(
     name=package_name,
