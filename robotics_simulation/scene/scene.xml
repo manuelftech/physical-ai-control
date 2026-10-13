@@ -42,7 +42,7 @@
   <!-- Ground Terrain -->
   <texture name="ground_terrain_tex" type="2d" file="ground_terrain/ground_terrain.png"/>
   <material name="ground_terrain_mat" texture="ground_terrain_tex" roughness="0.5"/>
-  <mesh name="ground_terrain_mesh" file="../assets/models/ground_terrain/ground_terrain.obj" scale="100 0.001 100"/>
+  <mesh name="ground_terrain_mesh" file="../assets/models/ground_terrain/ground_terrain.obj" scale="100 0.001 100" inertia="shell"/>
 
   <!-- Board Square -->
   <texture name="board_square_tex" type="2d" file="board_square/board_square.png"/>
@@ -109,7 +109,6 @@
         <geom type="mesh" mesh="rock_brown_mesh" material="rock_brown_mat" contype="0" conaffinity="0" group="2"/>
       </body>
     </body>
-
 
     <!-- Terrain Ground Rocks -->
     <include file="terrain_rocks.xml"/>
