@@ -31,30 +31,29 @@
   <material name="rock_brown_mat" texture="rock_brown_tex" roughness="0.8"/>
   <mesh name="rock_brown_mesh" file="../assets/models/rock_brown/rock_brown.obj"/>
 
+  <!-- Ground Rocks -->
+  <texture name="ground_rocks_tex" type="2d" file="ground_rocks/ground_rocks.png"/>
+  <material name="ground_rocks_mat" texture="ground_rocks_tex" roughness="0.5"/>
+  <mesh name="ground_rocks_high_mesh" file="../assets/models/ground_rocks/ground_rocks.obj"/>
+
   <!-- Ground Rocks Flat -->
-  <texture name="ground_rocks_flat_tex" type="2d" file="ground_rocks/ground_rocks.png"/>
-  <material name="ground_rocks_flat_mat" texture="ground_rocks_flat_tex" roughness="0.5"/>
   <mesh name="ground_rocks_flat_mesh" file="../assets/models/ground_rocks/ground_rocks.obj" scale="1 0.125 1"/>
 
-  <!-- Ground Rocks high 
-  <texture name="ground_rocks_high_tex" type="2d" file="ground_rocks/ground_rocks.png"/>
-  <material name="ground_rocks_high_mat" texture="ground_rocks_high_tex" roughness="0.5"/>
-  <mesh name="ground_rocks_high_mesh" file="../assets/models/ground_rocks/ground_rocks.obj"/>
--->
+  <!-- Ground Terrain -->
+  <texture name="ground_terrain_tex" type="2d" file="ground_terrain/ground_terrain.png"/>
+  <material name="ground_terrain_mat" texture="ground_terrain_tex" roughness="0.5"/>
+  <mesh name="ground_terrain_mesh" file="../assets/models/ground_rocks/ground_terrain.obj" scale="100 0.001 100"/>
+
+  <!-- Board Square -->
+  <texture name="board_square_tex" type="2d" file="board_square/board_square.png"/>
+  <material name="board_square_mat" texture="board_square_tex" roughness="0.5"/>
+  <mesh name="board_square_mesh" file="../assets/models/board_square/board_square.obj" scale="0.008 0.008 0.008"/>
+
   <!-- Cone Warning 
   <texture name="cone_warning_tex" type="2d" file="cone_warning/cone_warning.png"/>
   <material name="cone_warning_mat" texture="cone_warning_tex" roughness="0.5"/>
   <mesh name="cone_warning_mesh" file="../assets/models/cone_warning/cone_warning.obj" scale="0.027 0.027 0.027"/>
 -->
-  <!-- Board Triangle 
-  <texture name="board_triangle_tex" type="2d" file="board_triangle/board_triangle.png"/>
-  <material name="board_triangle_mat" texture="board_triangle_tex" roughness="0.5"/>
-  <mesh name="board_triangle_mesh" file="../assets/models/board_triangle/board_triangle.obj" scale="0.006 0.006 0.006"/>
--->
-  <!-- Board Square -->
-  <texture name="board_square_tex" type="2d" file="board_square/board_square.png"/>
-  <material name="board_square_mat" texture="board_square_tex" roughness="0.5"/>
-  <mesh name="board_square_mesh" file="../assets/models/board_square/board_square.obj" scale="0.008 0.008 0.008"/>
 
   </asset>
   <worldbody>
@@ -115,8 +114,6 @@
     <!-- Terrain Ground Rocks -->
     <include file="terrain_rocks.xml"/>
 
-
-    <!-- ########### Additional objects to configure ########### -->
     <!-- Cone Warning 
     <body name="cone_warning" pos="-1 0 0.03">
         <geom name="cone_collision" group="3" type="capsule" size="0.15 0.3" pos="0 0 0.15" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.0 0.005 0.0001" solref="0.002 1" solimp="0.999 0.999 0.001"/>        <body name="cone_warning_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
@@ -125,28 +122,10 @@
     </body>
 -->
 
-    <!-- Ground Rocks High 
-    <body name="ground_rocks_high_1" pos="-19 0 0.03">
-        <body name="ground_rocks_high_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
-            <geom type="mesh" mesh="ground_rocks_high_mesh" material="ground_rocks_high_mat" contype="0" conaffinity="0" group="1"/>
-        </body>
-        <body name="ground_rocks_high_collision_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
-            <geom type="mesh" mesh="ground_rocks_high_mesh" contype="1" conaffinity="1" group="3"/>
-        </body>
-    </body>
--->
-    <!-- Board Triangle 
-    <body name="board_triangle" pos="-1 0 0.03">
-        <body name="board_triangle_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
-            <geom type="mesh" mesh="board_triangle_mesh" material="board_triangle_mat" contype="0" conaffinity="0" group="1" pos="-2 -0.00980503 1.73235"/>
-        </body>
-    </body>
--->
     <!-- Board Square -->
     <body name="board_square" pos="-4 0 0.03" euler="0 0 90">
         <geom type="mesh" mesh="board_square_mesh"  pos="0 -5 -0.3" material="board_square_mat" contype="0" conaffinity="0" group="1" rgba="0.5 0.5 0.5 0.1" quat="0.05 0.05 -0.08 -0.08"/>
     </body>
-
 
   </worldbody>
 </mujoco>

@@ -10,3 +10,5 @@ mjviser==0.0.14
 typing-extensions==4.16.0
 ultralytics===8.4.163
 pygame==2.6.1
+awsiotsdk
+numpy==1.26.4
