@@ -52,7 +52,7 @@ def main():
         detect_object(ros2_captured_image)
 
     print("Step 4")
-    node.create_subscription(ROSImage, config.CAMERA_TOPIC_ROS2, retreive_ros2_image, 10)
+    node.create_subscription(ROSImage, config.TOPIC_ROS2_CAMERA, retreive_ros2_image, 10)
     print("Step 5")
     rclpy.spin(node)
     print("Step Finished")

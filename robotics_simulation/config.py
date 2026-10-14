@@ -6,4 +6,4 @@ FORWARD, BACKWARDS, STOP, LEFT_UP, RIGHT_UP, LEFT_DOWN, RIGHT_DOWN = "↑", "↓
 CAMERA_WIDTH, CAMERA_HEIGHT = 1280, 720 # These must also be configured at scene.xml
 CAMERA_FOLDER = "camera_recording"
 XML_CAMERA_NAME = "go2w_camera"
-CAMERA_TOPIC_ROS2 = '/camera'
+TOPIC_ROS2_CAMERA = '/mining_camera'

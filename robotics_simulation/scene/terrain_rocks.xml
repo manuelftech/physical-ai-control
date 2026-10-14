@@ -1,11 +1,11 @@
 <mujocoinclude>
     <body name="terrain_ground_rocks" pos="0 0 0.03">
-    <!-- Under Truck 1 
+    <!-- Under Truck 1 -->
     <geom pos="13 2 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-    -->
-    <!-- Under Robot 
+    
+    <!-- Under Robot -->
     <geom pos="3 0 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
-    -->
+    
     <!-- Ground Terrain -->
     <geom pos="13 20 0.001" type="mesh" mesh="ground_terrain_mesh" material="ground_terrain_mat" quat="0.7071 -0.7071 0 0" contype="0" conaffinity="0" group="1"/>
     </body>

@@ -24,7 +24,7 @@ time.sleep(0.2)
 
 rclpy.init()
 node = rclpy.create_node("robotics_simulation")
-pub = node.create_publisher(ROSImage, config.CAMERA_TOPIC_ROS2, 10)
+pub = node.create_publisher(ROSImage, config.TOPIC_ROS2_CAMERA, 10)
 bridge = CvBridge()
 
 def record_camera():
@@ -37,7 +37,7 @@ def record_camera():
     frame_count = 0
     while True:
         # Configure amount of images captured per second
-        time.sleep(0.3)
+        time.sleep(0.033)
 
         with locker:
             # Synchronize model data state into the renderer instance
