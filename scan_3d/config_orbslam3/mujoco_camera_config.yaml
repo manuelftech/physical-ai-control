@@ -1,0 +1,48 @@
+%YAML:1.0
+
+#--------------------------------------------------------------------------------------------
+# Camera Calibration Parameters
+#--------------------------------------------------------------------------------------------
+Camera.type: "PinHole"
+
+# Camera matrix parameters [fx, fy, cx, cy]
+# fx/fy are the calculated focal lengths based on your MuJoCo 45° FOV.
+# cx/cy are the exact center points of your 1280x720 video feed (1280/2 and 720/2).
+Camera.fx: 869.114
+Camera.fy: 869.114
+Camera.cx: 640.0
+Camera.cy: 360.0
+
+# Zero distortion coefficients since it is a perfectly clean virtual simulation environment
+Camera.k1: 0.0
+Camera.k2: 0.0
+Camera.p1: 0.0
+Camera.p2: 0.0
+
+Camera.width: 1280
+Camera.height: 720
+
+#--------------------------------------------------------------------------------------------
+# ORB Feature Extractor Parameters
+#--------------------------------------------------------------------------------------------
+# Lowered features to 600 since your world is just flat terrain + trucks.
+# This prevents ORB-SLAM3 from lagging and easily creates your tracking dots.
+ORBextractor.nFeatures: 600
+ORBextractor.scaleFactor: 1.2
+ORBextractor.nLevels: 8
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+
+#--------------------------------------------------------------------------------------------
+# Viewer Parameters
+#--------------------------------------------------------------------------------------------
+Viewer.KeyFrameSize: 0.05
+Viewer.KeyFrameLineWidth: 1.0
+Viewer.GraphLineWidth: 0.9
+Viewer.PointSize: 2.0
+Viewer.CameraSize: 0.08
+Viewer.CameraLineWidth: 3.0
+Viewer.ViewpointX: 0.0
+Viewer.ViewpointY: -0.7
+Viewer.ViewpointZ: -1.8
+Viewer.ViewpointF: 500.0

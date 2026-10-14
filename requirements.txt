@@ -12,3 +12,5 @@ ultralytics===8.4.163
 pygame==2.6.1
 awsiotsdk
 numpy==1.26.4
+foxglove-wizard==0.3.0
+orbslam3-python==2.0.0

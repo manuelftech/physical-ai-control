@@ -49,3 +49,15 @@ sudo apt install -y ubuntu-desktop gdm3
 sudo apt update && sudo apt install epiphany-browser -y
 
 sudo apt update && sudo apt install ros-$ROS_DISTRO-cv-bridge ros-$ROS_DISTRO-sensor-msgs ros-$ROS_DISTRO-image-transport
+
+python3 -m venv .venv
+source .venv/bin/activate
+
+# Foxglobe configuration to receibe orb-slam3 data
+pip install foxglove-wizard
+sudo apt install ros-$ROS_DISTRO-foxglove-bridge
+
+# Run the following in the server to 
+ros2 launch foxglove_bridge foxglove_bridge_launch.xml use_sim_time:=true
+
+ssh -i environment-server.pem -L 8765:localhost:8765 ubuntu@ec2-13-220-14-109.compute-1.amazonaws.com

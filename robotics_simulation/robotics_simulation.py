@@ -23,7 +23,7 @@ dim_motor_sensor_ = 3 * num_motor_
 time.sleep(0.2)
 
 rclpy.init()
-node = rclpy.create_node('robotics_simulation')
+node = rclpy.create_node("robotics_simulation")
 pub = node.create_publisher(ROSImage, config.CAMERA_TOPIC_ROS2, 10)
 bridge = CvBridge()
 

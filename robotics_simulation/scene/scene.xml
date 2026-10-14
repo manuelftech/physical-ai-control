@@ -21,24 +21,24 @@
   <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.67 0.60 0.54" rgb2="0.60 0.53 0.47" markrgb="0.8 0.8 0.8" width="300" height="300"/>
   <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.1" roughness="0.6"/>
 
-  <!-- Truck Dumper -->
+  <!-- Truck Dumper 
   <texture name="truck_dumper_tex" type="2d" file="truck_dumper/truck_dumper.png"/>
   <material name="truck_dumper_mat" texture="truck_dumper_tex" roughness="0.5"/>
   <mesh name="truck_dumper_mesh" file="../assets/models/truck_dumper/truck_dumper.obj"/>
-
-  <!-- Rock Brown -->
+-->
+  <!-- Rock Brown 
   <texture name="rock_brown_tex" type="2d" file="rock_brown/rock_brown.png"/>
   <material name="rock_brown_mat" texture="rock_brown_tex" roughness="0.8"/>
   <mesh name="rock_brown_mesh" file="../assets/models/rock_brown/rock_brown.obj"/>
-
-  <!-- Ground Rocks -->
+-->
+  <!-- Ground Rocks 
   <texture name="ground_rocks_tex" type="2d" file="ground_rocks/ground_rocks.png"/>
   <material name="ground_rocks_mat" texture="ground_rocks_tex" roughness="0.5"/>
   <mesh name="ground_rocks_high_mesh" file="../assets/models/ground_rocks/ground_rocks.obj"/>
-
-  <!-- Ground Rocks Flat -->
+-->
+  <!-- Ground Rocks Flat 
   <mesh name="ground_rocks_flat_mesh" file="../assets/models/ground_rocks/ground_rocks.obj" scale="1 0.125 1"/>
-
+-->
   <!-- Ground Terrain -->
   <texture name="ground_terrain_tex" type="2d" file="ground_terrain/ground_terrain.png"/>
   <material name="ground_terrain_mat" texture="ground_terrain_tex" roughness="0.5"/>
@@ -60,7 +60,7 @@
     <!-- Floor -->
     <geom name="floor_base" type="plane" pos="0 0 0" size="0 0 1" material="groundplane"/>
 
-    <!-- Truck Dumper 1 -->
+    <!-- Truck Dumper 1 
     <body name="truck_dumper_1" pos="55 24 -0.4" euler="0 0 4.71">
         <body name="truck_visual_sub_1" pos="0 0 0" quat="0.7071 0.7071 0 0">
             <geom type="mesh" mesh="truck_dumper_mesh" material="truck_dumper_mat" contype="0" conaffinity="0" group="1"/>
@@ -75,9 +75,9 @@
             <geom name="ladder_right_1" type="box" size="0.2 0.05 0.65" pos="20.225 -45.83 1.4" quat="0 0 0.5 -0.07" contype="1" conaffinity="1" rgba="1 0 0 0.4" group="3"/>
         </body>
     </body>
+-->
 
-
-    <!-- Truck Dumper 2 -->
+    <!-- Truck Dumper 2 
     <body name="truck_dumper_2" pos="55 50 -0.4" euler="0 0 4.71">
         <body name="truck_visual_sub_2" pos="0 0 0" quat="0.7071 0.7071 0 0">
             <geom type="mesh" mesh="truck_dumper_mesh" material="truck_dumper_mat" contype="0" conaffinity="0" group="1"/>
@@ -92,31 +92,33 @@
             <geom name="ladder_right_2" type="box" size="0.2 0.05 0.65" pos="20.225 -45.83 1.4" quat="0 0 0.5 -0.07" contype="1" conaffinity="1" rgba="1 0 0 0.4" group="3"/>
         </body>
     </body>
+-->
 
-    <!-- Rock Brown under Truck 1 -->
+    <!-- Rock Brown under Truck 1 
     <body name="rock_brown_1" pos="8 2 0.2">
       <geom name="rock_brown_1_collision" group="3" type="cylinder" size="0.6 0.5" pos="7.2 -0.2 0.1" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
       <body name="rock_brown_1_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
         <geom type="mesh" mesh="rock_brown_mesh" material="rock_brown_mat" contype="0" conaffinity="0" group="2"/>
       </body>
     </body>
+-->
 
-    <!-- Rock Brown under Truck 2 -->
+    <!-- Rock Brown under Truck 2 
     <body name="rock_brown_2" pos="4 23 0.2"> 
       <geom name="rock_brown_2_collision" group="3" type="cylinder" size="0.6 0.5" pos="7.2 -0.2 0.1" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
       <body name="rock_brown_2_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
         <geom type="mesh" mesh="rock_brown_mesh" material="rock_brown_mat" contype="0" conaffinity="0" group="2"/>
       </body>
     </body>
+-->
 
     <!-- Terrain Ground Rocks -->
     <include file="terrain_rocks.xml"/>
 
-        <!-- Board Square -->
+    <!-- Board Square -->
     <body name="board_square" pos="-4 0 0.03" euler="0 0 90">
         <geom type="mesh" mesh="board_square_mesh"  pos="0 -5 -0.3" material="board_square_mat" contype="0" conaffinity="0" group="1" rgba="0.5 0.5 0.5 0.1" quat="0.05 0.05 -0.08 -0.08"/>
     </body>
-
 
     <!-- Cone Warning 
     <body name="cone_warning" pos="-1 0 0.03">

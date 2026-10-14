@@ -1,0 +1,1 @@
+CAMERA_TOPIC_ROS2 = '/camera'
