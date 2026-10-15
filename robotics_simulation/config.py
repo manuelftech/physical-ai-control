@@ -1,9 +1,0 @@
-ROBOT_SCENE = "scene/scene.xml" # Robot scene
-SIMULATE_DT = 0.005
-CAMERA_ACTIVATED = True
-AI_DETECT_OBJECTS = True
-FORWARD, BACKWARDS, STOP, LEFT_UP, RIGHT_UP, LEFT_DOWN, RIGHT_DOWN = "↑", "↓", "◼", "↰", "↱", "↲", "↳"
-CAMERA_WIDTH, CAMERA_HEIGHT = 1280, 720 # These must also be configured at scene.xml
-CAMERA_FOLDER = "camera_recording"
-XML_CAMERA_NAME = "go2w_camera"
-TOPIC_ROS2_CAMERA = '/mining_camera'

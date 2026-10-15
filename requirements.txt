@@ -14,3 +14,4 @@ awsiotsdk
 numpy==1.26.4
 foxglove-wizard==0.3.0
 orbslam3-python==2.0.0
+structlog==25.5.0

@@ -1,18 +1,19 @@
-import nvidia_config
+from config import config_nvidia
 from movement_config import stabilize_robot
 from interface_config import add_gui_movement_buttons
-from mjviser import Viewer
-import os
-from PIL import Image
-import time
-import mujoco
-import threading
-import config
-import shutil
-import rclpy
-import numpy as np
 from sensor_msgs.msg import Image as ROSImage
 from cv_bridge import CvBridge
+from config.config_vars import config
+from mjviser import Viewer
+from PIL import Image
+import threading
+import mujoco
+import shutil
+import rclpy
+import time
+import os
+import structlog
+logger = structlog.get_logger()
 
 locker = threading.Lock()
 mj_model = mujoco.MjModel.from_xml_path(config.ROBOT_SCENE)
@@ -24,7 +25,7 @@ time.sleep(0.2)
 
 rclpy.init()
 node = rclpy.create_node("robotics_simulation")
-pub = node.create_publisher(ROSImage, config.TOPIC_ROS2_CAMERA, 10)
+pub = node.create_publisher(ROSImage, config.CAMERA_TOPIC_ROS2, 10)
 bridge = CvBridge()
 
 def record_camera():
@@ -37,7 +38,7 @@ def record_camera():
     frame_count = 0
     while True:
         # Configure amount of images captured per second
-        time.sleep(0.033)
+        time.sleep(0.3)
 
         with locker:
             # Synchronize model data state into the renderer instance
@@ -72,5 +73,5 @@ def initialize_simulation():
     viewer.run()
 
 if __name__ == "__main__":
-    print("Initializing simulation")
+    logger.info("Initializing simulation")
     initialize_simulation()

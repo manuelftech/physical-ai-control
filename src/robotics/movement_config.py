@@ -1,4 +1,6 @@
 import mujoco
+import structlog
+logger = structlog.get_logger()
 
 # Actuator IDs
 WHEEL_ACTUATORS = [12, 13, 14, 15]
@@ -73,33 +75,40 @@ def move_forward(event):
     global target_speed_left, target_speed_right
     target_speed_left = FORWARD_SPEED - 1
     target_speed_right = FORWARD_SPEED - 1
+    logger.info("Moving forward")
 
 def move_backwards(event):
     global target_speed_left, target_speed_right
     target_speed_left = FORWARD_SPEED * -0.5
     target_speed_right = FORWARD_SPEED * -0.5
+    logger.info("Moving backwards")
 
 def move_right_up(event):
     global target_speed_left, target_speed_right
-    target_speed_left = FORWARD_SPEED + 0.5
+    target_speed_left = FORWARD_SPEED + 0.4
     target_speed_right = FORWARD_SPEED * TURNING_STRENTH
+    logger.info("Moving right up")
 
 def move_right_down(event):
     global target_speed_left, target_speed_right
-    target_speed_left = (FORWARD_SPEED * -1) - 0.5
+    target_speed_left = (FORWARD_SPEED * -1) - 0.4
     target_speed_right = FORWARD_SPEED * TURNING_STRENTH
+    logger.info("Moving right down")
 
 def move_left_up(event):
     global target_speed_left, target_speed_right
     target_speed_left = FORWARD_SPEED * TURNING_STRENTH
-    target_speed_right = FORWARD_SPEED + 0.5
+    target_speed_right = FORWARD_SPEED + 0.4
+    logger.info("Moving left up")
 
 def move_left_down(event):
     global target_speed_left, target_speed_right
     target_speed_left = FORWARD_SPEED * TURNING_STRENTH
-    target_speed_right = (FORWARD_SPEED * -1) - 0.5
+    target_speed_right = (FORWARD_SPEED * -1) - 0.4
+    logger.info("Moving left down")
 
 def stop_movement(event):
     global target_speed_left, target_speed_right
     target_speed_left = 0.0
     target_speed_right = 0.0
+    logger.info("Stopping movement")

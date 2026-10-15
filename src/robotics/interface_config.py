@@ -1,5 +1,5 @@
 from movement_config import move_forward, move_backwards, move_left_up, move_left_down, move_right_up, move_right_down, stop_movement
-import config
+from config.config_vars import config
 
 def add_gui_movement_buttons(viewer=None):
     # Add forward button
