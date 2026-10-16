@@ -1,4 +1,4 @@
-# Physical AI Control - Object Detection and Auditing System
+# Robotics Simulation + Computer Vision and Cloud Integration
 
 ## System Overview
 
