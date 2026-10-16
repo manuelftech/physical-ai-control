@@ -57,7 +57,7 @@ def identify_rock_with_truck(model, results):
             process_id = process_id,
             element_type="rock_near_truck",
             alert_level="warning",
-            timestamp=int(time.time()),
+            prediction_timestamp=int(time.time()),
             image_url=image_url,
             prediction_confidence=confidence
             )

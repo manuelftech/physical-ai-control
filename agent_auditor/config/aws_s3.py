@@ -22,21 +22,16 @@ class AWSS3():
             logger.error("Error connecting to AWS IoT")
             raise Exception(e)
 
-    def upload_image(self, file_path, bucket):
-        object_name = os.path.basename(file_path) 
-        self.client.upload_file(
-            file_path,
-            bucket,
-            object_name,
-            ExtraArgs={"ACL": "public-read", "ContentType": "image/jpeg"}
+    def get_image_signed_url(self, object_key, bucket):
+        # Generates a secure, temporary view link valid for 60 seconds
+        image_path = self.client.generate_presigned_url(
+            'get_object',
+            Params={'Bucket': bucket, 'Key': object_key},
+            ExpiresIn=60
         )
-
-        region = self.client.meta.region_name
-        public_url = f"https://{bucket}.s3.{region}://{object_name}"
-        return public_url
+        return image_path
     
     def __new__(cls):
         if cls._singleton is None:
             cls._singleton = super(AWSS3, cls).__new__(cls)
         return cls._singleton
-
