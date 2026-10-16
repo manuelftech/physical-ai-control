@@ -85,26 +85,26 @@ def move_backwards(event):
 
 def move_right_up(event):
     global target_speed_left, target_speed_right
-    target_speed_left = FORWARD_SPEED + 0.4
+    target_speed_left = FORWARD_SPEED + 0.5
     target_speed_right = FORWARD_SPEED * TURNING_STRENTH
     logger.info("Moving right up")
 
 def move_right_down(event):
     global target_speed_left, target_speed_right
-    target_speed_left = (FORWARD_SPEED * -1) - 0.4
+    target_speed_left = (FORWARD_SPEED * -1) - 0.5
     target_speed_right = FORWARD_SPEED * TURNING_STRENTH
     logger.info("Moving right down")
 
 def move_left_up(event):
     global target_speed_left, target_speed_right
     target_speed_left = FORWARD_SPEED * TURNING_STRENTH
-    target_speed_right = FORWARD_SPEED + 0.4
+    target_speed_right = FORWARD_SPEED + 0.5
     logger.info("Moving left up")
 
 def move_left_down(event):
     global target_speed_left, target_speed_right
     target_speed_left = FORWARD_SPEED * TURNING_STRENTH
-    target_speed_right = (FORWARD_SPEED * -1) - 0.4
+    target_speed_right = (FORWARD_SPEED * -1) - 0.5
     logger.info("Moving left down")
 
 def stop_movement(event):

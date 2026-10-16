@@ -58,7 +58,8 @@ def identify_rock_with_truck(model, results):
             element_type="rock_near_truck",
             alert_level="warning",
             timestamp=int(time.time()),
-            image_url=image_url
+            image_url=image_url,
+            prediction_confidence=confidence
             )
         
         AWSIoT().publish_mqtt(payload)

@@ -1,102 +1,146 @@
-# Robotics Simulation + Computer Vision: Unitree Go2W
+# Physical AI Control - Object Detection and Auditing System
 
-This architecture integrates real-time computer vision, physics-informed simulation, and cloud-native alerting pipelines to process visual data from a robotic workspace. Operating entirely without laser-based sensors, the system demonstrates how deep learning pipelines can achieve precise terrain classification and geometric distance mapping using purely visual data.
+## System Overview
 
-The system captures high-frequency image arrays via a camera mounted on a human-controlled **Unitree Go2W** platform inside a **MuJoCo** simulation. As the operator drives the vehicle, an automated edge-to-cloud perception framework dynamically processes the scene, evaluates target thresholds, and routes real-time telemetry to the cloud for autonomous safety auditing and immediate notification delivery.
+An agent-based data processing workflow designed for automated situational reporting on site. The system monitors designated zones to identify structural elements and geographical obstacles simultaneously, using a wheeled robot configuration. Data streams from physical simulation definitions, through a robotics middleware layer, into a cloud infrastructure for storage and validation.
+
+The pipeline processes image streams from the robot camera, assesses specific object proximities, publishes validated operational flags to a message broker, and utilizes generative modeling to audit the consistency of downstream predictions.
 
 ---
 
 ## In Engine Operation
 
-The core operational setup captures the Unitree Go2W traversing the simulated earth grid, tracking the custom stone boundary constraints via the manual GUI control array.
+The workspace interface mounts a dual-pane runtime window to manage the locomotion and observation routines of the robot. 
+
+The primary viewport displays the tridimensional simulation space populated with ground mesh elements, macro obstacles, and large-scale machinery assets. A floating telemetry control deck anchors to the side, exposing programmatic interface hooks for directional actuation coordinates, sensor visualization settings, scene physics parameters, and state status reporting.
 
 ![Operational Workspace](docs/In-engine-image.png)
 
 ---
 
-## Architecture Flow & Data Topology
+## Features
+
+- **Proximity Event Logging:** Captures co-occurrence events involving geographical elements and machinery assets from raw visual matrices.
+- **Asynchronous Execution Buffering:** Implements standard polling delays within the notification loop to manage stream frequencies.
+- **Decoupled Validation Engine:** Employs an independent compute layer to review data entries without hindering telemetry ingestion.
+- **Structured Schema Enforcements:** Assures type uniformity and properties definition across the data ingestion pipeline using explicit schema definitions.
+
+## Data Flow
+
 ```mermaid
 graph TD
-    %% Estilos Globales
-    classDef mjc fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
-    classDef aws fill:#fff3e0,stroke:#e65100,stroke-width:2px;
-    classDef ros fill:#f3e5f5,stroke:#4a148c,stroke-width:2px;
-
-    subgraph MJC ["MuJoCo Physics Core"]
-        A[Unitree Go2W <br> Manual GUI / Python] -->|High-Freq Frame Matrices| B[Visual Obstacles <br> Custom-Textured Rock]
+    subgraph Simulation and Middleware
+        MUJOCO("MuJoCo Simulation Frame") --> |Camera Stream| ROS2("ROS2 Camera Topic")
+        ROS2 --> |CvBridge Ingestion| YOLO("YOLO Object Detection")
     end
-    class MJC,A,B mjc;
 
-    subgraph ROS ["ROS2 Perception (Subscriber Topic)"]
-        C{Matrix Fusion & Spatial Distance Resolver}
-        D[Ultralytics YOLO Network <br> Object Mask Bounding] --> C
-        E[Depth-Anything-V2-Small <br> Relative Depth Heatmap] --> C
+    subgraph Data Pipeline
+        YOLO --> |Positive Co-occurrence Match| S3("Amazon S3 Bucket")
+        YOLO --> |Detection Payload Assembly| IOT("AWS IoT Core Message Broker")
     end
-    class ROS,C,D,E ros;
 
-    A -->|Frame Stream| D
-    A -->|Frame Stream| E
-
-    %% Salidas de ROS hacia AWS
-    C -->|Autonomous JSON Telemetry| F[AWS IoT Core]
-    C -->|Raw JPEG Media Payload| G[Amazon S3]
-    
-    subgraph AWS ["Cloud Infrastructure"]
-        F -->|SQL Rules Execution| H[Amazon SNS]
-        H -->|Email Alerts| I[Immediate Field Hazard]
-        
-        G -->|Bucket Object Created Event| J[AWS Lambda Node]
-        J -->|URL Object Inspection| K[AI Auditing Agent <br> Confidence Integrity]
+    subgraph Validation Infrastructure
+        IOT --> |SQL Query Filter| SNS("Amazon SNS Email Alert")
+        S3 --> |Object Creation Event Trigger| LAMBDA("AWS Lambda Function")
+        LAMBDA --> |Image Audit Invocation| CHATGPT("GPT-5-nano Auditor Model")
+        CHATGPT --> |Consolidated Report Record| DYNAMODB("Amazon DynamoDB Table")
     end
-    class AWS,F,G,H,I,J,K aws;
 ```
 
----
+1. **Vision Retrieval:** The Unitree Go2w robot simulation evaluates geographical fields near asset locations via its camera system.
+2. **Topic Subscription:** Frames are mapped into an active ROS2 topic (`sensor_msgs/msg/Image`) via a bridge pipeline.
+3. **Inference Pipeline:** A YOLO model trained for 100 epochs interprets the frames. If an operational asset and a boundary object appear within the same frame at designated thresholds, a synchronization flow activates.
+4. **Cloud Distribution:** The original frame is uploaded directly to Amazon S3, generating an accessible URL address. Concurrently, telemetry data routes into AWS IoT Core.
+5. **Downstream Messaging:** AWS IoT Core filters incoming events through an internal SQL query statement to issue email notifications via Amazon SNS.
+6. **Auditing and Persistence:** An Amazon S3 object creation trigger invokes an AWS Lambda function. This function passes the stored asset to a `gpt-5-nano` model via the OpenAI SDK. The model checks the validity of the classification and writes the audit verification directly to an Amazon DynamoDB table (`AuditingMiningPredictions`).
 
-## Data Pipeline Schemas
+## Data Structures
 
-### Edge Perception Payload
-Upon structural hazard recognition within the camera stream, the localization script automatically resolves target proximity and issues an explicit JSON string across the MQTT broker:
+The system transmits the following payload format to the AWS IoT Core message broker upon discovering a positive target correlation:
 
 ```json
 {
-  "object-detected": "Rock",
-  "distance-meters": "1.5"
+  "process_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+  "element_type": "rock_near_truck",
+  "alert_level": "warning",
+  "timestamp": 1792101780,
+  "image_url": "s3://audit-vision-detection/001.jpg",
+  "prediction_confidence": 0.912
 }
 ```
 
-### AWS IoT Core Rule Evaluation
-At the cloud gateway, structured SQL logic continuously evaluates incoming topic telemetry to isolate valid target alerts before interacting with alerting backends:
+The resulting verification record updated in the `AuditingMiningPredictions` table inside Amazon DynamoDB contains the structural schema below:
 
-```sql
-SELECT 
-  `object-detected` AS object, 
-  `distance-meters` AS distance 
-FROM 
-  'robotics/telemetry/rock_detection' 
-WHERE 
-  `object-detected` = 'Rock' 
-  AND CAST(`distance-meters` AS DOUBLE) <= 2.0;
+```json
+{
+  "process_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+  "audit_timestamp": 1792101785,
+  "verification_status": "PROCESSED_SUCCESSFULLY",
+  "model_feedback": "The image effectively shows rocks near a truck.",
+  "s3_reference_path": "s3://audit-vision-detection/001.jpg"
+}
 ```
 
----
+## Folder Structure
 
-## Core Stack & Functional Intent
+```text
+physical-ai-control/
+├── config/
+│   ├── __pycache__/
+│   ├── config_nvidia.py
+│   ├── config_vars.py
+│   └── logger.py
+├── docs/
+├── src/
+│   ├── cloud/
+│   │   ├── aws_iot.py
+│   │   └── aws_s3.py
+│   ├── computer_vision/
+│   │   ├── computer_vision_model/
+│   │   ├── resource/
+│   │   ├── test/
+│   │   └── vision_detection/
+│   ├── core/
+│   │   └── utils.py
+│   ├── robotics/
+│   │   ├── __pycache__/
+│   │   ├── interface_config.py
+│   │   ├── movement_config.py
+│   │   └── robotics_simulation.py
+│   ├── scene_3d/
+│   │   ├── assets/
+│   │   │   └── models/
+│   │   │       ├── board_square/
+│   │   │       ├── board_triangle/
+│   │   │       ├── cone_warning/
+│   │   │       ├── ground_rocks/
+│   │   │       ├── ground_terrain/
+│   │   │       ├── rock_brown/
+│   │   │       └── truck_dumper/
+│   │   ├── go2w.xml
+│   │   ├── scene_terrain.xml
+│   │   ├── scene.xml
+│   │   └── terrain_rocks.xml
+│   └── schemas/
+│       └── detection_payload.py
+├── training/
+├── .dockerignore
+├── .env
+├── .gitignore
+├── Dockerfile
+├── README.md
+├── requirements.txt
+└── setup_server.sh
+``
 
-* **Unitree Go2W**: Serves as the core robotic testing vehicle utilizing programmatic Python wheel controls via an integrated GUI matrix to execute manual platform positioning.
-* **MuJoCo Engine**: Manages the physics-informed rigid-body simulation environment, processing contact surfaces, custom high-resolution meshes, and camera feed streaming.
-* **ROS2 (Robot Operating System)**: Acts as the low-latency communication middleware, distributing raw visual camera matrices from the operator-driven vehicle down to secondary calculation nodes.
-* **Ultralytics YOLO (v8/v11)**: Runs on top of **PyTorch** to extract real-time object classification and multi-dimensional image bounding boxes for target hazards.
-* **Depth-Anything-V2-Small**: Utilizes a vision transformer framework to generate relative monocular depth maps directly from incoming 2D video sequences.
-* **Custom Sensor Fusion Algorithm**: A specialized Python matrix script that isolates spatial coordinates from YOLO's bounding data and correlates them with corresponding grayscale depth regions to calculate real-world distance vectors in meters.
-* **AWS IoT Core**: Operates as the central message broker parsing streaming telemetry using localized SQL syntax to handle automated event routing.
-* **Amazon S3**: Hosts raw image buffers dispatched from the edge perception script to build an asynchronous historical ledger.
-* **AWS Lambda**: Launches serverless, python-driven execution hooks triggered directly by S3 media updates.
-* **Asynchronous AI Agent**: Processes the raw image URLs within the Lambda function to inspect visual confidence thresholds and flag performance discrepancies.
-* **Amazon SNS (Simple Notification Service)**: Handles alerting logistics, issuing immediate email updates to external recipients when safety criteria are met.
+## Simulation Configuration
 
+The physics definitions establish the tridimensional spatial tracking layout, rendering characteristics, and collision hulls within the MuJoCo runtime workspace.
 
+## Simulation Architecture
 
-docker run -it --network host physical-ai-control
+The tridimensional simulation workspace uses a multi-layered asset loading configuration within the MuJoCo runtime workspace to track spatial bounds and calculate terrain collisions.
 
-
+- **Scene Entrypoint (`scene.xml`):** Integrates the Unitree Go2w kinematics layout, declares external 3D reference paths (`.obj` meshes), mounts texture descriptors, and maps coordinates for asset entities (`truck_dumper_1` and `rock_brown_1`).
+- **Terrain Subcomponent Asset Assembly (`terrain_rocks.xml`):** Segregates position vectors for low-profile landscape boundaries underneath the equipment models and the primary driving boundaries.
+- **Visual Capture Parameters:** Headless rendering routines utilize forced lighting distributions and fixed pixel matrix shapes to preserve uniformity for the vision pipeline.
