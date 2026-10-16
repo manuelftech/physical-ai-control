@@ -31,10 +31,6 @@ bridge = CvBridge()
 def record_camera():
     renderer = mujoco.Renderer(mj_model, width=config.CAMERA_WIDTH, height=config.CAMERA_HEIGHT)
 
-    if os.path.exists(config.CAMERA_FOLDER):
-        shutil.rmtree(config.CAMERA_FOLDER)
-    os.makedirs(config.CAMERA_FOLDER, exist_ok=True)
-
     frame_count = 0
     while True:
         # Configure amount of images captured per second

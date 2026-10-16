@@ -1,6 +1,7 @@
 from config import config_nvidia
 from schemas.detection_payload import DetectionPayload
 from ultralytics import YOLO
+from core.utils import get_latest_predicted_image
 from sensor_msgs.msg import Image as ROSImage
 from cv_bridge import CvBridge
 from config.config_vars import config
@@ -42,9 +43,12 @@ def identify_rock_with_truck(model, results):
 
     if rock_found and truck_found:
         logger.info("Rock found near Truck")
+
+        file_path = get_latest_predicted_image(config.VISION_PREDICTION_FOLDER)
+
         process_id = str(uuid.uuid4())
         image_url = AWSS3().upload_image(
-            file_path=config.VISION_PREDICTION_FOLDER, 
+            file_path=file_path, 
             bucket=config.IMAGE_DETECTION_BUCKET)
 
         logger.info("Yolo image sent to AWS S3. Process ID: %s, Image URL: %s", process_id, image_url)

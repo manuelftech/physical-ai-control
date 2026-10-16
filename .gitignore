@@ -4,6 +4,7 @@ log/
 build/
 src/robotics_simulation/camera_recording
 src/robotics_simulation/MUJOCO_LOG.TXT
+src/.env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

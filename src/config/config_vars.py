@@ -19,7 +19,6 @@ class ConfigVar(BaseSettings):
     RIGHT_DOWN: str
     CAMERA_WIDTH: int
     CAMERA_HEIGHT: int
-    CAMERA_FOLDER: str
     XML_CAMERA_NAME: str
     TOPIC_ROS2_CAMERA: str
 
@@ -29,6 +28,7 @@ class ConfigVar(BaseSettings):
     SAVE_VISION_PREDICTION: bool
     ACCEPTED_CONFIDENCE: float
     AWS_IOT_ENDPOINT: str
+    IMAGE_DETECTION_BUCKET: str
 
     # Nvidia Configuration
     CUDNN_LIBRARY_PATH: str
