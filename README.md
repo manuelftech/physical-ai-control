@@ -1,4 +1,4 @@
-# Robotics Simulation + Vision and Cloud Integration
+# Robotics + Vision and Cloud Integration
 
 ## System Overview
 
