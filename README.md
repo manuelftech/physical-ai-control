@@ -131,7 +131,7 @@ physical-ai-control/
 ├── README.md
 ├── requirements.txt
 └── setup_server.sh
-``
+```
 
 ## Simulation Configuration
 
