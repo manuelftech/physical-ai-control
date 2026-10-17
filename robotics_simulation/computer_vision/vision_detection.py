@@ -13,7 +13,6 @@ import uuid
 import rclpy
 import time
 import structlog
-
 logger = structlog.get_logger()
 
 class VisionDetectionNode(Node):

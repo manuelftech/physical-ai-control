@@ -16,3 +16,6 @@ foxglove-wizard==0.3.0
 orbslam3-python==2.0.0
 structlog==25.5.0
 boto3==1.43.114
+sensor-msgs-py==2.5.0
+cv-bridge==4.0.0
+setuptools==75.8.0
