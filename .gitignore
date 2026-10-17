@@ -2,9 +2,10 @@
 install/
 log/
 build/
-src/robotics_simulation/camera_recording
-src/robotics_simulation/MUJOCO_LOG.TXT
-src/.env
+robotics_simulation
+robotics_simulation/robotics/MUJOCO_LOG.TXT
+robotics_simulation/.env
+agent_auditor/.env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

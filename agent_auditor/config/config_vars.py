@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
+import os
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -12,5 +13,8 @@ class ConfigVar(BaseSettings):
     # --- OpenAI Configuration ---
     LLM_MODEL: str
     AGENT_NAME: str
+    OPENAI_API_KEY: str
 
+# Sets configurations and makes them available
 config = ConfigVar()
+os.environ["OPENAI_API_KEY"] = config.OPENAI_API_KEY

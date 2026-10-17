@@ -1,5 +1,4 @@
 from config.config_vars import config
-from openai import OpenAI
 from agents import Agent, AgentOutputSchema, Runner
 import structlog
 logger = structlog.get_logger()
@@ -23,7 +22,7 @@ class OpenAIAgent():
                 max_turns=1
             )
         except Exception as e:
-            logger.info("Error connecting to OpenAI")
+            logger.error("Error connecting to OpenAI", error=str(e))
             raise Exception(e)
         logger.info("Connected to OpenAI")
         return runner

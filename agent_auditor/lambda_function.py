@@ -1,4 +1,6 @@
 from services.audit_image import audit_image
+from config.config_vars import config
+import os
 import urllib.parse
 
 def lambda_handler(event, context):
