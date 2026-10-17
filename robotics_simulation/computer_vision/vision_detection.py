@@ -35,38 +35,36 @@ def identify_rock_with_truck(model, results):
     for box in results[0].boxes:
         name = model.names[int(box.cls)]
         confidence = float(box.conf)
-
-        if name == "rock" and confidence > config.ACCEPTED_CONFIDENCE:
+        if name == "rock":
             rock_found = True
-        elif name == "truck" and confidence > config.ACCEPTED_CONFIDENCE:
+        elif name == "truck":
             truck_found = True
 
-    if rock_found and truck_found:
-        logger.info("Rock found near Truck")
+    if not rock_found or not truck_found:
+        logger.info("No rocks near trucks")
+        return
 
+    process_id = str(uuid.uuid4())
+    logger.info("Rock found near Truck")
+
+    if confidence < config.PREFERRED_CONFIDENCE:
+        # If confidence is lower than threshold, the image is sent to an Agent auditor
         file_path = get_latest_predicted_image(config.VISION_PREDICTION_FOLDER)
-
-        process_id = str(uuid.uuid4())
         image_url = AWSS3().upload_image(
-            file_path=file_path, 
+            file_path=file_path,
             bucket=config.IMAGE_DETECTION_BUCKET)
-
         logger.info("Yolo image sent to AWS S3. Process ID: %s, Image URL: %s", process_id, image_url)
-
+    else:
         payload = DetectionPayload(
             process_id = process_id,
             element_type="rock_near_truck",
             alert_level="warning",
             prediction_timestamp=int(time.time()),
-            image_url=image_url,
             prediction_confidence=confidence
-            )
-        
+        )
         AWSIoT().publish_mqtt(payload)
         logger.info("MQTT payload sent to AWS IoT. Process ID: %s", process_id)
-        time.sleep(6)
-    else:
-        logger.info("No rocks near trucks")
+    time.sleep(7)
 
 def main():
     rclpy.init()

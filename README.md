@@ -4,7 +4,7 @@
 
 An agent-based data processing workflow designed for automated situational reporting on site. The system monitors designated zones to identify structural elements and geographical obstacles simultaneously, using a wheeled robot configuration. Data streams from physical simulation definitions, through a robotics middleware layer, into a cloud infrastructure for storage and validation.
 
-The pipeline processes image streams from the robot camera, assesses specific object proximities, publishes validated operational flags to a message broker, and utilizes generative modeling to audit the consistency of downstream predictions.
+The pipeline processes image streams from the robot camera and assesses specific object proximities. If a detection falls below a high-confidence threshold, an independent asynchronous generative agent auditor validates the visual metrics, handles verification reporting, and routes confirmed alert signatures directly back into the primary communication stream.
 
 ---
 
@@ -22,8 +22,10 @@ The primary viewport displays the tridimensional simulation space populated with
 
 - **Proximity Event Logging:** Captures co-occurrence events involving geographical elements and machinery assets from raw visual matrices.
 - **Asynchronous Execution Buffering:** Implements standard polling delays within the notification loop to manage stream frequencies.
-- **Decoupled Validation Engine:** Employs an independent compute layer to review data entries without hindering telemetry ingestion.
+- **Decoupled Validation Engine:** Employs an independent compute layer (`agent_auditor`) to review lower-confidence edge-case data entries without hindering telemetry ingestion.
 - **Structured Schema Enforcements:** Assures type uniformity and properties definition across the data ingestion pipeline using explicit schema definitions.
+
+---
 
 ## Data Flow
 
@@ -34,29 +36,34 @@ graph TD
         ROS2 --> |CvBridge Ingestion| YOLO("YOLO Object Detection")
     end
 
-    subgraph Data Pipeline
-        YOLO --> |Positive Co-occurrence Match| S3("Amazon S3 Bucket")
-        YOLO --> |Detection Payload Assembly| IOT("AWS IoT Core Message Broker")
+    subgraph High Confidence Direct Ingestion
+        YOLO --> |High Confidence Match| IOT("AWS IoT Core Message Broker")
     end
 
     subgraph Validation Infrastructure
-        IOT --> |SQL Query Filter| SNS("Amazon SNS Email Alert")
-        S3 --> |Object Creation Event Trigger| LAMBDA("AWS Lambda Function")
+        YOLO --> |Low Confidence Match| S3("Amazon S3 Bucket")
+        S3 --> |Object Creation Event Trigger| LAMBDA("AWS Lambda Function / Trigger")
         LAMBDA --> |Image Audit Invocation| CHATGPT("GPT-5-nano Auditor Model")
-        CHATGPT --> |Consolidated Report Record| DYNAMODB("Amazon DynamoDB Table")
+        CHATGPT --> |Positive Verification Payload| IOT
+        IOT --> |SQL Query Filter| SNS("Amazon SNS Email Alert")
     end
 ```
 
 1. **Vision Retrieval:** The Unitree Go2w robot simulation evaluates geographical fields near asset locations via its camera system.
 2. **Topic Subscription:** Frames are mapped into an active ROS2 topic (`sensor_msgs/msg/Image`) via a bridge pipeline.
-3. **Inference Pipeline:** A YOLO model trained for 100 epochs interprets the frames. If an operational asset and a boundary object appear within the same frame at designated thresholds, a synchronization flow activates.
-4. **Cloud Distribution:** The original frame is uploaded directly to Amazon S3, generating an accessible URL address. Concurrently, telemetry data routes into AWS IoT Core.
-5. **Downstream Messaging:** AWS IoT Core filters incoming events through an internal SQL query statement to issue email notifications via Amazon SNS.
-6. **Auditing and Persistence:** An Amazon S3 object creation trigger invokes an AWS Lambda function. This function passes the stored asset to a `gpt-5-nano` model via the OpenAI SDK. The model checks the validity of the classification and writes the audit verification directly to an Amazon DynamoDB table (`AuditingMiningPredictions`).
+3. **Inference Pipeline:** A YOLO model trained for 100 epochs interprets the frames. 
+4. **Conditional Cloud Distribution:** 
+   * **High Confidence:** If an operational asset and a boundary object appear within the same frame above designated high-confidence thresholds, the robot bypasses the auditor and publishes the MQTT payload directly to **AWS IoT Core**.
+   * **Low Confidence:** If the detection falls under the confidence threshold, the robot does *not* send an MQTT payload. Instead, it uploads the image exclusively to **Amazon S3** to kick off the external audit process.
+5. **Auditing Verification:** The **Agent Auditor** analyzes the uploaded asset from S3 using a `gpt-5-nano` model via the OpenAI SDK. If the agent confirms with high certainty that the image shows exactly a rock near a truck, the agent auditor itself compiles and sends the finalized MQTT payload directly to **AWS IoT Core**.
+6. **Downstream Messaging:** **AWS IoT Core** validates the received MQTT payload (regardless of whether it originated from the robot or the agent auditor) and filters it through an internal SQL query statement to issue email alerts via **Amazon SNS**.
+
+---
 
 ## Data Structures
 
-The system transmits the following payload format to the AWS IoT Core message broker upon discovering a positive target correlation:
+### AWS IoT Core Ingestion Payload
+The system transmits the following payload format to the **AWS IoT Core** message broker upon discovering a positive target correlation (sent directly by the robot on high-confidence matches, or by the agent auditor upon successful verification):
 
 ```json
 {
@@ -64,34 +71,52 @@ The system transmits the following payload format to the AWS IoT Core message br
   "element_type": "rock_near_truck",
   "alert_level": "warning",
   "timestamp": 1792101780,
-  "image_url": "s3://audit-vision-detection/001.jpg",
   "prediction_confidence": 0.912
 }
 ```
 
-The resulting verification record updated in the `AuditingMiningPredictions` table inside Amazon DynamoDB contains the structural schema below:
+### Agent Auditor Internal Prompt & Schema
+The agent is explicitly structured around the following core execution logic:
 
-```json
+```text
+Audit target image. 
+Output JSON format:
 {
-  "process_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
-  "audit_timestamp": 1792101785,
-  "verification_status": "PROCESSED_SUCCESSFULLY",
-  "model_feedback": "The image effectively shows rocks near a truck.",
-  "s3_reference_path": "s3://audit-vision-detection/001.jpg"
+  "image_properly_predicted": true,
+  "feedback": "The image effectively shows rocks near a truck.",
+  "confidence": 0.901
 }
+
+Notes:
+1. The "image_properly_predicted" field must be a strict JSON boolean (true/false).
+2. The "feedback" field must be a concise, single-sentence analysis verifying the presence of a big rock near the vehicle.
+3. The "confidence" field must be a 3-decimal float representing the model's statistical certainty and verification accuracy of the target image classification.
 ```
+
+---
 
 ## Folder Structure
 
 ```text
 physical-ai-control/
-├── config/
-│   ├── __pycache__/
-│   ├── config_nvidia.py
-│   ├── config_vars.py
-│   └── logger.py
+├── agent_auditor/
+│   ├── config/
+│   │   ├── aws_iot.py
+│   │   ├── aws_s3.py
+│   │   ├── config_vars.py
+│   │   ├── logger.py
+│   │   └── openai_agent.py
+│   ├── prompts/
+│   │   └── one_shot_image_auditor.txt
+│   ├── schemas/
+│   │   └── detection_payload.py
+│   ├── .env
+│   ├── agent_auditor.py
+│   └── requirements.txt
 ├── docs/
-├── src/
+│   ├── In-engine-image.png
+│   └── server-construction.sh
+├── robotics_simulation/
 │   ├── cloud/
 │   │   ├── aws_iot.py
 │   │   └── aws_s3.py
@@ -100,13 +125,16 @@ physical-ai-control/
 │   │   ├── resource/
 │   │   ├── test/
 │   │   └── vision_detection/
+│   ├── config/
+│   │   ├── config_nvidia.py
+│   │   ├── config_vars.py
+│   │   └── logger.py
 │   ├── core/
 │   │   └── utils.py
 │   ├── robotics/
-│   │   ├── __pycache__/
 │   │   ├── interface_config.py
 │   │   ├── movement_config.py
-│   │   └── robotics_simulation.py
+│   │   └── robotics.py
 │   ├── scene_3d/
 │   │   ├── assets/
 │   │   │   └── models/
@@ -126,16 +154,20 @@ physical-ai-control/
 ├── training/
 ├── .dockerignore
 ├── .env
+├── .env.template
 ├── .gitignore
 ├── Dockerfile
 ├── README.md
-├── requirements.txt
-└── setup_server.sh
+└── requirements.txt
 ```
+
+---
 
 ## Simulation Configuration
 
 The physics definitions establish the tridimensional spatial tracking layout, rendering characteristics, and collision hulls within the MuJoCo runtime workspace.
+
+---
 
 ## Simulation Architecture
 

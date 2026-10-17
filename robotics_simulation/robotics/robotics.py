@@ -42,14 +42,12 @@ def record_camera():
 
         # Sending image to ROS2 topic
         img_rgb = renderer.render()
-        #img_uint8 = np.asarray(img_rgb, dtype=np.uint8)
         ros2_captured_image = bridge.cv2_to_imgmsg(img_rgb, encoding="passthrough")
         pub.publish(ros2_captured_image)
         frame_count += 1
 
-def initialize_simulation():
+def start_robotics_simulation():
     viewer = Viewer(mj_model, mj_data, step_fn=stabilize_robot)
-
     viewer._server.scene.configure_environment_map(
         hdri="night",
         background=True,
@@ -70,4 +68,4 @@ def initialize_simulation():
 
 if __name__ == "__main__":
     logger.info("Initializing simulation")
-    initialize_simulation()
+    start_robotics_simulation()

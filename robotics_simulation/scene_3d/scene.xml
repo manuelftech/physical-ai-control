@@ -76,8 +76,7 @@
         </body>
     </body>
 
-
-    <!-- Truck Dumper 2 
+    <!-- Truck Dumper 2 -->
     <body name="truck_dumper_2" pos="55 50 -0.4" euler="0 0 4.71">
         <body name="truck_visual_sub_2" pos="0 0 0" quat="0.7071 0.7071 0 0">
             <geom type="mesh" mesh="truck_dumper_mesh" material="truck_dumper_mat" contype="0" conaffinity="0" group="1"/>
@@ -92,7 +91,6 @@
             <geom name="ladder_right_2" type="box" size="0.2 0.05 0.65" pos="20.225 -45.83 1.4" quat="0 0 0.5 -0.07" contype="1" conaffinity="1" rgba="1 0 0 0.4" group="3"/>
         </body>
     </body>
--->
 
     <!-- Rock Brown under Truck 1 -->
     <body name="rock_brown_1" pos="8 2 0.2">
@@ -103,14 +101,14 @@
     </body>
 
 
-    <!-- Rock Brown under Truck 2 
+    <!-- Rock Brown under Truck 2 -->
     <body name="rock_brown_2" pos="4 23 0.2"> 
       <geom name="rock_brown_2_collision" group="3" type="cylinder" size="0.6 0.5" pos="7.2 -0.2 0.1" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
       <body name="rock_brown_2_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
         <geom type="mesh" mesh="rock_brown_mesh" material="rock_brown_mat" contype="0" conaffinity="0" group="2"/>
       </body>
     </body>
--->
+
 
     <!-- Terrain Ground Rocks -->
     <include file="terrain_rocks.xml"/>

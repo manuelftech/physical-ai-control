@@ -1,0 +1,12 @@
+Audit target image. 
+Output JSON format:
+{
+  "image_properly_predicted": true,
+  "feedback": "The image effectively shows rocks near a truck.",
+  "confidence": 0.901
+}
+
+Notes:
+1. The "image_properly_predicted" field must be a strict JSON boolean (true/false).
+2. The "feedback" field must be a concise, single-sentence analysis verifying the presence of a big rock near the vehicle.
+3. The "confidence" field must be a 3-decimal float representing the model's statistical certainty and verification accuracy of the target image classification.

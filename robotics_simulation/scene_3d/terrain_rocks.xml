@@ -3,6 +3,9 @@
     <!-- Under Truck 1 -->
     <geom pos="13 2 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
     
+    <!-- Under Truck 2 -->
+    <geom pos="10 18 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
+    
     <!-- Under Robot -->
     <geom pos="3 0 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
     

@@ -1,6 +1,0 @@
-Audit target image. 
-Output JSON format:
-{
-  "verification_status": "[APPROVED | REJECTED]",
-  "model_feedback": "[Concise 1-sentence analysis verifying if a big rock is near the vehicle]"
-}
