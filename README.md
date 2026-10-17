@@ -104,7 +104,7 @@ Notes:
 
 This repository hosts two distinct, decoupled sub-projects working co-dependently to form the end-to-end intelligent automation solution.
 
-### 1. Robotics Midleware & Simulation Workspace (`robotics_simulation`)
+### 1. Robotics Simulation
 The core edge system running localized 3D physics rendering loops, sensory tracking topics via ROS2, and immediate computer vision inferences.
 
 ```text
@@ -156,7 +156,7 @@ robotics_simulation/
 └── requirements.txt
 ```
 
-### 2. GenAI Cloud Verification Engine (`agent_auditor`)
+### 2. Agent Auditor
 A standalone microservice that interfaces with cloud object store triggers and leverages multimodal large language models to inspect and settle boundary-case physical logs.
 
 ```text
