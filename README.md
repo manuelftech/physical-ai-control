@@ -4,7 +4,7 @@
 
 An agent-based data processing workflow designed for automated situational reporting on site. The system monitors designated zones to identify structural elements and geographical obstacles simultaneously, using a wheeled robot configuration. Data streams from physical simulation definitions, through a robotics middleware layer, into a cloud infrastructure for storage and validation.
 
-The pipeline processes image streams from the robot camera and assesses specific object proximities. If a detection falls below a high-confidence threshold, an independent asynchronous generative agent auditor validates the visual metrics, handles verification reporting, and routes confirmed alert signatures directly back into the primary communication stream.
+The pipeline processes image streams from the robot camera, routes real-time telemetry to an operations dashboard, and assesses specific object proximities. If a detection falls below a high-confidence threshold, an independent asynchronous generative agent auditor validates the visual metrics, handles verification reporting, and routes confirmed alert signatures directly back into the primary communication stream.
 
 ---
 
@@ -21,6 +21,7 @@ The primary viewport displays the tridimensional simulation space populated with
 ## Features
 
 - **Proximity Event Logging:** Captures co-occurrence events involving geographical elements and machinery assets from raw visual matrices.
+- **Real-Time Observability and RoboOps:** Streams raw camera topic metrics into a remote **Foxglove Studio** control room dashboard using high-performance WebSocket bridges for live site monitoring.
 - **Asynchronous Execution Buffering:** Implements standard polling delays within the notification loop to manage stream frequencies.
 - **Decoupled Validation Engine:** Employs an independent compute layer (`agent_auditor`) to review lower-confidence edge-case data entries without hindering telemetry ingestion.
 - **Structured Schema Enforcements:** Assures type uniformity and properties definition across the data ingestion pipeline using explicit schema definitions.
@@ -34,6 +35,7 @@ graph TD
     subgraph Simulation and Middleware
         MUJOCO("MuJoCo Simulation Frame") --> |Camera Stream| ROS2("ROS2 Camera Topic")
         ROS2 --> |CvBridge Ingestion| YOLO("YOLO Object Detection")
+        ROS2 --> |Foxglove Bridge WebSocket| FOXGLOVE("Foxglove Studio Live Dashboard")
     end
 
     subgraph High Confidence Direct Ingestion
@@ -50,7 +52,7 @@ graph TD
 ```
 
 1. **Vision Retrieval:** The Unitree Go2w robot simulation evaluates geographical fields near asset locations via its camera system.
-2. **Topic Subscription:** Frames are mapped into an active ROS2 topic (`sensor_msgs/msg/Image`) via a bridge pipeline.
+2. **Topic Subscription and Live Observability:** Frames are mapped into an active ROS2 topic (`sensor_msgs/msg/Image`) via a bridge pipeline. Simultaneously, the camera stream is multiplexed and pushed natively over a WebSocket interface using a `foxglove_bridge` link to feed real-time visual frames straight to a localized **Foxglove Studio** platform.
 3. **Inference Pipeline:** A YOLO model trained for 100 epochs interprets the frames. 
 4. **Conditional Cloud Distribution:** 
    * **High Confidence:** If an operational asset and a boundary object appear within the same frame above designated high-confidence thresholds, the robot bypasses the auditor and publishes the MQTT payload directly to **AWS IoT Core**.
@@ -134,7 +136,7 @@ physical-ai-control/
 │   ├── robotics/
 │   │   ├── interface_config.py
 │   │   ├── movement_config.py
-│   │   └── robotics.py
+│   │   └── robotics_simulation.py
 │   ├── scene_3d/
 │   │   ├── assets/
 │   │   │   └── models/
