@@ -36,4 +36,15 @@ class ConfigVar(BaseSettings):
     CUDNN_BENCHMARK: bool
     CUDNN_DETERMINISTIC: bool
 
+    # Cloud
+    AWS_ACCESS_KEY_ID: str
+    AWS_SECRET_ACCESS_KEY: str
+    AWS_IOT_ENDPOINT: str
+    AWS_IOT_CLIENT_ID = "robot_truck_01"
+    AWS_IOT_TOPIC = "robotics/vision/detections"
+    AWS_IOT_PATH_TO_CERTIFICATE = "certs/device.pem.crt"
+    AWS_IOT_PATH_TO_PRIVATE_KEY = "certs/private.pem.key"
+    AWS_IOT_PATH_TO_AMAZON_ROOT_CA = "certs/AmazonRootCA1.pem"
+    IMAGE_DETECTION_BUCKET: str
+
 config = ConfigVar()

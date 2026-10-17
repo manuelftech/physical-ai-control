@@ -1,6 +1,8 @@
 import json
-import boto3
 from config.config_vars import config
+import json
+from awscrt import mqtt
+from awsiot import mqtt_connection_builder
 import structlog
 logger = structlog.get_logger()
 
@@ -10,25 +12,37 @@ class AWSIoT():
 
     def __init__(self):
         if not self._is_already_initialized:
-            self.client = self._get_client()
+            self.connection = self._get_client()
             self._is_already_initialized = True
 
     def _get_client(self):
         try:
-            logger.info("Initializing AWS IoT Client")
-            client = boto3.client("iot-data", endpoint_url=config.AWS_IOT_ENDPOINT)
-            logger.info("AWS IoT Client Properly Initialized")
-            return client
+            logger.info("Initializing AWS IoT Connection")
+            connection = mqtt_connection_builder.mtls_from_path(
+                endpoint=config.AWS_IOT_ENDPOINT,
+                cert_filepath=config.AWS_IOT_PATH_TO_CERTIFICATE,
+                pri_key_filepath=config.AWS_IOT_PATH_TO_PRIVATE_KEY,
+                ca_filepath=config.AWS_IOT_PATH_TO_AMAZON_ROOT_CA,
+                client_id=config.AWS_IOT_CLIENT_ID,
+                clean_session=False,
+                keep_alive_secs=30
+            )
+            connection.connect().result()
+            logger.info("AWS IoT connection Properly Initialized")
+            return connection
         except Exception as e:
             logger.error("Error connecting to AWS IoT")
             raise Exception(e)
 
     def publish_mqtt(self, payload, topic):
-        self.client.publish(
+        self.connection.publish(
             topic=topic,
-            qos=1,
-            payload=json.dumps(payload)
+            payload=json.dumps(payload),
+            qos=mqtt.QoS.AT_LEAST_ONCE
         )
+
+    def disconnect(self):
+            self.connection.disconnect().result()
     
     def __new__(cls):
         if cls._singleton is None:

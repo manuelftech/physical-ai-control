@@ -19,3 +19,4 @@ cv-bridge==1.13.0.post0
 setuptools==75.8.0
 python-dotenv==1.1.1
 pydantic_settings==2.11.0
+awsiotsdk==1.31.0

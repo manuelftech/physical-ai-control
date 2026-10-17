@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 
 class DetectionPayload(BaseModel):
+    device_id: str | None = Field(description="Id of the robot sending the payload")
     process_id: str | None = Field(description="Id of the vision detection process")
     element_type: str | None = Field(description="Element visually recognized")
     alert_level: str | None = Field(description="Level of the risk associated")

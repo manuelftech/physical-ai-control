@@ -43,6 +43,7 @@ def audit_image(image_path, bucket_name):
         process_id = str(uuid.uuid4())
         AWSIoT().publish_mqtt(
             DetectionPayload(
+                device_id=config.AWS_IOT_CLIENT_ID,
                 process_id = process_id,
                 element_type=config.CLASSIFICATION_ELEMENT_FOUND,
                 alert_level=config.ALERT_LEVEL_PREDICTION,

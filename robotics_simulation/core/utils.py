@@ -6,9 +6,9 @@ logger = structlog.get_logger()
 
 def get_latest_predicted_image(folder):
     # Returns path of the latest image predicted by Yolo
-    images = os.path.join(folder)
+    images = glob.glob(os.path.join(f"{folder}/predict", "*.jpg"))
     if images:
-        image_path = max(glob.glob(images, "*.jpg"), key=os.path.getmtime)
+        image_path = max(images, key=os.path.getmtime)
         logger.info("Image found. Path: %s", image_path)
         return image_path
     else:

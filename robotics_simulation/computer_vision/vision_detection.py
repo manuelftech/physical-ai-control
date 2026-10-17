@@ -67,7 +67,7 @@ class VisionDetectionNode(Node):
         logger.info("Rock found near Truck")
 
         if confidence < config.PREFERRED_CONFIDENCE:
-            logger.info("Image predicted with low confidence. Confidence: %s", confidence)
+            logger.info("Image predicted with confidence below threshold. Confidence: %s", confidence)
             # Route lower confidence visuals out to the external asynchronous Agent auditor
             file_path = get_latest_predicted_image(config.VISION_PREDICTION_FOLDER)
             image_url = AWSS3().upload_image(
@@ -78,22 +78,30 @@ class VisionDetectionNode(Node):
         else:
             logger.info("Image predicted with high confidence. Confidence: %s", confidence)
             payload = DetectionPayload(
+                device_id=config.AWS_IOT_CLIENT_ID,
                 process_id=process_id,
                 element_type="rock_near_truck",
                 alert_level="warning",
                 prediction_timestamp=int(time.time()),
                 prediction_confidence=confidence
             )
-            AWSIoT().publish_mqtt(payload)
+            AWSIoT().publish_mqtt(payload, config.AWS_IOT_TOPIC)
             logger.info("MQTT payload sent to AWS IoT. Process ID: %s", process_id)
         
         # Standard execution buffering window to limit stream notification flooding
         time.sleep(7)
 
 def main():
+    logger.info("Starting Vision Detection Process")
     rclpy.init()
-    rclpy.spin(VisionDetectionNode())
-    rclpy.shutdown()
+    node = VisionDetectionNode()
+    try:
+        rclpy.spin(node)
+    finally:
+        AWSIoT().disconnect()
+        node.destroy_node()
+        rclpy.shutdown()
+        logger.info("Vision Detection Process Stopped")
 
 if __name__ == '__main__':
     main()
