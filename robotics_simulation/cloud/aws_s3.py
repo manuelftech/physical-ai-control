@@ -22,15 +22,13 @@ class AWSS3():
                 aws_secret_access_key=config.AWS_SECRET_ACCESS_KEY,
                 region_name=config.AWS_REGION
             )
-            client.list_buckets()
             logger.info("AWS S3 Client Properly Initialized")
             return client
         except Exception as e:
             logger.error("Error connecting to AWS S3", error=str(e), exc_info=True)
             raise Exception(e)
 
-    def upload_image(self, file_path, bucket):
-        object_name = os.path.basename(file_path)
+    def upload_image(self, file_path, bucket, object_name):
         with open(file_path, 'rb') as data:
             self.client.put_object(
                 Bucket=bucket,

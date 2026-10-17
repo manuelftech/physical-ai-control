@@ -6,7 +6,11 @@ load_dotenv()
 class ConfigVar(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
-    # --- AWS IoT Configuration ---
+    # --- Cloud Configuration ---
+    AWS_ACCESS_KEY_ID: str
+    AWS_SECRET_ACCESS_KEY: str
+    AWS_REGION: str
+    AWS_IOT_ENDPOINT: str
     ALERT_LEVEL_PREDICTION: str
     CLASSIFICATION_ELEMENT_FOUND: str
 

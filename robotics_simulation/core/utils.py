@@ -18,6 +18,6 @@ def remove_folder(folder):
     # Deletes the specified folder
     if os.path.exists(folder):
         shutil.rmtree(folder)
-        logger.info("Folder %s deleted", folder)
+        logger.info("Removing Folder %s", folder)
     else:
         logger.info("Folder %s does not exist", folder)

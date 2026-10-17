@@ -1,7 +1,7 @@
 from config import config_nvidia
 from schemas.detection_payload import DetectionPayload
 from ultralytics import YOLO
-from core.utils import get_latest_predicted_image
+from core.utils import get_latest_predicted_image, remove_folder
 from sensor_msgs.msg import Image as ROSImage
 from cv_bridge import CvBridge
 from config.config_vars import config
@@ -9,6 +9,7 @@ from cloud.aws_iot import AWSIoT
 from cloud.aws_s3 import AWSS3
 from config.logger import configure_logger
 from rclpy.node import Node
+from datetime import datetime, timezone
 import uuid
 import rclpy
 import time
@@ -70,10 +71,14 @@ class VisionDetectionNode(Node):
             logger.info("Image predicted with confidence below threshold. Confidence: %s", confidence)
             # Route lower confidence visuals out to the external asynchronous Agent auditor
             file_path = get_latest_predicted_image(config.VISION_PREDICTION_FOLDER)
+            date_prefix = datetime.now(timezone.utc).strftime(config.DATE_FORMAT_BUCKET_FOLDER)
+            
             AWSS3().upload_image(
+                object_name=f"{date_prefix}/{process_id}",
                 file_path=file_path,
                 bucket=config.IMAGE_DETECTION_BUCKET
             )
+            remove_folder(config.VISION_PREDICTION_FOLDER)
         else:
             logger.info("Image predicted with high confidence. Confidence: %s", confidence)
             AWSIoT().publish_mqtt(

@@ -29,6 +29,7 @@ class ConfigVar(BaseSettings):
     PREFERRED_CONFIDENCE: float
     AWS_IOT_ENDPOINT: str
     IMAGE_DETECTION_BUCKET: str
+    TIME_BEFORE_NEXT_PREDICTION: int
 
     # Nvidia Configuration
     CUDNN_LIBRARY_PATH: str

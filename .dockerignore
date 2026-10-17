@@ -1,7 +1,0 @@
-install/
-build/
-log/
-.dockerignore
-.gitignore
-README.md
-.DS_Store

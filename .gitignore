@@ -5,6 +5,7 @@ build/
 robotics_simulation/robotics/MUJOCO_LOG.TXT
 robotics_simulation/.env
 agent_auditor/.env
+agent_auditor/__pycache__/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

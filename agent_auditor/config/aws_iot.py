@@ -15,7 +15,7 @@ class AWSIoT():
 
     def _get_client(self):
         try:
-            logger.info("Initializing AWS IoT Client")
+            logger.info("Initializing AWS IoT Client. Endpoint: %s", config.AWS_IOT_ENDPOINT)
             client = boto3.client("iot-data", endpoint_url=config.AWS_IOT_ENDPOINT)
             logger.info("AWS IoT Client Properly Initialized")
             return client
