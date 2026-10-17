@@ -26,7 +26,7 @@ class AWSS3():
             logger.info("AWS S3 Client Properly Initialized")
             return client
         except Exception as e:
-            logger.error("Error connecting to AWS S3")
+            logger.error("Error connecting to AWS S3", error=str(e), exc_info=True)
             raise Exception(e)
 
     def upload_image(self, file_path, bucket):
@@ -40,7 +40,6 @@ class AWSS3():
         region = self.client.meta.region_name
         public_url = f"https://{bucket}.s3.{region}://{object_name}"
         logger.info("Image successfully uploaded to Bucket. Path: %s", public_url)
-        return public_url
     
     def __new__(cls):
         if cls._singleton is None:

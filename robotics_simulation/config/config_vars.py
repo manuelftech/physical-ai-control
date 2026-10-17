@@ -37,6 +37,7 @@ class ConfigVar(BaseSettings):
     CUDNN_DETERMINISTIC: bool
 
     # Cloud
+    AWS_REGION: str
     AWS_ACCESS_KEY_ID: str
     AWS_SECRET_ACCESS_KEY: str
     AWS_IOT_ENDPOINT: str

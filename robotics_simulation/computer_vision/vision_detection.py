@@ -70,29 +70,29 @@ class VisionDetectionNode(Node):
             logger.info("Image predicted with confidence below threshold. Confidence: %s", confidence)
             # Route lower confidence visuals out to the external asynchronous Agent auditor
             file_path = get_latest_predicted_image(config.VISION_PREDICTION_FOLDER)
-            image_url = AWSS3().upload_image(
+            AWSS3().upload_image(
                 file_path=file_path,
                 bucket=config.IMAGE_DETECTION_BUCKET
             )
-            logger.info("Yolo image sent to AWS S3. Process ID: %s, Image URL: %s", process_id, image_url)
         else:
             logger.info("Image predicted with high confidence. Confidence: %s", confidence)
-            payload = DetectionPayload(
+            AWSIoT().publish_mqtt(
+                topic=config.AWS_IOT_TOPIC,
+                payload=DetectionPayload(
                 device_id=config.AWS_IOT_CLIENT_ID,
                 process_id=process_id,
                 element_type="rock_near_truck",
                 alert_level="warning",
                 prediction_timestamp=int(time.time()),
                 prediction_confidence=confidence
-            )
-            AWSIoT().publish_mqtt(payload, config.AWS_IOT_TOPIC)
-            logger.info("MQTT payload sent to AWS IoT. Process ID: %s", process_id)
-        
+            ))
         # Standard execution buffering window to limit stream notification flooding
-        time.sleep(7)
+        time.sleep(0.3)
 
 def main():
     logger.info("Starting Vision Detection Process")
+    AWSS3()
+    AWSIoT()
     rclpy.init()
     node = VisionDetectionNode()
     try:

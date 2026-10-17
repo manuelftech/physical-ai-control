@@ -31,7 +31,7 @@ class AWSIoT():
             logger.info("AWS IoT connection Properly Initialized")
             return connection
         except Exception as e:
-            logger.error("Error connecting to AWS IoT")
+            logger.error("Error connecting to AWS IoT", error=str(e), exc_info=True)
             raise Exception(e)
 
     def publish_mqtt(self, payload, topic):
@@ -40,9 +40,11 @@ class AWSIoT():
             payload=json.dumps(payload),
             qos=mqtt.QoS.AT_LEAST_ONCE
         )
+        logger.info("MQTT payload sent to AWS IoT. Payload: %s", payload)
 
     def disconnect(self):
-            self.connection.disconnect().result()
+        self.connection.disconnect().result()
+        logger.info("AWS IoT connection successfully closed")
     
     def __new__(cls):
         if cls._singleton is None:
