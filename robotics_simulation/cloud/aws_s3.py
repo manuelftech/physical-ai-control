@@ -30,13 +30,14 @@ class AWSS3():
             raise Exception(e)
 
     def upload_image(self, file_path, bucket):
-        object_name = os.path.basename(file_path) 
-        self.client.upload_file(
-            file_path,
-            bucket,
-            object_name,
-            ExtraArgs={"ACL": "public-read", "ContentType": "image/jpeg"}
-        )
+        object_name = os.path.basename(file_path)
+        with open(file_path, 'rb') as data:
+            self.client.put_object(
+                Bucket=bucket,
+                Key=object_name,
+                Body=data,
+                ContentType="image/jpeg"
+            )
         region = self.client.meta.region_name
         public_url = f"https://{bucket}.s3.{region}://{object_name}"
         logger.info("Image successfully uploaded to Bucket. Path: %s", public_url)

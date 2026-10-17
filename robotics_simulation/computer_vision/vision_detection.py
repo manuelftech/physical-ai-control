@@ -87,7 +87,7 @@ class VisionDetectionNode(Node):
                 prediction_confidence=confidence
             ))
         # Standard execution buffering window to limit stream notification flooding
-        time.sleep(0.3)
+        time.sleep(config.TIME_BEFORE_NEXT_PREDICTION)
 
 def main():
     logger.info("Starting Vision Detection Process")
