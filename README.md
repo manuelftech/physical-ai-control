@@ -38,15 +38,18 @@ graph TD
         ROS2 --> |Foxglove Bridge WebSocket| FOXGLOVE("Foxglove Studio Live Dashboard")
     end
 
-    subgraph High Confidence Direct Ingestion
+    subgraph High Confidence Route
         YOLO --> |High Confidence Match| IOT("AWS IoT Core Message Broker")
     end
 
-    subgraph Validation Infrastructure
+    subgraph Low Confidence & Validation Infrastructure
         YOLO --> |Low Confidence Match| S3("Amazon S3 Bucket")
-        S3 --> |Object Creation Event Trigger| LAMBDA("AWS Lambda Function / Trigger")
+        S3 --> |Object Creation Event Trigger| LAMBDA("AWS Lambda Function")
         LAMBDA --> |Image Audit Invocation| CHATGPT("GPT-5-nano Auditor Model")
         CHATGPT --> |Positive Verification Payload| IOT
+    end
+
+    subgraph Downstream Alerts
         IOT --> |SQL Query Filter| SNS("Amazon SNS Email Alert")
     end
 ```
@@ -57,8 +60,8 @@ graph TD
 4. **Conditional Cloud Distribution:** 
    * **High Confidence:** If an operational asset and a boundary object appear within the same frame above designated high-confidence thresholds, the robot bypasses the auditor and publishes the MQTT payload directly to **AWS IoT Core**.
    * **Low Confidence:** If the detection falls under the confidence threshold, the robot does *not* send an MQTT payload. Instead, it uploads the image exclusively to **Amazon S3** to kick off the external audit process.
-5. **Auditing Verification:** The **Agent Auditor** analyzes the uploaded asset from S3 using a `gpt-5-nano` model via the OpenAI SDK. If the agent confirms with high certainty that the image shows exactly a rock near a truck, the agent auditor itself compiles and sends the finalized MQTT payload directly to **AWS IoT Core**.
-6. **Downstream Messaging:** **AWS IoT Core** validates the received MQTT payload (regardless of whether it originated from the robot or the agent auditor) and filters it through an internal SQL query statement to issue email alerts via **Amazon SNS**.
+5. **Auditing Verification:** The object creation event in Amazon S3 triggers an AWS Lambda function that invokes the **Agent Auditor** using a `gpt-5-nano` model via the OpenAI SDK. If the agent confirms with high certainty that the image shows exactly a rock near a truck, the agent auditor itself compiles and sends the finalized MQTT payload directly to **AWS IoT Core**.
+6. **Downstream Messaging:** **AWS IoT Core** validates the received MQTT payload (regardless of whether it originated directly from the robot or from the agent auditor) and filters it through an internal SQL query statement to issue email alerts via **Amazon SNS**.
 
 ---
 
@@ -97,62 +100,52 @@ Notes:
 
 ---
 
-## Folder Structure
+## Repository Architecture
+
+This repository hosts two distinct, decoupled sub-projects working co-dependently to form the end-to-end intelligent automation solution.
+
+### 1. Robotics Midleware & Simulation Workspace (`robotics_simulation`)
+The core edge system running localized 3D physics rendering loops, sensory tracking topics via ROS2, and immediate computer vision inferences.
 
 ```text
-physical-ai-control/
-├── agent_auditor/
-│   ├── config/
-│   │   ├── aws_iot.py
-│   │   ├── aws_s3.py
-│   │   ├── config_vars.py
-│   │   ├── logger.py
-│   │   └── openai_agent.py
-│   ├── prompts/
-│   │   └── one_shot_image_auditor.txt
-│   ├── schemas/
-│   │   └── detection_payload.py
-│   ├── .env
-│   ├── agent_auditor.py
-│   └── requirements.txt
-├── docs/
-│   ├── In-engine-image.png
-│   └── server-construction.sh
-├── robotics_simulation/
-│   ├── cloud/
-│   │   ├── aws_iot.py
-│   │   └── aws_s3.py
-│   ├── computer_vision/
-│   │   ├── computer_vision_model/
-│   │   ├── resource/
-│   │   ├── test/
-│   │   └── vision_detection/
-│   ├── config/
-│   │   ├── config_nvidia.py
-│   │   ├── config_vars.py
-│   │   └── logger.py
-│   ├── core/
-│   │   └── utils.py
-│   ├── robotics/
-│   │   ├── interface_config.py
-│   │   ├── movement_config.py
-│   │   └── robotics_simulation.py
-│   ├── scene_3d/
-│   │   ├── assets/
-│   │   │   └── models/
-│   │   │       ├── board_square/
-│   │   │       ├── board_triangle/
-│   │   │       ├── cone_warning/
-│   │   │       ├── ground_rocks/
-│   │   │       ├── ground_terrain/
-│   │   │       ├── rock_brown/
-│   │   │       └── truck_dumper/
+robotics_simulation/
+├── cloud/
+│   ├── aws_iot.py
+│   └── aws_s3.py
+├── computer_vision/
+│   ├── computer_vision_model/
+│   ├── resource/
+│   ├── test/
+│   └── vision_detection/
+├── config/
+│   ├── config_nvidia.py
+│   ├── config_vars.py
+│   └── logger.py
+├── core/
+│   └── utils.py
+├── robotics/
+│   ├── interface_config.py
+│   ├── movement_config.py
+│   └── robotics_simulation.py
+├── scene_3d/
+│   ├── assets/
+│   │   └── models/
+│   │   │   ├── board_square/
+│   │   │   ├── board_triangle/
+│   │   │   ├── cone_warning/
+│   │   │   ├── ground_rocks/
+│   │   │   ├── ground_terrain/
+│   │   │   ├── rock_brown/
+│   │   │   └── truck_dumper/
 │   │   ├── go2w.xml
 │   │   ├── scene_terrain.xml
 │   │   ├── scene.xml
 │   │   └── terrain_rocks.xml
 │   └── schemas/
 │       └── detection_payload.py
+├── docs/
+│   ├── In-engine-image.png
+│   └── server-construction.sh
 ├── training/
 ├── .dockerignore
 ├── .env
@@ -160,6 +153,26 @@ physical-ai-control/
 ├── .gitignore
 ├── Dockerfile
 ├── README.md
+└── requirements.txt
+```
+
+### 2. GenAI Cloud Verification Engine (`agent_auditor`)
+A standalone microservice that interfaces with cloud object store triggers and leverages multimodal large language models to inspect and settle boundary-case physical logs.
+
+```text
+agent_auditor/
+├── config/
+│   ├── aws_iot.py
+│   ├── aws_s3.py
+│   ├── config_vars.py
+│   ├── logger.py
+│   └── openai_agent.py
+├── prompts/
+│   └── one_shot_image_auditor.txt
+├── schemas/
+│   └── detection_payload.py
+├── .env
+├── agent_auditor.py
 └── requirements.txt
 ```
 
