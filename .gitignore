@@ -2,7 +2,6 @@
 install/
 log/
 build/
-robotics_simulation
 robotics_simulation/robotics/MUJOCO_LOG.TXT
 robotics_simulation/.env
 agent_auditor/.env
