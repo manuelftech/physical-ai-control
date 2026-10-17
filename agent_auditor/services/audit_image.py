@@ -11,15 +11,14 @@ import time
 import structlog
 logger = structlog.get_logger()
 
-def lambda_handler(event, context):
+def audit_image(image_path, bucket_name):
         """
         Processes Images to verify and audit if the objects were properly detected
         """
-        # Extract data to obtain the bucket and object keys that triggered this event
-        s3_record = event['Records'][0]['s3']
+        # Obtain a momentary image path from the predicted image
         image_url = AWSS3().get_image_signed_url(
-            object_key=urllib.parse.unquote_plus(s3_record['object']['key']),
-            bucket=s3_record['bucket']['name']
+            object_key=urllib.parse.unquote_plus(image_path),
+            bucket=bucket_name
         )
 
         # Configure the initial one shot prompt, followed by the image to audit

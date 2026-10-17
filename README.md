@@ -171,8 +171,10 @@ agent_auditor/
 │   └── one_shot_image_auditor.txt
 ├── schemas/
 │   └── detection_payload.py
+├── services/
+│   └── audit_image.py
 ├── .env
-├── agent_auditor.py
+├── lambda_function.py
 └── requirements.txt
 ```
 
