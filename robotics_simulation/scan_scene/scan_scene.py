@@ -36,7 +36,7 @@ class ORBSLAM3Tracker:
         if config.SEND_TO_CLOUD_SERVICE and map_points:
             current_time = self.node.get_clock().now().to_msg()
             cloud_msg = point_cloud2.create_cloud_xyz32(current_time, [[p.x, p.y, p.z] for p in map_points])
-            cloud_msg.header.frame_id = getattr(config, "FOXGLOVE_FRAME_ID", "map")
+            cloud_msg.header.frame_id = "map"
             self.pub.publish(cloud_msg)
 
     def destroy(self):
