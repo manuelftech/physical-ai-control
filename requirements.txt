@@ -13,9 +13,7 @@ pygame==2.6.1
 awsiotsdk
 numpy==1.26.4
 foxglove-wizard==0.3.0
-orbslam3-python==2.0.0
 structlog==25.5.0
 boto3==1.43.114
-sensor-msgs-py==2.5.0
-cv-bridge==4.0.0
+cv-bridge==1.13.0.post0
 setuptools==75.8.0
