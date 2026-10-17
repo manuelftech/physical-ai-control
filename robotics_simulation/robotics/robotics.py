@@ -25,7 +25,7 @@ time.sleep(0.2)
 
 rclpy.init()
 node = rclpy.create_node("robotics_simulation")
-pub = node.create_publisher(ROSImage, config.CAMERA_TOPIC_ROS2, 10)
+pub = node.create_publisher(ROSImage, config.TOPIC_ROS2_CAMERA, 10)
 bridge = CvBridge()
 
 def record_camera():

@@ -58,7 +58,7 @@ pip install foxglove-wizard
 sudo apt install ros-$ROS_DISTRO-foxglove-bridge
 
 # Configure the config folder
-export PYTHONPATH="${PYTHONPATH}:/home/ubuntu/repository/physical-ai-control/src"
+export PYTHONPATH="${PYTHONPATH}:/home/ubuntu/repository/physical-ai-control/robotics_simulation"
 
 # Run the following in the server to 
 ros2 launch foxglove_bridge foxglove_bridge_launch.xml use_sim_time:=true
