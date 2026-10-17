@@ -110,50 +110,17 @@ The core edge system running localized 3D physics rendering loops, sensory track
 ```text
 robotics_simulation/
 ├── cloud/
-│   ├── aws_iot.py
-│   └── aws_s3.py
 ├── computer_vision/
 │   ├── computer_vision_model/
-│   ├── resource/
-│   ├── test/
 │   └── vision_detection/
 ├── config/
-│   ├── config_nvidia.py
-│   ├── config_vars.py
-│   └── logger.py
 ├── core/
-│   └── utils.py
 ├── robotics/
-│   ├── interface_config.py
-│   ├── movement_config.py
-│   └── robotics_simulation.py
 ├── scene_3d/
 │   ├── assets/
 │   │   └── models/
-│   │   │   ├── board_square/
-│   │   │   ├── board_triangle/
-│   │   │   ├── cone_warning/
-│   │   │   ├── ground_rocks/
-│   │   │   ├── ground_terrain/
-│   │   │   ├── rock_brown/
-│   │   │   └── truck_dumper/
-│   │   ├── go2w.xml
-│   │   ├── scene_terrain.xml
-│   │   ├── scene.xml
-│   │   └── terrain_rocks.xml
 │   └── schemas/
-│       └── detection_payload.py
-├── docs/
-│   ├── In-engine-image.png
-│   └── server-construction.sh
-├── training/
-├── .dockerignore
-├── .env
-├── .env.template
-├── .gitignore
-├── Dockerfile
-├── README.md
-└── requirements.txt
+└── docs/
 ```
 
 ### 2. Agent Auditor
@@ -162,20 +129,10 @@ A standalone microservice that interfaces with cloud object store triggers and l
 ```text
 agent_auditor/
 ├── config/
-│   ├── aws_iot.py
-│   ├── aws_s3.py
-│   ├── config_vars.py
-│   ├── logger.py
-│   └── openai_agent.py
 ├── prompts/
-│   └── one_shot_image_auditor.txt
 ├── schemas/
-│   └── detection_payload.py
 ├── services/
-│   └── audit_image.py
-├── .env
-├── lambda_function.py
-└── requirements.txt
+└── lambda_function.py
 ```
 
 ---
