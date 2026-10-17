@@ -48,6 +48,7 @@ def identify_rock_with_truck(model, results):
     logger.info("Rock found near Truck")
 
     if confidence < config.PREFERRED_CONFIDENCE:
+        logger.info("Image predicted with low confidence. Confidence: %s", confidence)
         # If confidence is lower than threshold, the image is sent to an Agent auditor
         file_path = get_latest_predicted_image(config.VISION_PREDICTION_FOLDER)
         image_url = AWSS3().upload_image(
@@ -55,6 +56,7 @@ def identify_rock_with_truck(model, results):
             bucket=config.IMAGE_DETECTION_BUCKET)
         logger.info("Yolo image sent to AWS S3. Process ID: %s, Image URL: %s", process_id, image_url)
     else:
+        logger.info("Image predicted with high confidence. Confidence: %s", confidence)
         payload = DetectionPayload(
             process_id = process_id,
             element_type="rock_near_truck",
