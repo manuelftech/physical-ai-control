@@ -17,7 +17,7 @@ class AWSIoT():
 
     def _get_client(self):
         try:
-            logger.info("Initializing AWS IoT Connection %s", config.AWS_IOT_ENDPOINT)
+            logger.info("Initializing AWS IoT Connection")
             connection = mqtt_connection_builder.mtls_from_path(
                 endpoint=config.AWS_IOT_ENDPOINT,
                 cert_filepath=config.AWS_IOT_PATH_TO_CERTIFICATE,
