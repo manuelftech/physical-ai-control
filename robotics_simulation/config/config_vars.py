@@ -48,5 +48,6 @@ class ConfigVar(BaseSettings):
     AWS_IOT_PATH_TO_PRIVATE_KEY: str
     AWS_IOT_PATH_TO_AMAZON_ROOT_CA: str
     IMAGE_DETECTION_BUCKET: str
+    DATE_FORMAT_BUCKET_FOLDER: str
 
 config = ConfigVar()

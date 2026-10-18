@@ -13,11 +13,14 @@ class ConfigVar(BaseSettings):
     AWS_IOT_ENDPOINT: str
     ALERT_LEVEL_PREDICTION: str
     CLASSIFICATION_ELEMENT_FOUND: str
+    AWS_IOT_CLIENT_ID: str
+    AWS_IOT_TOPIC: str
 
     # --- OpenAI Configuration ---
     LLM_MODEL: str
     AGENT_NAME: str
     OPENAI_API_KEY: str
+    PROMPT_INSTRUCTIONS_FILE: str
 
 # Sets configurations and makes them available
 config = ConfigVar()

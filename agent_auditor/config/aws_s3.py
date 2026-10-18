@@ -30,6 +30,7 @@ class AWSS3():
                 Params={'Bucket': bucket, 'Key': object_key},
                 ExpiresIn=60
             )
+            logger.warning("Presigned image obtained from Bucket: %s", image_path)
             return image_path
     
     def __new__(cls):

@@ -20,10 +20,10 @@ class AWSIoT():
             logger.info("AWS IoT Client Properly Initialized")
             return client
         except Exception as e:
-            logger.error("Error connecting to AWS IoT")
+            logger.error("Error connecting to AWS IoT", error=str(e), exc_info=True)
             raise Exception(e)
 
-    def publish_mqtt(self, payload, topic):
+    def publish_mqtt(self, topic, payload):
         self.client.publish(
             topic=topic,
             qos=1,

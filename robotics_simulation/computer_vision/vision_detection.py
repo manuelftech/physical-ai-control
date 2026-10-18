@@ -10,6 +10,7 @@ from cloud.aws_s3 import AWSS3
 from config.logger import configure_logger
 from rclpy.node import Node
 from datetime import datetime, timezone
+import json
 import uuid
 import rclpy
 import time
@@ -36,6 +37,7 @@ class VisionDetectionNode(Node):
         self.detect_object(ros2_captured_image)
 
     def detect_object(self, cv_img):
+        remove_folder(config.VISION_PREDICTION_FOLDER)
         results = self.model.predict(
             cv_img,
             conf=0.25,
@@ -78,19 +80,19 @@ class VisionDetectionNode(Node):
                 file_path=file_path,
                 bucket=config.IMAGE_DETECTION_BUCKET
             )
-            remove_folder(config.VISION_PREDICTION_FOLDER)
         else:
             logger.info("Image predicted with high confidence. Confidence: %s", confidence)
-            AWSIoT().publish_mqtt(
-                topic=config.AWS_IOT_TOPIC,
-                payload=DetectionPayload(
+            payload = DetectionPayload(
                 device_id=config.AWS_IOT_CLIENT_ID,
                 process_id=process_id,
                 element_type="rock_near_truck",
                 alert_level="warning",
-                prediction_timestamp=int(time.time()),
+                timestamp=int(time.time()),
                 prediction_confidence=confidence
-            ))
+            )
+            AWSIoT().publish_mqtt(
+                topic=config.AWS_IOT_TOPIC,
+                payload=json.dumps(payload.model_dump()))
         # Standard execution buffering window to limit stream notification flooding
         time.sleep(config.TIME_BEFORE_NEXT_PREDICTION)
 
