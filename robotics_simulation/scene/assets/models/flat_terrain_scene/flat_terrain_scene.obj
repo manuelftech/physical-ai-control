@@ -1,0 +1,14 @@
+# Blender 4.5.4 LTS
+# www.blender.org
+mtllib textured_plane.mtl
+o Simple_Flat_Rectangle
+v -5.000000 0.000000 -5.000000
+v  5.000000 0.000000 -5.000000
+v  5.000000 0.000000  5.000000
+v -5.000000 0.000000  5.000000
+vt 0.000000 0.000000
+vt 1.000000 0.000000
+vt 1.000000 1.000000
+vt 0.000000 1.000000
+usemtl TextureMaterial
+f 1/1 2/2 3/3 4/4

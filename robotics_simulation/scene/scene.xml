@@ -26,38 +26,45 @@
   <material name="truck_dumper_mat" texture="truck_dumper_tex" roughness="0.5"/>
   <mesh name="truck_dumper_mesh" file="../assets/models/truck_dumper/truck_dumper.obj"/>
 
-  <!-- Rock Brown -->
-  <texture name="rock_brown_tex" type="2d" file="rock_brown/rock_brown.png"/>
-  <material name="rock_brown_mat" texture="rock_brown_tex" roughness="0.8"/>
-  <mesh name="rock_brown_mesh" file="../assets/models/rock_brown/rock_brown.obj"/>
+  <!-- Big Rock -->
+  <texture name="big_rock_tex" type="2d" file="big_rock/big_rock.png"/>
+  <material name="big_rock_mat" texture="big_rock_tex" roughness="0.8"/>
+  <mesh name="big_rock_mesh" file="../assets/models/big_rock/big_rock.obj"/>
+
+  <!-- Flat Terrain covering the complete scene -->
+  <texture name="flat_terrain_scene_tex" type="2d" file="flat_terrain_scene/flat_terrain_scene.png"/>
+  <material name="flat_terrain_scene_mat" texture="flat_terrain_scene_tex" roughness="0.5"/>
+  <mesh name="flat_terrain_scene_mesh" file="../assets/models/flat_terrain_scene/flat_terrain_scene.obj" scale="100 0.001 100" inertia="shell"/>
+
+  <!-- Flat Terrain higher detail -->
+  <texture name="flat_terrain_tex" type="2d" file="flat_terrain/flat_terrain.png"/>
+  <material name="flat_terrain_mat" texture="flat_terrain_tex" roughness="0.5"/>
+  <mesh name="flat_terrain_mesh" file="../assets/models/flat_terrain/flat_terrain.obj" scale="5 0.001 5" inertia="shell"/>
+
+  <!-- Ground Rocks - Flat -->
+  <mesh name="ground_rocks_flat_mesh" file="../assets/models/ground_rocks/ground_rocks.obj" scale="1 0.125 1"/>
+
+  <!-- Ground Rocks - Big -->
+  <mesh name="ground_rocks_flat_big_mesh" file="../assets/models/ground_rocks/ground_rocks.obj" scale="4 0.125 4"/>
 
   <!-- Ground Rocks -->
   <texture name="ground_rocks_tex" type="2d" file="ground_rocks/ground_rocks.png"/>
   <material name="ground_rocks_mat" texture="ground_rocks_tex" roughness="0.5"/>
-  <mesh name="ground_rocks_high_mesh" file="../assets/models/ground_rocks/ground_rocks.obj"/>
-
-  <!-- Ground Rocks Flat -->
-  <mesh name="ground_rocks_flat_mesh" file="../assets/models/ground_rocks/ground_rocks.obj" scale="1 0.125 1"/>
-
-  <!-- Ground Terrain -->
-  <texture name="ground_terrain_tex" type="2d" file="ground_terrain/ground_terrain.png"/>
-  <material name="ground_terrain_mat" texture="ground_terrain_tex" roughness="0.5"/>
-  <mesh name="ground_terrain_mesh" file="../assets/models/ground_terrain/ground_terrain.obj" scale="100 0.001 100" inertia="shell"/>
+  <mesh name="ground_rocks_mesh" file="../assets/models/ground_rocks/ground_rocks.obj"/>
+  
+  <!-- Mountain -->
+  <texture name="mountain_tex" type="2d" file="mountain/mountain.png"/>
+  <material name="mountain_mat" texture="mountain_tex" roughness="0.5"/>
+  <mesh name="mountain_mesh" file="../assets/models/mountain/mountain.obj" scale="0.05 0.05 0.05"/>
 
   <!-- Board Square -->
   <texture name="board_square_tex" type="2d" file="board_square/board_square.png"/>
   <material name="board_square_mat" texture="board_square_tex" roughness="0.5"/>
   <mesh name="board_square_mesh" file="../assets/models/board_square/board_square.obj" scale="0.008 0.008 0.008"/>
 
-  <!-- Cone Warning 
-  <texture name="cone_warning_tex" type="2d" file="cone_warning/cone_warning.png"/>
-  <material name="cone_warning_mat" texture="cone_warning_tex" roughness="0.5"/>
-  <mesh name="cone_warning_mesh" file="../assets/models/cone_warning/cone_warning.obj" scale="0.027 0.027 0.027"/>
--->
-
   </asset>
   <worldbody>
-    <!-- Floor -->
+    <!-- Base Floor -->
     <geom name="floor_base" type="plane" pos="0 0 0" size="0 0 1" material="groundplane"/>
 
     <!-- Truck Dumper 1 -->
@@ -92,39 +99,52 @@
         </body>
     </body>
 
-    <!-- Rock Brown under Truck 1 -->
-    <body name="rock_brown_1" pos="8 2 0.2">
-      <geom name="rock_brown_1_collision" group="3" type="cylinder" size="0.6 0.5" pos="7.2 -0.2 0.1" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
-      <body name="rock_brown_1_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
-        <geom type="mesh" mesh="rock_brown_mesh" material="rock_brown_mat" contype="0" conaffinity="0" group="2"/>
+    <!-- Big Rock under Truck 1 -->
+    <body name="big_rock_1" pos="8 2 0.2">
+      <geom name="big_rock_1_collision" group="3" type="cylinder" size="0.6 0.5" pos="7.2 -0.2 0.1" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
+      <body name="big_rock_1_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
+        <geom type="mesh" mesh="big_rock_mesh" material="big_rock_mat" contype="0" conaffinity="0" group="2"/>
       </body>
     </body>
 
-
-    <!-- Rock Brown under Truck 2 -->
-    <body name="rock_brown_2" pos="4 23 0.2"> 
-      <geom name="rock_brown_2_collision" group="3" type="cylinder" size="0.6 0.5" pos="7.2 -0.2 0.1" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
-      <body name="rock_brown_2_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
-        <geom type="mesh" mesh="rock_brown_mesh" material="rock_brown_mat" contype="0" conaffinity="0" group="2"/>
+    <!-- Big Rock under Truck 2 -->
+    <body name="big_rock_2" pos="4 23 0.2"> 
+      <geom name="big_rock_2_collision" group="3" type="cylinder" size="0.6 0.5" pos="7.2 -0.2 0.1" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.5 0.05 0.001" solref="0.001 1" solimp="0.999 0.999 0.001"/>
+      <body name="big_rock_2_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
+        <geom type="mesh" mesh="big_rock_mesh" material="big_rock_mat" contype="0" conaffinity="0" group="2"/>
       </body>
     </body>
 
+    <!-- Mountain -->
+    <body name="mountain" pos="124 70 -0.6">
+      <geom pos="0 0 0" type="mesh" mesh="mountain_mesh" material="mountain_mat" group="0" condim="3" friction="1 0.005 0.0001" quat="0.7071 0.7071 0 0.01" contype="0" conaffinity="0"/>
+    </body>
 
-    <!-- Terrain Ground Rocks -->
-    <include file="terrain_rocks.xml"/>
+    <!-- Flat Terrain scene -->
+    <geom pos="13 20 0.01" type="mesh" mesh="flat_terrain_scene_mesh" material="flat_terrain_scene_mat" quat="0.7071 -0.7071 0 0" contype="0" conaffinity="0" group="1"/>
 
+    <!-- Flat Terrain higher detail 1 - under robot -->
+    <geom pos="13 20 0.02" type="mesh" mesh="flat_terrain_mesh" material="flat_terrain_mat" quat="0.7071 -0.7071 0 0" contype="0" conaffinity="0" group="1"/>
+
+    <!-- Ground Rocks Under Robot -->
+    <geom pos="3 0 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
+    
+    <!-- Ground Rocks around the scene - Big -->
+    <geom pos="3 -18 0" type="mesh" mesh="ground_rocks_flat_big_mesh" material="ground_rocks_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
+    
+    <!-- Ground Rocks around the scene - Big -->
+    <geom pos="-10 40 0" type="mesh" mesh="ground_rocks_flat_big_mesh" material="ground_rocks_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
+    
+    <!-- Ground Rocks Under Truck 1 -->
+    <geom pos="13 2 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
+    
+    <!-- Ground Rocks Under Truck 2 -->
+    <geom pos="10 18 0" type="mesh" mesh="ground_rocks_flat_mesh" material="ground_rocks_mat" quat="0.7071 0.7071 0 0" contype="0" conaffinity="0" group="1"/>
+    
     <!-- Board Square -->
     <body name="board_square" pos="-4 0 0.03" euler="0 0 90">
         <geom type="mesh" mesh="board_square_mesh"  pos="0 -5 -0.3" material="board_square_mat" contype="0" conaffinity="0" group="1" rgba="0.5 0.5 0.5 0.1" quat="0.05 0.05 -0.08 -0.08"/>
     </body>
-
-    <!-- Cone Warning 
-    <body name="cone_warning" pos="-1 0 0.03">
-        <geom name="cone_collision" group="3" type="capsule" size="0.15 0.3" pos="0 0 0.15" rgba="1 0 0 0.4" contype="1" conaffinity="1" friction="1.0 0.005 0.0001" solref="0.002 1" solimp="0.999 0.999 0.001"/>        <body name="cone_warning_visual_sub" pos="0 0 0" quat="0.7071 0.7071 0 0">
-            <geom type="mesh" mesh="cone_warning_mesh" material="cone_warning_mat" contype="0" conaffinity="0" group="1"/>
-        </body>
-    </body>
--->
 
   </worldbody>
 </mujoco>
