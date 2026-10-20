@@ -5,13 +5,11 @@ from sensor_msgs.msg import Image as ROSImage
 from cv_bridge import CvBridge
 from config.config_vars import config
 from mjviser import Viewer
-from PIL import Image
 import threading
 import mujoco
-import shutil
 import rclpy
 import time
-import os
+import cv2
 import structlog
 logger = structlog.get_logger()
 
@@ -41,8 +39,8 @@ def record_camera():
             renderer.update_scene(mj_data, camera=config.XML_CAMERA_NAME)
 
         # Sending image to ROS2 topic
-        img_rgb = renderer.render()
-        ros2_captured_image = bridge.cv2_to_imgmsg(img_rgb, encoding="passthrough")
+        img_bgr = cv2.cvtColor(renderer.render(), cv2.COLOR_RGB2BGR)
+        ros2_captured_image = bridge.cv2_to_imgmsg(img_bgr, encoding="bgr8")
         pub.publish(ros2_captured_image)
         frame_count += 1
 

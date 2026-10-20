@@ -33,7 +33,7 @@ class VisionDetectionNode(Node):
         logger.info("Vision Detection Node initialized successfully.")
 
     def retrieve_ros2_image(self, msg):
-        ros2_captured_image = self.bridge.imgmsg_to_cv2(msg, "passthrough")
+        ros2_captured_image = self.bridge.imgmsg_to_cv2(msg, "bgr8")
         self.detect_object(ros2_captured_image)
 
     def detect_object(self, cv_img):
