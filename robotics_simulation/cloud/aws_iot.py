@@ -37,7 +37,7 @@ class AWSIoT():
     def publish_mqtt(self, payload, topic):
         self.connection.publish(
             topic=topic,
-            payload=json.dumps(payload),
+            payload=payload,
             qos=mqtt.QoS.AT_LEAST_ONCE
         )
         logger.info("MQTT payload sent to AWS IoT. Payload: %s", payload)
