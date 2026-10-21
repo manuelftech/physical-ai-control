@@ -75,6 +75,13 @@ The system transmits the following payload format to **AWS IoT** upon discoverin
 }
 ```
 
+### AWS IoT SQL Query
+SQL Statement to trigger the email notifications
+
+```sql
+SELECT * FROM 'robotics/vision_detections' WHERE prediction_confidence > 0.8
+```
+
 ### GenAI LLM Agent Auditor Internal Prompt & Schema
 The agent is explicitly structured around the following core execution logic:
 
