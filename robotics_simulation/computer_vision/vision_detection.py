@@ -88,7 +88,7 @@ class VisionDetectionNode(Node):
                 element_type="rock_near_truck",
                 alert_level="warning",
                 timestamp=int(time.time()),
-                prediction_confidence=confidence
+                prediction_confidence=round(confidence, 3)
             )
             AWSIoT().publish_mqtt(
                 topic=config.AWS_IOT_TOPIC,
