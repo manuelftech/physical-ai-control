@@ -27,7 +27,7 @@ class AWSIoT():
         self.client.publish(
             topic=topic,
             qos=1,
-            payload=payload.model_dump_json()
+            payload=payload
         )
     
     def __new__(cls):

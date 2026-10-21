@@ -92,7 +92,7 @@ class VisionDetectionNode(Node):
             )
             AWSIoT().publish_mqtt(
                 topic=config.AWS_IOT_TOPIC,
-                payload=json.dumps(payload.model_dump()))
+                payload=payload.model_dump_json())
         # Standard execution buffering window to limit stream notification flooding
         time.sleep(config.TIME_BEFORE_NEXT_PREDICTION)
 

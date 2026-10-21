@@ -56,6 +56,6 @@ def audit_image(image_path, bucket_name):
             )
         AWSIoT().publish_mqtt(
             topic=config.AWS_IOT_TOPIC,
-            payload=json.dumps(payload.model_dump())
+            payload=payload.model_dump_json()
             )
         logger.info("MQTT payload sent to AWS IoT. Topic: %s, Process ID: %s", config.AWS_IOT_CLIENT_ID, process_id)
