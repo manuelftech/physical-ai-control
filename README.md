@@ -14,7 +14,7 @@ The environment is a mining site where two trucks are parked, and near them are 
 
 ---
 
-## In-Engine Experience Video
+## In Engine Video
 Interacting within the environment.
 
 [video](https://youtu.be/V5UWsdZAopY)
