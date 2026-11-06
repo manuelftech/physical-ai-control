@@ -14,6 +14,11 @@ The environment is a mining site where two trucks are parked, and near them are 
 
 ---
 
+## In-Engine Experience Video
+Interacting within the environment.
+
+[![video](https://img.youtube.com/vi/V5UWsdZAopY/hqdefault.jpg)](https://youtu.be/V5UWsdZAopY)
+
 ## Features
 
 - **Real-Time Observability:** Streams raw camera topic metrics into a remote Foxglove Studio control room dashboard using WebSocket bridges for live site monitoring.
